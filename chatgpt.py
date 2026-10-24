@@ -836,6 +836,101 @@ _premium_css = """
 @media(prefers-reduced-motion:reduce) {
   .orb,.orbit,.orb-spark,.welcome-robot { animation:none!important;transition:none!important; }
 }
+
+
+/* Mobile-first finishing pass: touch targets, safe areas, stacked header, and compact chat. */
+@media (max-width: 640px) {
+  [data-testid="stAppViewContainer"] { overflow-x: clip!important; }
+  [data-testid="stMainBlockContainer"] {
+    width:100%!important; max-width:100%!important;
+    padding: .75rem .7rem calc(6.5rem + env(safe-area-inset-bottom))!important;
+  }
+  [data-testid="stHorizontalBlock"] {
+    flex-wrap:wrap!important; gap:.65rem!important;
+  }
+  [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+    flex:1 1 100%!important; width:100%!important; min-width:0!important;
+  }
+  [data-testid="stHorizontalBlock"]:has(.workspace-topbar) > [data-testid="stColumn"] {
+    flex:1 1 100%!important; width:100%!important;
+  }
+  .workspace-topbar {
+    width:100%!important; box-sizing:border-box!important;
+    min-height:60px!important; margin:0!important; padding:10px 12px!important;
+    border-radius:17px!important; gap:8px!important;
+  }
+  .workspace-brand { font-size:12px!important; gap:8px!important; }
+  .workspace-mark { width:34px!important; height:34px!important; min-width:34px!important; }
+  .workspace-status { font-size:9px!important; padding:6px 8px!important; white-space:nowrap!important; }
+  .hero {
+    max-width:100%!important; margin:1.1rem auto .8rem!important;
+    padding:4px 3px 6px!important;
+  }
+  .orb-wrap { width:145px!important; height:108px!important; margin-bottom:6px!important; }
+  .orb { width:68px!important; height:68px!important; min-width:68px!important; border-radius:22px!important; font-size:31px!important; }
+  .orbit { width:91px!important; height:91px!important; border-radius:27px!important; }
+  .orb-floor-shadow { bottom:11px!important; }
+  .orb-spark-a { top:17px!important; right:24px!important; }
+  .orb-spark-b { bottom:19px!important; left:22px!important; }
+  .hero-kicker { font-size:8px!important; letter-spacing:.9px!important; padding:6px 9px!important; margin-bottom:12px!important; }
+  .hero h1 {
+    font-size:clamp(25px,7.4vw,36px)!important; line-height:1.18!important;
+    letter-spacing:-.75px!important; padding:0 .04em!important; margin-bottom:12px!important;
+    text-wrap:balance!important;
+  }
+  .hero-subtitle { max-width:35rem!important; font-size:12.5px!important; line-height:1.7!important; padding:0 7px!important; }
+  .hero-trust-row { gap:6px!important; margin-top:13px!important; }
+  .hero-trust-row span { font-size:9px!important; padding:6px 8px!important; }
+  .section-heading { margin:19px 0 10px!important; font-size:13px!important; }
+  .stButton>button {
+    min-height:46px!important; width:100%!important; padding:10px 12px!important;
+    border-radius:14px!important; font-size:12px!important; white-space:normal!important;
+  }
+  [data-testid="stChatMessage"] {
+    padding:10px 11px!important; border-radius:16px!important; margin-bottom:10px!important;
+  }
+  [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+  [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li {
+    font-size:14px!important; line-height:1.7!important; overflow-wrap:anywhere!important;
+  }
+  [data-testid="stChatMessage"] pre { max-width:100%!important; overflow-x:auto!important; }
+  [data-testid="stChatMessage"] table { display:block!important; max-width:100%!important; overflow-x:auto!important; }
+  [data-testid="stChatInputContainer"],[data-testid="stBottomBlockContainer"] {
+    padding-left:.55rem!important; padding-right:.55rem!important;
+    padding-bottom:calc(.45rem + env(safe-area-inset-bottom))!important;
+  }
+  [data-testid="stChatInput"],[data-testid="stChatInput"]>div {
+    min-height:52px!important; border-radius:17px!important;
+  }
+  [data-testid="stChatInput"] textarea { font-size:16px!important; line-height:1.45!important; }
+  [data-testid="stChatInput"] button { min-width:40px!important; min-height:40px!important; border-radius:12px!important; }
+  [data-testid="stDialog"] [role="dialog"] {
+    width:calc(100vw - 18px)!important; max-width:calc(100vw - 18px)!important;
+    max-height:calc(100dvh - 20px - env(safe-area-inset-bottom))!important;
+    padding:12px!important; border-radius:23px!important;
+  }
+  .welcome-card { padding:2px 1px 8px!important; }
+  .welcome-robot-wrap { width:78px!important; height:78px!important; border-radius:24px!important; margin-bottom:12px!important; }
+  .welcome-robot { width:54px!important; height:54px!important; border-radius:18px!important; font-size:30px!important; }
+  .welcome-title { font-size:25px!important; }
+  .welcome-copy { font-size:12px!important; margin-bottom:12px!important; }
+  .welcome-features { gap:5px!important; flex-wrap:wrap!important; }
+  .welcome-features span { font-size:9px!important; padding:6px 8px!important; }
+  .home-footnote { font-size:10px!important; line-height:1.6!important; padding:10px!important; }
+  .creator-credit-main { font-size:10px!important; margin-bottom:12px!important; }
+}
+@media (max-width: 360px) {
+  [data-testid="stMainBlockContainer"] { padding-left:.5rem!important; padding-right:.5rem!important; }
+  .workspace-status { max-width:118px!important; overflow:hidden!important; text-overflow:ellipsis!important; }
+  .hero h1 { font-size:clamp(23px,7.1vw,27px)!important; letter-spacing:-.55px!important; }
+  .hero-trust-row span { font-size:8px!important; padding:5px 6px!important; }
+  .welcome-title { font-size:23px!important; }
+}
+@media (hover:none) and (pointer:coarse) {
+  .stButton>button:hover { transform:none!important; }
+  .stButton>button, [data-testid="stChatInput"] button, input, textarea, [role="combobox"] { touch-action:manipulation; }
+}
+
 </style>
 """
 _premium_values = {
