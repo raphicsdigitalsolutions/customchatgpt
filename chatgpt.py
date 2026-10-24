@@ -139,6 +139,8 @@ st.markdown(
 )
 
 
+st.markdown(
+    """
 <style>
 .hero-trust-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px auto 0}
 .hero-trust-row span{font:600 10px 'DM Sans',sans-serif;padding:7px 11px;border-radius:99px;color:#776786;background:rgba(255,255,255,.66);border:1px solid rgba(222,208,239,.88);box-shadow:0 5px 14px rgba(64,42,91,.035)}
@@ -149,6 +151,10 @@ st.markdown(
 @media(max-width:700px){.hero-trust-row span{font-size:9px;padding:6px 8px}}
 @media(prefers-reduced-motion:reduce){.hero-trust-row span,.welcome-robot-wrap,.welcome-robot{animation:none!important;transition:none!important}}
 </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 # Apply the selected appearance without changing the app's functionality.
 if st.session_state.get("dark_mode", False):
