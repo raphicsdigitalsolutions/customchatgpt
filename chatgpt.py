@@ -775,6 +775,41 @@ _premium_css = """
 .stApp pre,.stApp code { background:__CODE_BG__!important;color:var(--nx-ink)!important;border-color:var(--nx-line)!important; }
 .stApp table th,.stApp table td { border-color:var(--nx-line)!important;color:var(--nx-ink)!important; }
 .stApp a { color:var(--nx-link)!important; }
+
+/* Premium creator signature and dimensional onboarding icon. */
+.welcome-robot-wrap {
+  overflow:visible!important;
+  transform:perspective(520px) rotateX(7deg) rotateY(-5deg)!important;
+}
+.welcome-robot {
+  position:relative!important; width:62px!important;height:62px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  border-radius:21px!important;color:#fff!important;font-size:34px!important;line-height:1!important;
+  background:
+    radial-gradient(ellipse at 28% 14%,rgba(255,255,255,.82),transparent 27%),
+    linear-gradient(145deg,#d7c0ff 0%,#a27aff 28%,#8057f5 58%,#d85bb7 100%)!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  box-shadow:0 13px 24px rgba(103,66,183,.26),inset 0 2px 3px rgba(255,255,255,.8),inset 0 -7px 10px rgba(62,29,127,.2)!important;
+  transform-style:preserve-3d!important;
+}
+.welcome-robot:before {
+  content:"";position:absolute;inset:4px 6px auto;height:17px;border-radius:18px 18px 50% 50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.04))!important;pointer-events:none;
+}
+.welcome-credit,.creator-credit-sidebar,.creator-credit-main {
+  text-align:center!important;font-size:10px!important;line-height:1.6!important;
+  color:var(--nx-muted)!important;letter-spacing:.1px;
+}
+.welcome-credit { margin:0 auto 10px!important; }
+.welcome-credit strong,.creator-credit-sidebar strong,.creator-credit-main strong { color:var(--nx-link)!important;font-weight:800!important; }
+.welcome-credit span,.creator-credit-main span { display:block!important;opacity:.86; }
+.creator-credit-sidebar { margin:6px auto 12px!important;padding-top:9px!important;border-top:1px solid var(--nx-line)!important;font-size:9px!important; }
+.creator-credit-main { margin:10px auto 20px!important;font-size:10px!important; }
+@media(max-width:520px) {
+  .welcome-credit { font-size:9.5px!important; }
+  .creator-credit-main { margin-bottom:14px!important; }
+}
+
 @media(max-width:900px) {
   [data-testid="stMainBlockContainer"] { padding:1rem 1rem 6rem!important; }
   .hero { margin-top:1.5rem!important; }
@@ -963,13 +998,13 @@ def key_dialog():
         """
         <div class="welcome-card">
           <div class="welcome-robot-wrap">
-            <div class="welcome-robot">🤖</div>
+            <div class="welcome-robot">✦</div>
             <span class="robot-spark spark-one">✦</span>
             <span class="robot-spark spark-two">✧</span>
           </div>
           <div class="welcome-eyebrow">YOUR PERSONAL AI STUDIO</div>
           <h2 class="welcome-title">Welcome to<br>your <span> NEXORA AI</span></h2>
-          <p class="welcome-copy">A smarter space to think, create, and explore. Connect your OpenAI API key to get started.</p>
+          <p class="welcome-copy">A smarter space to think, create, and explore. Connect your OpenAI API key to enter your personal AI workspace.</p><div class="welcome-credit">Built by <strong>Atta ur Rehman</strong><span>Student of Sir Iqbal</span></div>
           <div class="welcome-features">
             <span>⚡ Smart answers</span><span>🌐 Web search</span><span>💬 Chat history</span>
           </div>
@@ -979,7 +1014,7 @@ def key_dialog():
     )
     with st.form("nexora_key_form"):
         entered_key = st.text_input("🔑 OpenAI API key", type="password", placeholder="Paste your API key (sk-...)")
-        connect = st.form_submit_button("🚀  Unlock NEXORA AI", type="primary", use_container_width=True)
+        connect = st.form_submit_button("✦  Connect & enter workspace", type="primary", use_container_width=True)
     st.markdown('<div class="welcome-helper">🔒 Your key stays in this active session and is not saved to the source file.</div>', unsafe_allow_html=True)
     st.markdown('<div class="welcome-link">Need a key? <a href="https://platform.openai.com/api-keys" target="_blank">Create an API key ↗</a></div>', unsafe_allow_html=True)
     st.caption("API usage may incur charges. ChatGPT subscriptions do not include API credits.")
@@ -1078,7 +1113,7 @@ with st.sidebar:
         st.session_state.active_chat = None
         st.rerun()
 
-    st.markdown('<div class="fine-print">NEXORA AI · Think beyond</div>', unsafe_allow_html=True)
+    st.markdown('<div class="fine-print">NEXORA AI · Think beyond</div><div class="creator-credit-sidebar">Built by <strong>Atta ur Rehman</strong><br><span>Student of Sir Iqbal</span></div>', unsafe_allow_html=True)
 
 # -------------------- SETTINGS --------------------
 if st.session_state.show_settings:
@@ -1160,7 +1195,7 @@ else:
                     for source in message["citations"]:
                         st.markdown(f"- [{source['title']}]({source['url']})")
 
-st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div>', unsafe_allow_html=True)
+st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div><div class="creator-credit-main">Built with curiosity by <strong>Atta ur Rehman</strong><span>Student of Sir Iqbal</span></div>', unsafe_allow_html=True)
 
 # -------------------- INPUT / RESPONSE --------------------
 pending = st.session_state.pop("pending_prompt", "")
