@@ -460,7 +460,20 @@ for key, value in defaults.items():
 
 
 def get_api_key():
-    return st.session_state.api_key_session.strip() or os.getenv("OPENAI_API_KEY", "").strip()
+    """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
+    session_key = st.session_state.get("api_key_session", "").strip()
+    if session_key:
+        return session_key
+
+    try:
+        secret_key = str(st.secrets.get("OPENAI_API_KEY", "")).strip()
+        if secret_key:
+            return secret_key
+    except Exception:
+        # Streamlit Secrets is optional for local development.
+        pass
+
+    return os.getenv("OPENAI_API_KEY", "").strip()
 
 
 def create_chat():
