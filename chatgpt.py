@@ -156,6 +156,105 @@ st.markdown(
 )
 
 
+# Final visual fixes requested after the first live preview:
+# - remove the pulsing light blob behind the floating orb
+# - stop animating the entire page background
+# - prevent the headline and gradient word from clipping on narrower viewports
+st.markdown(
+    """
+    <style>
+    /* Calm, premium canvas: keep the 3D object moving, not the entire background. */
+    .stApp {
+        animation: none !important;
+        background:
+            radial-gradient(ellipse at 50% 0%, rgba(161,126,232,.10), transparent 38%),
+            radial-gradient(ellipse at 95% 45%, rgba(230,154,197,.07), transparent 30%),
+            var(--paper) !important;
+        background-size: auto !important;
+    }
+    /* The halo was creating a large soft light patch that moved with the orb. */
+    .orb-halo { display: none !important; animation: none !important; opacity: 0 !important; }
+    .orb-wrap { isolation: isolate; overflow: visible !important; }
+    .orb {
+        z-index: 2;
+        box-shadow:
+            0 16px 28px rgba(95,63,171,.22),
+            inset 0 2px 4px rgba(255,255,255,.82),
+            inset 0 -8px 14px rgba(73,35,147,.17) !important;
+    }
+    .orb:before {
+        box-shadow: none !important;
+        border-color: rgba(153,116,244,.20) !important;
+    }
+    .orbit { z-index: 1; }
+    .orbit:after { box-shadow: none !important; }
+
+    /* Keep the headline centered and fully visible at desktop, tablet and mobile widths. */
+    .hero {
+        width: 100% !important;
+        max-width: 980px !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+        padding-left: clamp(10px, 2.5vw, 28px) !important;
+        padding-right: clamp(10px, 2.5vw, 28px) !important;
+    }
+    .hero h1 {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 .08em !important;
+        font-size: clamp(27px, 4vw, 52px) !important;
+        line-height: 1.18 !important;
+        letter-spacing: clamp(-1.9px, -.11vw, -.45px) !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        text-wrap: balance;
+    }
+    .gradient-word {
+        display: inline !important;
+        white-space: normal !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        padding-right: .035em;
+    }
+    .hero-subtitle {
+        width: 100% !important;
+        max-width: 620px !important;
+        box-sizing: border-box !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    @media (max-width: 900px) {
+        .hero { margin-top: 2.2vh !important; }
+        .hero h1 {
+            font-size: clamp(27px, 5.1vw, 42px) !important;
+            letter-spacing: -.9px !important;
+        }
+        .orb-wrap { height: 124px !important; }
+    }
+    @media (max-width: 520px) {
+        .hero { margin-top: 1vh !important; padding-left: 4px !important; padding-right: 4px !important; }
+        .hero h1 { font-size: clamp(25px, 7vw, 34px) !important; letter-spacing: -.65px !important; line-height: 1.2 !important; }
+        .hero-subtitle { font-size: 12.5px !important; line-height: 1.7 !important; }
+        .orb-wrap { height: 108px !important; }
+        .orbit { width: 100px !important; height: 100px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .stApp, .orb, .orbit { animation: none !important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
 # Apply the selected appearance without changing the app's functionality.
 if st.session_state.get("dark_mode", False):
     st.markdown(
