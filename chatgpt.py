@@ -838,6 +838,45 @@ _premium_css = """
 }
 
 
+
+/* Tactile controls and subtle cinematic motion for the welcome screen. */
+@keyframes nx-login-arrive { from { opacity:0; transform:translateY(16px) scale(.975); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes nx-login-orbit { from { transform:rotate(18deg) rotateX(12deg) rotateY(0deg); } to { transform:rotate(378deg) rotateX(12deg) rotateY(0deg); } }
+@keyframes nx-login-glint { 0%,100% { opacity:.35; transform:translateX(-4px) scale(.92); } 50% { opacity:.95; transform:translateX(4px) scale(1.08); } }
+[data-testid="stDialog"] [role="dialog"] { animation:nx-login-arrive .42s cubic-bezier(.2,.8,.2,1) both!important; }
+[data-testid="stDialog"] .welcome-robot-wrap { animation:nx-login-arrive .6s .06s both!important; }
+[data-testid="stDialog"] .welcome-robot { animation:nx-orb-float 4.2s ease-in-out infinite!important; }
+[data-testid="stDialog"] .welcome-robot-wrap:after {
+  content:"✦"; position:absolute; top:-7px; right:-8px; color:#d77be8; font-size:17px;
+  text-shadow:0 0 15px rgba(182,124,255,.5); animation:nx-login-glint 3s ease-in-out infinite; pointer-events:none;
+}
+.orbit { animation:nx-login-orbit 32s linear infinite!important; transform-style:preserve-3d!important; }
+.stButton>button, [data-testid="stFormSubmitButton"]>button {
+  position:relative!important; overflow:hidden!important; transform:translateZ(0);
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,border-color .22s ease,filter .22s ease!important;
+}
+.stButton>button:before, [data-testid="stFormSubmitButton"]>button:before {
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.18),transparent 38%,rgba(255,255,255,.06) 65%,transparent);
+  opacity:.55; transition:opacity .2s ease;
+}
+.stButton>button:active, [data-testid="stFormSubmitButton"]>button:active {
+  transform:translateY(1px) scale(.985)!important; box-shadow:0 3px 8px var(--nx-shadow)!important;
+}
+.stButton>button[kind="primary"],[data-testid="stFormSubmitButton"]>button[kind="primary"] {
+  box-shadow:0 10px 0 rgba(74,42,145,.13),0 15px 28px rgba(128,87,245,.22),inset 0 1px 0 rgba(255,255,255,.4)!important;
+}
+.stButton>button[kind="primary"]:hover,[data-testid="stFormSubmitButton"]>button[kind="primary"]:hover {
+  filter:saturate(1.12) brightness(1.04)!important; transform:translateY(-2px)!important;
+  box-shadow:0 12px 0 rgba(74,42,145,.10),0 20px 35px rgba(128,87,245,.29),inset 0 1px 0 rgba(255,255,255,.45)!important;
+}
+.edit-message-heading { color:var(--nx-ink)!important;font:800 15px 'Manrope',sans-serif!important;margin:10px 0 8px!important; }
+[data-testid="stForm"] { background:var(--nx-surface)!important;border:1px solid var(--nx-line)!important;border-radius:18px!important;padding:12px!important;box-shadow:0 10px 28px var(--nx-shadow)!important; }
+[data-testid="stTextArea"] textarea { background:var(--nx-control)!important;color:var(--nx-control-text)!important;-webkit-text-fill-color:var(--nx-control-text)!important;border-color:var(--nx-line)!important;border-radius:13px!important; }
+@media (prefers-reduced-motion:reduce) {
+  [data-testid="stDialog"] [role="dialog"],[data-testid="stDialog"] .welcome-robot-wrap,.orbit,.stButton>button { animation:none!important;transition:none!important; }
+}
+
 /* Mobile-first finishing pass: touch targets, safe areas, stacked header, and compact chat. */
 @media (max-width: 640px) {
   [data-testid="stAppViewContainer"] { overflow-x: clip!important; }
@@ -1282,13 +1321,48 @@ if not history:
 else:
     title_color = "#f3effb" if st.session_state.dark_mode else "#292238"
     st.markdown(f"<h3 style='font-family:Manrope,sans-serif;color:{title_color}'>{active_chat['title']}</h3>", unsafe_allow_html=True)
-    for message in history:
+    for message_index, message in enumerate(history):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+            if message["role"] == "user":
+                edit_col, spacer_col = st.columns([1, 5])
+                with edit_col:
+                    if st.button("✎ Edit", key=f"edit_message_{st.session_state.active_chat}_{message_index}", help="Edit this message and regenerate the conversation from this point"):
+                        st.session_state.edit_message_index = message_index
+                        st.rerun()
             if message["role"] == "assistant" and message.get("citations"):
                 with st.expander("Sources from the web"):
                     for source in message["citations"]:
                         st.markdown(f"- [{source['title']}]({source['url']})")
+
+# Edit a prior user message; regenerate the thread from the edited point onward.
+if st.session_state.get("edit_message_index") is not None:
+    edit_index = st.session_state.edit_message_index
+    if 0 <= edit_index < len(history) and history[edit_index].get("role") == "user":
+        st.markdown('<div class="edit-message-heading">✦ Refine your prompt</div>', unsafe_allow_html=True)
+        with st.form(f"edit_message_form_{st.session_state.active_chat}_{edit_index}"):
+            edited_text = st.text_area(
+                "Edit your message",
+                value=history[edit_index]["content"],
+                height=120,
+                label_visibility="collapsed",
+                key=f"edit_message_text_{st.session_state.active_chat}_{edit_index}",
+            )
+            save_col, cancel_col = st.columns(2)
+            with save_col:
+                save_edit = st.form_submit_button("✦ Save & regenerate", type="primary", use_container_width=True)
+            with cancel_col:
+                cancel_edit = st.form_submit_button("Cancel", use_container_width=True)
+        if save_edit and edited_text.strip():
+            active_chat["messages"] = active_chat["messages"][:edit_index]
+            st.session_state.pending_prompt = edited_text.strip()
+            st.session_state.edit_message_index = None
+            st.rerun()
+        if cancel_edit:
+            st.session_state.edit_message_index = None
+            st.rerun()
+    else:
+        st.session_state.edit_message_index = None
 
 st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div><div class="creator-credit-main">Built with curiosity by <strong>Atta ur Rehman</strong><span>Student of Sir Iqbal</span></div>', unsafe_allow_html=True)
 
