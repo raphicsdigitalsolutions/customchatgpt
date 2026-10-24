@@ -13,7 +13,7 @@ from openai import OpenAI
 load_dotenv(find_dotenv(), override=False)
 
 APP_NAME = "NEXORA AI"
-DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.5")
+DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 DEFAULT_SYSTEM_PROMPT = (
     "You are NEXORA AI, a reliable, thoughtful, professional AI assistant. "
     "Answer the actual question directly, explain clearly, and adapt to the user. "
@@ -137,6 +137,18 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+
+<style>
+.hero-trust-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px auto 0}
+.hero-trust-row span{font:600 10px 'DM Sans',sans-serif;padding:7px 11px;border-radius:99px;color:#776786;background:rgba(255,255,255,.66);border:1px solid rgba(222,208,239,.88);box-shadow:0 5px 14px rgba(64,42,91,.035)}
+.orb{box-shadow:0 24px 42px rgba(112,77,204,.28),inset 0 2px 4px rgba(255,255,255,.8),inset 0 -8px 14px rgba(73,35,147,.16)}
+.welcome-card{padding-top:4px}
+.welcome-robot-wrap{transform:perspective(360px) rotateX(4deg);border:1px solid rgba(255,255,255,.75)}
+.welcome-robot{display:inline-block;animation:orbFloat 3.8s ease-in-out infinite}
+@media(max-width:700px){.hero-trust-row span{font-size:9px;padding:6px 8px}}
+@media(prefers-reduced-motion:reduce){.hero-trust-row span,.welcome-robot-wrap,.welcome-robot{animation:none!important;transition:none!important}}
+</style>
 
 # Apply the selected appearance without changing the app's functionality.
 if st.session_state.get("dark_mode", False):
@@ -285,6 +297,142 @@ if st.session_state.get("dark_mode", False):
         """,
         unsafe_allow_html=True,
     )
+
+# Install theme-aware, high-contrast component styles once per render.
+# These selectors intentionally target Streamlit's widget wrappers (not just nested HTML).
+if st.session_state.get("dark_mode", False):
+    st.markdown(
+        """
+        <style>
+        :root { color-scheme: dark; }
+        html, body, .stApp, [data-testid="stAppViewContainer"] {
+            background: #14101b !important; color: #f4effb !important;
+        }
+        [data-testid="stMain"], [data-testid="stMainBlockContainer"],
+        [data-testid="stBottom"], [data-testid="stBottomBlockContainer"] {
+            background: transparent !important; color: #f4effb !important;
+        }
+        [data-testid="stHeader"] { background: rgba(20,16,27,.94) !important; }
+        [data-testid="stSidebar"], [data-testid="stSidebar"] > div:first-child {
+            background: linear-gradient(155deg,#1b1524 0%,#21172a 55%,#1a1422 100%) !important;
+            border-right: 1px solid #40314f !important;
+        }
+        [data-testid="stSidebar"] .eyebrow { color:#c3b4d8 !important; }
+        [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+        [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color:#bfb3ce !important; }
+        .brand-name,.hero h1,.section-heading,.workspace-brand { color:#f7f1ff !important; }
+        .hero-kicker { background:#281e35 !important; color:#d8c8ee !important; border:1px solid #4c3a60 !important; }
+        .hero-subtitle,.brand-caption,.fine-print,.home-footnote { color:#c0b4cf !important; }
+        .workspace-topbar,.home-footnote {
+            background:rgba(36,27,47,.9) !important; border-color:#453650 !important; color:#f0e9fb !important;
+        }
+        .workspace-brand,.workspace-brand span,.workspace-status { color:#eee5fc !important; }
+        .workspace-status { background:#2a2035 !important; border-color:#50405f !important; }
+        .orbit { border-color:rgba(193,158,255,.66) !important; animation:orbitSpin 13s linear infinite !important; }
+        .orb-halo { background:radial-gradient(circle,rgba(164,119,255,.53),rgba(236,99,187,.17) 56%,transparent 73%) !important; animation:glowPulse 3s ease-in-out infinite !important; }
+        .orb { animation:orbFloat 3.8s ease-in-out infinite,glowPulse 3s ease-in-out infinite !important; filter:drop-shadow(0 12px 24px rgba(143,89,255,.23)); }
+        .orbit:after { background:#14101b !important; color:#d9c4ff !important; }
+        [data-testid="stButton"] > button,
+        [data-testid="stSidebar"] [data-testid="stButton"] > button,
+        .stApp button[kind="secondary"] {
+            background:#2b2137 !important; background-color:#2b2137 !important;
+            color:#f5eeff !important; -webkit-text-fill-color:#f5eeff !important;
+            border:1px solid #574267 !important; box-shadow:0 7px 18px rgba(0,0,0,.17) !important;
+        }
+        [data-testid="stButton"] > button:hover {
+            background:#3b2a4d !important; background-color:#3b2a4d !important;
+            color:#fff !important; -webkit-text-fill-color:#fff !important;
+            border-color:#a58aff !important; transform:translateY(-1px);
+        }
+        [data-testid="stButton"] > button[kind="primary"],
+        [data-testid="stFormSubmitButton"] > button {
+            background:linear-gradient(110deg,#7650ed,#a64dd5 55%,#e85fae) !important;
+            background-color:#8c55e8 !important; color:#fff !important;
+            -webkit-text-fill-color:#fff !important; border:0 !important;
+        }
+        [data-testid="stBottom"],[data-testid="stBottom"] > div,
+        [data-testid="stBottomBlockContainer"],[data-testid="stChatInputContainer"] {
+            background:rgba(20,16,27,.98) !important;
+        }
+        [data-testid="stChatInput"],[data-testid="stChatInput"] > div {
+            background:#261d32 !important; background-color:#261d32 !important;
+            border:1px solid #584269 !important; border-radius:19px !important;
+            box-shadow:0 12px 32px rgba(0,0,0,.32) !important;
+        }
+        [data-testid="stChatInput"] textarea {
+            color:#f7f1ff !important; -webkit-text-fill-color:#f7f1ff !important;
+            caret-color:#d8c4ff !important;
+        }
+        [data-testid="stChatInput"] textarea::placeholder {
+            color:#b8a9cb !important; -webkit-text-fill-color:#b8a9cb !important; opacity:1 !important;
+        }
+        [data-testid="stChatInput"] button {
+            color:#fff !important; background:#463258 !important;
+            border:1px solid #624778 !important;
+        }
+        [data-testid="stChatMessage"] {
+            background:rgba(39,29,51,.96) !important; border:1px solid #493755 !important;
+            border-radius:19px !important; color:#f1e9fc !important;
+            box-shadow:0 8px 24px rgba(0,0,0,.15) !important;
+        }
+        [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"],
+        [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+        [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li { color:#f1e9fc !important; }
+        [data-testid="stTextInput"] input,[data-testid="stTextArea"] textarea,
+        [data-testid="stNumberInput"] input {
+            background:#261d32 !important; background-color:#261d32 !important;
+            color:#f5eeff !important; -webkit-text-fill-color:#f5eeff !important;
+            border:1px solid #574267 !important; border-radius:12px !important;
+        }
+        [data-testid="stTextInput"] input::placeholder,[data-testid="stTextArea"] textarea::placeholder {
+            color:#b8a9cb !important; -webkit-text-fill-color:#b8a9cb !important; opacity:1 !important;
+        }
+        [data-testid="stSelectbox"] [data-baseweb="select"] > div,
+        [data-testid="stSelectbox"] [role="combobox"] {
+            background:#261d32 !important; background-color:#261d32 !important;
+            color:#f5eeff !important; border-color:#574267 !important;
+        }
+        [data-testid="stSelectbox"] [data-baseweb="select"] * { color:#f5eeff !important; fill:#d5c3ed !important; }
+        [data-baseweb="popover"],[data-baseweb="menu"],[role="listbox"] {
+            background:#261d32 !important; background-color:#261d32 !important;
+            color:#f5eeff !important; border:1px solid #574267 !important;
+        }
+        [role="option"] { color:#f5eeff !important; }
+        [role="option"]:hover,[role="option"][aria-selected="true"] { background:#423052 !important; }
+        [data-testid="stToggle"] label,[data-testid="stToggle"] label * { color:#eee5fc !important; }
+        [data-testid="stExpander"] { background:#21192b !important; border-color:#493755 !important; border-radius:15px !important; }
+        [data-testid="stExpander"] summary,[data-testid="stExpander"] p { color:#f0e8fb !important; }
+        [data-testid="stAlert"] { background:#2b2036 !important; color:#f6edff !important; border-color:#574267 !important; }
+        .connection-pill {
+            background:linear-gradient(135deg,#2b2138,#241b30) !important;
+            background-color:#2b2138 !important; border:1px solid #544064 !important;
+            color:#f5efff !important; box-shadow:0 8px 23px rgba(0,0,0,.2) !important;
+        }
+        .connection-pill * { color:#f0e6ff !important; }
+        .connection-pill .status-dot { background:#4cdda0 !important; }
+        [data-testid="stDialog"] [role="dialog"] {
+            background:rgba(29,22,39,.99) !important; border:1px solid #564169 !important;
+            color:#f4edff !important; box-shadow:0 30px 100px rgba(0,0,0,.55) !important;
+        }
+        [data-testid="stDialog"] [data-testid="stDialogHeader"] { background:transparent !important; }
+        [data-testid="stDialog"] [data-testid="stTextInput"] label { color:#eee5fc !important; }
+        [data-testid="stDialog"] [data-testid="stTextInput"] input {
+            background:#261d32 !important; color:#f7f1ff !important;
+            -webkit-text-fill-color:#f7f1ff !important; border-color:#574267 !important;
+        }
+        .welcome-title { color:#f7f1ff !important; }
+        .welcome-copy,.welcome-helper,.welcome-link { color:#c6b8d8 !important; }
+        .welcome-features span { color:#eadcff !important; background:#332440 !important; border-color:#604670 !important; }
+        .welcome-robot-wrap { background:linear-gradient(145deg,#3a2b50,#38233e) !important; box-shadow:0 15px 38px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.13) !important; }
+        .stApp pre,.stApp code { background:#21182c !important; color:#e9d9ff !important; border-color:#4b385b !important; }
+        .stApp table th,.stApp table td { border-color:#493755 !important; color:#f0e8fb !important; }
+        .stApp a { color:#c7a8ff !important; }
+        @media(prefers-reduced-motion:reduce){.orb,.orb-halo,.orbit,.welcome-robot{animation:none!important}}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 # -------------------- SESSION STATE --------------------
 defaults = {
@@ -446,8 +594,8 @@ def key_dialog():
     if connect:
         if not entered_key.strip():
             st.error("Please enter your API key to continue.")
-        elif not entered_key.strip().startswith("sk-"):
-            st.warning("This key format looks unusual. Check that you copied an OpenAI API key.")
+        elif len(entered_key.strip()) < 20:
+            st.warning("This key looks too short. Please copy the complete API key from your OpenAI Platform account.")
         else:
             st.session_state.api_key_session = entered_key.strip()
             st.session_state.key_prompt_seen = True
@@ -576,7 +724,7 @@ with header_col:
     )
 with theme_col:
     theme_label = "☀️  Day mode" if st.session_state.dark_mode else "🌙  Night mode"
-    if st.button(theme_label, key="theme_toggle_button", use_container_width=True, help="Switch between light/day and dark/night appearance"):
+    if st.button(theme_label, key="theme_toggle_button", type="primary" if not st.session_state.dark_mode else "secondary", use_container_width=True, help="Switch between light/day and dark/night appearance"):
         st.session_state.dark_mode = not st.session_state.dark_mode
         st.rerun()
 
@@ -590,7 +738,8 @@ if not history:
           <div class="orb-wrap"><div class="orb-halo"></div><div class="orbit"></div><div class="orb">✦</div></div>
           <div class="hero-kicker">✦&nbsp; YOUR IDEAS, WITH MORE CLARITY</div>
           <h1>What are we <span class="gradient-word">working on</span> today?</h1>
-          <p class="hero-subtitle">From quick questions to deep research, coding, writing, and planning — start a conversation and turn your next idea into progress.</p>
+          <p class="hero-subtitle">From quick questions to deep research, coding, writing, and planning — turn your next idea into progress.</p>
+          <div class="hero-trust-row"><span>✦ Thoughtful answers</span><span>⌕ Source-aware research</span><span>⌘ Coding & creativity</span></div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -671,11 +820,10 @@ if user_text and user_text.strip():
                 })
             except Exception as exc:
                 # Keep user question available to retry; never display raw exception/key.
-                active_chat["messages"].pop()
                 st.error(
-                    "I couldn't generate a response. Check your API key, selected model, "
-                    "internet connection, API quota, and whether the model supports web search."
+                    "NEXORA could not complete this request. Check the API key, available API credits, selected model access, and web-search support. Your message is kept in the chat so you can retry."
                 )
-                print(f"NEXORA AI request failed: {type(exc).__name__}")
+                st.caption("If the error continues, switch to gpt-4.1-mini or temporarily turn off web search, then retry.")
+                print(f"NEXORA AI request failed: {type(exc).__name__}: {str(exc)[:240]}")
 
     st.rerun()
