@@ -1569,6 +1569,187 @@ apply_3d_premium_theme(
     tilt=False,
 )
 
+# Targeted API-key dialog repair. This stylesheet is deliberately injected after
+# the legacy CSS and the 3D module, so contrast and modal sizing cannot be undone.
+_dialog_dark = bool(st.session_state.get("dark_mode", False))
+_dialog_palette = {
+    "bg": "#171222" if _dialog_dark else "#fcfaff",
+    "bg2": "#21172f" if _dialog_dark else "#f5efff",
+    "ink": "#f8f2ff" if _dialog_dark else "#2b203b",
+    "body": "#cbbfdd" if _dialog_dark else "#655674",
+    "muted": "#b8a9cc" if _dialog_dark else "#827391",
+    "line": "rgba(191,157,255,.24)" if _dialog_dark else "#e4d8f4",
+    "field": "#100d1b" if _dialog_dark else "#ffffff",
+    "field_ink": "#fcf8ff" if _dialog_dark else "#30243f",
+    "pill": "rgba(255,255,255,.06)" if _dialog_dark else "#f1e9ff",
+    "pill_ink": "#e9ddff" if _dialog_dark else "#5a4276",
+    "shadow": "rgba(0,0,0,.42)" if _dialog_dark else "rgba(70,45,110,.18)",
+    "close": "#f5edff" if _dialog_dark else "#3a2b4b",
+}
+_dialog_css = """
+<style>
+/* Constrain every box inside Streamlit's dialog to its actual width. */
+[data-testid="stDialog"] *,
+[data-testid="stDialog"] *:before,
+[data-testid="stDialog"] *:after { box-sizing:border-box!important; }
+[data-testid="stDialog"] [role="dialog"] {
+  width:min(94vw,500px)!important; max-width:min(94vw,500px)!important;
+  min-width:0!important; overflow-x:hidden!important; overflow-y:auto!important;
+  padding:12px clamp(12px,3vw,24px) 18px!important;
+  border-radius:28px!important;
+  background:linear-gradient(155deg,__DIALOG_BG__,__DIALOG_BG2__)!important;
+  color:__DIALOG_INK__!important;
+  border:1px solid __DIALOG_LINE__!important;
+  box-shadow:0 28px 88px __DIALOG_SHADOW__,inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+[data-testid="stDialog"] [data-testid="stDialogHeader"] {
+  width:100%!important; min-width:0!important; padding:4px 4px 0!important;
+  margin:0!important; background:transparent!important;
+}
+[data-testid="stDialog"] [data-testid="stDialogHeader"] button {
+  color:__DIALOG_CLOSE__!important; background:transparent!important;
+  border:1px solid transparent!important; box-shadow:none!important;
+}
+[data-testid="stDialog"] [data-testid="stVerticalBlock"],
+[data-testid="stDialog"] [data-testid="stForm"],
+[data-testid="stDialog"] [data-testid="stElementContainer"],
+[data-testid="stDialog"] [data-testid="stTextInput"],
+[data-testid="stDialog"] [data-testid="stTextInput"]>div,
+[data-testid="stDialog"] [data-testid="stTextInput"]>div>div {
+  width:100%!important; max-width:100%!important; min-width:0!important;
+}
+[data-testid="stDialog"] .welcome-card {
+  width:100%!important; max-width:100%!important; min-width:0!important;
+  margin:0 auto!important; padding:4px 2px 10px!important;
+  text-align:center!important; overflow-wrap:anywhere!important;
+}
+[data-testid="stDialog"] .welcome-robot-wrap {
+  width:96px!important; height:96px!important; margin:4px auto 15px!important;
+}
+[data-testid="stDialog"] .welcome-eyebrow {
+  color:__DIALOG_MUTED__!important; font-size:9px!important;
+  letter-spacing:1.7px!important; margin:4px 0 10px!important;
+}
+[data-testid="stDialog"] .welcome-title {
+  width:100%!important; color:__DIALOG_INK__!important;
+  font-size:clamp(25px,5vw,31px)!important; line-height:1.17!important;
+  letter-spacing:-.7px!important; overflow-wrap:normal!important;
+}
+[data-testid="stDialog"] .welcome-title span {
+  background:linear-gradient(100deg,#8757f5,#bf5ce5,#e961b8)!important;
+  -webkit-background-clip:text!important; background-clip:text!important;
+  -webkit-text-fill-color:transparent!important; color:transparent!important;
+}
+[data-testid="stDialog"] .welcome-copy {
+  max-width:360px!important; margin:0 auto 13px!important; padding:0 4px!important;
+  color:__DIALOG_BODY__!important; font-size:13px!important; line-height:1.7!important;
+  overflow-wrap:break-word!important;
+}
+[data-testid="stDialog"] .welcome-credit {
+  margin:0 auto 13px!important; color:__DIALOG_MUTED__!important;
+  font-size:10px!important; line-height:1.55!important;
+}
+[data-testid="stDialog"] .welcome-credit strong { color:#8b5cf6!important; }
+[data-testid="stDialog"] .welcome-features {
+  display:flex!important; justify-content:center!important; align-items:center!important;
+  width:100%!important; max-width:100%!important; flex-wrap:wrap!important;
+  gap:7px!important; margin:0 auto 14px!important; padding:0!important;
+}
+[data-testid="stDialog"] .welcome-features span {
+  display:inline-flex!important; align-items:center!important; justify-content:center!important;
+  min-width:0!important; max-width:100%!important; padding:7px 10px!important;
+  border-radius:12px!important; background:__DIALOG_PILL__!important;
+  color:__DIALOG_PILL_INK__!important; -webkit-text-fill-color:__DIALOG_PILL_INK__!important;
+  border:1px solid __DIALOG_LINE__!important; box-shadow:0 5px 13px __DIALOG_SHADOW__!important;
+  font-size:10px!important; line-height:1.35!important; font-weight:700!important;
+}
+[data-testid="stDialog"] [data-testid="stForm"] {
+  display:block!important; width:100%!important; max-width:100%!important; min-width:0!important;
+  margin:0!important; padding:14px!important; overflow:hidden!important;
+  border-radius:17px!important; border:1px solid __DIALOG_LINE__!important;
+  background:__DIALOG_PILL__!important; box-shadow:inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-testid="stDialog"] [data-testid="stForm"] [data-testid="stVerticalBlock"] {
+  gap:10px!important; width:100%!important; min-width:0!important;
+}
+[data-testid="stDialog"] [data-testid="stTextInput"] label {
+  color:__DIALOG_INK__!important; font-size:12px!important; font-weight:750!important;
+  padding-bottom:5px!important;
+}
+[data-testid="stDialog"] [data-testid="stTextInput"] input {
+  display:block!important; width:100%!important; min-width:0!important; max-width:100%!important;
+  height:45px!important; background:__DIALOG_FIELD__!important;
+  color:__DIALOG_FIELD_INK__!important; -webkit-text-fill-color:__DIALOG_FIELD_INK__!important;
+  border:1px solid __DIALOG_LINE__!important; border-radius:11px!important;
+  box-shadow:inset 0 1px 3px rgba(30,20,50,.06)!important;
+}
+[data-testid="stDialog"] [data-testid="stTextInput"] input::placeholder {
+  color:__DIALOG_MUTED__!important; -webkit-text-fill-color:__DIALOG_MUTED__!important;
+  opacity:1!important;
+}
+[data-testid="stDialog"] [data-testid="stFormSubmitButton"],
+[data-testid="stDialog"] [data-testid="stFormSubmitButton"]>button {
+  width:100%!important; min-width:0!important; max-width:100%!important;
+}
+[data-testid="stDialog"] [data-testid="stFormSubmitButton"]>button {
+  min-height:46px!important; height:auto!important; white-space:normal!important;
+  padding:10px 12px!important; border-radius:12px!important;
+  color:#fff!important; -webkit-text-fill-color:#fff!important;
+  background:linear-gradient(110deg,#7650ed,#9d4fe0 54%,#e45bb7)!important;
+  border:1px solid rgba(255,255,255,.35)!important;
+  box-shadow:0 4px 0 rgba(70,35,130,.15),0 10px 20px rgba(128,87,245,.20),inset 0 1px 0 rgba(255,255,255,.4)!important;
+}
+[data-testid="stDialog"] .welcome-helper,
+[data-testid="stDialog"] .welcome-link,
+[data-testid="stDialog"] [data-testid="stCaptionContainer"],
+[data-testid="stDialog"] [data-testid="stCaptionContainer"] p {
+  width:100%!important; max-width:100%!important; color:__DIALOG_MUTED__!important;
+  -webkit-text-fill-color:__DIALOG_MUTED__!important; font-size:10px!important;
+  line-height:1.6!important; text-align:center!important; overflow-wrap:anywhere!important;
+}
+[data-testid="stDialog"] .welcome-link a {
+  color:#9466f5!important; -webkit-text-fill-color:#9466f5!important;
+  font-weight:800!important; text-decoration:none!important;
+}
+[data-testid="stDialog"] [data-testid="stAlert"] {
+  width:100%!important; max-width:100%!important; color:__DIALOG_INK__!important;
+}
+@media(max-width:520px) {
+  [data-testid="stDialog"] [role="dialog"] {
+    width:calc(100vw - 18px)!important; max-width:calc(100vw - 18px)!important;
+    padding:10px 10px 14px!important; border-radius:22px!important;
+  }
+  [data-testid="stDialog"] .welcome-card { padding:2px 0 8px!important; }
+  [data-testid="stDialog"] .welcome-title { font-size:25px!important; }
+  [data-testid="stDialog"] .welcome-copy { font-size:12px!important; }
+  [data-testid="stDialog"] [data-testid="stForm"] { padding:11px!important; }
+  [data-testid="stDialog"] .welcome-features { gap:5px!important; }
+  [data-testid="stDialog"] .welcome-features span { font-size:9px!important; padding:6px 8px!important; }
+}
+@media(prefers-reduced-motion:reduce) {
+  [data-testid="stDialog"] [role="dialog"],[data-testid="stDialog"] .welcome-robot-wrap { animation:none!important; }
+}
+</style>
+"""
+_dialog_values = {
+    "__DIALOG_BG__": _dialog_palette["bg"],
+    "__DIALOG_BG2__": _dialog_palette["bg2"],
+    "__DIALOG_INK__": _dialog_palette["ink"],
+    "__DIALOG_BODY__": _dialog_palette["body"],
+    "__DIALOG_MUTED__": _dialog_palette["muted"],
+    "__DIALOG_LINE__": _dialog_palette["line"],
+    "__DIALOG_FIELD__": _dialog_palette["field"],
+    "__DIALOG_FIELD_INK__": _dialog_palette["field_ink"],
+    "__DIALOG_PILL__": _dialog_palette["pill"],
+    "__DIALOG_PILL_INK__": _dialog_palette["pill_ink"],
+    "__DIALOG_SHADOW__": _dialog_palette["shadow"],
+    "__DIALOG_CLOSE__": _dialog_palette["close"],
+}
+for _token, _value in _dialog_values.items():
+    _dialog_css = _dialog_css.replace(_token, _value)
+st.markdown(_dialog_css, unsafe_allow_html=True)
+
+
 
 
 def get_api_key():
