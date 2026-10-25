@@ -2099,7 +2099,7 @@ def key_dialog():
           </div>
           <div class="welcome-eyebrow">YOUR PERSONAL AI STUDIO</div>
           <h2 class="welcome-title">Welcome to<br>your <span> NEXORA AI</span></h2>
-          <p class="welcome-copy">A smarter space to think, create, and explore. Connect your OpenAI API key to enter your personal AI workspace.</p><div class="welcome-credit">Built by <strong>Atta ur Rehman</strong><span>Student of Sir Iqbal</span></div>
+          <p class="welcome-copy">A smarter space to think, create, and explore. Connect your OpenAI API key to enter your personal AI workspace.</p>
           <div class="welcome-features">
             <span>⚡ Smart answers</span><span>🌐 Web search</span><span>💬 Chat history</span>
           </div>
@@ -2208,7 +2208,7 @@ with st.sidebar:
         st.session_state.active_chat = None
         st.rerun()
 
-    st.markdown('<div class="fine-print">NEXORA AI · Think beyond</div><div class="creator-credit-sidebar">Built by <strong>Atta ur Rehman</strong><br><span>Student of Sir Iqbal</span></div>', unsafe_allow_html=True)
+    st.markdown('<div class="fine-print">NEXORA AI · Think beyond</div><div class="creator-credit-sidebar">Designed &amp; developed by <strong>Atta ur Rehman</strong><br><span>A student of Sir Iqbal</span></div>', unsafe_allow_html=True)
 
 # -------------------- SETTINGS --------------------
 if st.session_state.show_settings:
@@ -2344,7 +2344,7 @@ if st.session_state.get("edit_message_index") is not None:
     else:
         st.session_state.edit_message_index = None
 
-st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div><div class="creator-credit-main">Built with curiosity by <strong>Atta ur Rehman</strong><span>Student of Sir Iqbal</span></div>', unsafe_allow_html=True)
+st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div><div class="creator-credit-main">Designed &amp; developed by <strong>Atta ur Rehman</strong><span>A student of Sir Iqbal</span></div>', unsafe_allow_html=True)
 
 # -------------------- INPUT / RESPONSE --------------------
 pending = st.session_state.pop("pending_prompt", "")
