@@ -64,7 +64,7 @@ _BASE_CSS = """
   isolation:isolate;
 }
 .nx-out,.nx-in{position:absolute;inset:0;transform-style:preserve-3d}
-.nx-in{inset:31px;animation:nx3d-cube-rev 11s linear infinite}
+.nx-in{inset:31px;animation:nx3d-cube-rev 15s linear infinite}
 .nx-out i,.nx-in i{
   position:absolute;inset:0;display:block;box-sizing:border-box;
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
@@ -127,21 +127,23 @@ _BASE_CSS = """
 .nx-in i:nth-child(4){transform:rotateY(-90deg) translateZ(25px)}
 .nx-in i:nth-child(5){transform:rotateX(90deg) translateZ(25px)}
 .nx-in i:nth-child(6){transform:rotateX(-90deg) translateZ(25px)}
-.nx-cube:before{
-  content:"";position:absolute;left:50%;top:50%;width:82px;height:82px;
-  transform:translate(-50%,-50%) translateZ(58px);border-radius:19px;
-  background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(143,106,255,.08));
-  border:1px solid rgba(255,255,255,.28);pointer-events:none;
-  box-shadow:inset 0 0 24px rgba(146,120,255,.13);backface-visibility:hidden;
-}
+/* Removed the oversized transparent plate that made the cube look mounted on a panel. */
 .nx-cube:after{
   content:"✦";position:absolute;left:50%;top:50%;width:40px;height:40px;
-  display:grid;place-items:center;transform:translate(-50%,-50%) translateZ(59px);
+  display:grid;place-items:center;transform:translate(-50%,-50%) translateZ(57px);
   color:#fff;font-size:30px;line-height:1;text-shadow:0 0 9px rgba(255,255,255,.9),0 0 24px rgba(138,108,255,.95);
   pointer-events:none;backface-visibility:hidden;
 }
-@keyframes nx3d-cube{from{transform:rotateX(-22deg) rotateY(0deg)}to{transform:rotateX(-22deg) rotateY(360deg)}}
-@keyframes nx3d-cube-rev{from{transform:rotate3d(1,1,0,0deg)}to{transform:rotate3d(1,1,0,-360deg)}}
+@keyframes nx3d-cube{
+  0%,100%{transform:rotateX(-12deg) rotateY(-24deg) rotateZ(-2deg) translateY(0)}
+  25%{transform:rotateX(4deg) rotateY(-8deg) rotateZ(1deg) translateY(-3px)}
+  50%{transform:rotateX(12deg) rotateY(24deg) rotateZ(2deg) translateY(-5px)}
+  75%{transform:rotateX(-3deg) rotateY(8deg) rotateZ(-1deg) translateY(-2px)}
+}
+@keyframes nx3d-cube-rev{
+  from{transform:rotate3d(1,1,0,0deg)}
+  to{transform:rotate3d(1,1,0,-360deg)}
+}
 
 /* Glass chat messages with real depth */
 [data-testid="stChatMessage"]{position:relative;background:linear-gradient(150deg,__MSG1__,__MSG2__)!important;border:1px solid var(--nx-line)!important;box-shadow:inset 0 1px 0 __HL__,0 22px 44px -22px __SH1__,0 8px 18px -10px __SH2__!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:translate .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,border-color .3s ease;animation:nx3d-msg-in .55s cubic-bezier(.2,.8,.2,1) backwards!important}
