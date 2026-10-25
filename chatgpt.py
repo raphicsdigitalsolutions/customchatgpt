@@ -1767,6 +1767,141 @@ for _token, _value in _dialog_values.items():
 st.markdown(_dialog_css, unsafe_allow_html=True)
 
 
+# Final identity layer — shared by the landing page and the API-key welcome screen.
+st.markdown(
+    """
+    <style>
+    @keyframes nx-credit-float { 0%,100% { transform:translateY(0) rotateX(0deg); } 50% { transform:translateY(-3px) rotateX(2deg); } }
+    @keyframes nx-credit-sheen { 0% { transform:translateX(-130%) skewX(-18deg); } 100% { transform:translateX(240%) skewX(-18deg); } }
+    @keyframes nx-credit-spin { from { transform:rotate(0deg) rotateX(62deg); } to { transform:rotate(360deg) rotateX(62deg); } }
+    @keyframes nx-credit-glow { 0%,100% { opacity:.52; } 50% { opacity:.95; } }
+
+    .stApp {
+      background:
+        radial-gradient(ellipse at 51% -7%,rgba(123,86,232,.13),transparent 38%),
+        radial-gradient(ellipse at 0% 50%,rgba(41,170,199,.045),transparent 28%),
+        radial-gradient(ellipse at 100% 65%,rgba(207,84,185,.045),transparent 28%),
+        var(--nx-bg)!important;
+      background-attachment:fixed!important;
+    }
+    [data-testid="stMain"],[data-testid="stMainBlockContainer"] { background:transparent!important; }
+    [data-testid="stBottom"],[data-testid="stBottomBlockContainer"],
+    [data-testid="stChatInputContainer"],[data-testid="stBottom"]>div,
+    [data-testid="stBottomBlockContainer"]>div { background:var(--nx-bg)!important;background-color:var(--nx-bg)!important;box-shadow:none!important; }
+    [data-testid="stBottom"] [data-testid="stChatInput"],
+    [data-testid="stBottomBlockContainer"] [data-testid="stChatInput"] { background:var(--nx-control)!important;background-color:var(--nx-control)!important; }
+
+    .nx-creator-ribbon {
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      position:relative;isolation:isolate;overflow:hidden;
+      width:max-content;max-width:calc(100% - 8px);box-sizing:border-box;
+      margin:0 auto 16px;padding:9px 18px 9px 10px;
+      border-radius:18px;border:1px solid rgba(159,128,240,.27);
+      background:linear-gradient(130deg,rgba(255,255,255,.78),rgba(246,240,255,.76) 56%,rgba(236,249,255,.72));
+      box-shadow:0 4px 0 rgba(102,70,150,.035),0 14px 30px rgba(55,35,88,.09),inset 0 1px 0 rgba(255,255,255,.95);
+      backdrop-filter:blur(18px);
+      animation:nx-credit-float 6s ease-in-out infinite;
+    }
+    .nx-creator-ribbon:before {
+      content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+      background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.52) 48%,transparent 72%);
+      animation:nx-credit-sheen 8s ease-in-out infinite;
+    }
+    .nx-creator-mark {
+      position:relative;display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;
+      border-radius:13px;color:#fff;font-size:21px;font-weight:700;
+      background:radial-gradient(ellipse at 28% 14%,rgba(255,255,255,.88),transparent 26%),linear-gradient(145deg,#bda2ff,#7950eb 57%,#d75bb9);
+      border:1px solid rgba(255,255,255,.84);
+      box-shadow:0 7px 0 rgba(91,55,160,.10),0 12px 20px rgba(128,87,245,.24),inset 0 2px 3px rgba(255,255,255,.72),inset 0 -5px 8px rgba(52,24,113,.2);
+      transform-style:preserve-3d;animation:nx-credit-glow 4s ease-in-out infinite;
+    }
+    .nx-creator-mark:after {
+      content:"";position:absolute;inset:-5px;border-radius:16px;border:1px solid rgba(158,127,246,.30);
+      transform:rotateX(62deg);animation:nx-credit-spin 18s linear infinite;pointer-events:none;
+    }
+    .nx-creator-copy { display:flex;flex-direction:column;gap:1px;text-align:left;min-width:0; }
+    .nx-creator-kicker { font:800 8px/1.4 'DM Sans',sans-serif;letter-spacing:1.5px;color:#88779f; }
+    .nx-creator-name { font:800 13px/1.35 'Manrope',sans-serif;letter-spacing:-.2px;color:#2b203f; }
+    .nx-creator-caption { font:500 10px/1.4 'DM Sans',sans-serif;color:#80728e; }
+
+    /* Confident, readable hero title and controlled liquid-core emblem. */
+    .hero h1 { color:#fbf8ff!important;opacity:1!important;text-shadow:0 4px 26px rgba(150,103,255,.18)!important; }
+    .hero h1 * { opacity:1!important; }
+    .hero .gradient-word {
+      background:linear-gradient(105deg,#b9a1ff 0%,#eb8af0 48%,#78e5f1 100%)!important;
+      background-clip:text!important;-webkit-background-clip:text!important;
+      color:transparent!important;-webkit-text-fill-color:transparent!important;
+    }
+    .hero .hero-subtitle { color:#d1c9e0!important;opacity:1!important; }
+    .hero .hero-kicker { color:#dfd3ff!important;opacity:1!important; }
+    .hero .hero-trust-row span { color:#e8e1f5!important; }
+    .orb-wrap { isolation:isolate!important; }
+    .nx-cube { filter:drop-shadow(0 20px 24px rgba(58,38,120,.24))!important; }
+    .nx-out i { backface-visibility:visible!important;-webkit-backface-visibility:visible!important; }
+    .nx-out i:nth-child(2),.nx-out i:nth-child(4) { filter:brightness(.78) saturate(1.12); }
+    .nx-out i:nth-child(3),.nx-out i:nth-child(6) { filter:brightness(.58) saturate(1.10); }
+    .nx-out i:nth-child(5) { filter:brightness(1.15); }
+
+    /* Keep light-mode controls genuinely light and dark-mode controls genuinely dark. */
+    .stApp [data-testid="stButton"] button:not([kind="primary"]):not([data-testid="stBaseButton-primary"]),
+    .stApp button[data-testid="stBaseButton-secondary"] {
+      background:var(--nx-surface-solid)!important;color:var(--nx-control-text)!important;
+      -webkit-text-fill-color:var(--nx-control-text)!important;border:1px solid var(--nx-line)!important;
+    }
+    .stApp [data-testid="stButton"] button[kind="primary"],
+    .stApp button[data-testid="stBaseButton-primary"],
+    .stApp [data-testid="stFormSubmitButton"] button {
+      color:#fff!important;-webkit-text-fill-color:#fff!important;
+      background:linear-gradient(110deg,#7045ee,#a14cde 54%,#e45db9)!important;
+      border:1px solid rgba(255,255,255,.32)!important;
+    }
+
+    /* Modal-specific contrast and fit: all content stays inside the dialog. */
+    [data-testid="stDialog"] [role="dialog"] {
+      width:min(94vw,500px)!important;max-width:min(94vw,500px)!important;min-width:0!important;
+      overflow-x:hidden!important;box-sizing:border-box!important;
+      background:linear-gradient(150deg,rgba(255,255,255,.99),rgba(246,240,255,.99))!important;
+      color:#2b203b!important;border:1px solid rgba(177,151,236,.35)!important;
+      box-shadow:0 35px 100px rgba(25,14,48,.26),inset 0 1px 0 rgba(255,255,255,.98)!important;
+    }
+    [data-testid="stDialog"] [data-testid="stVerticalBlock"],
+    [data-testid="stDialog"] [data-testid="stForm"],
+    [data-testid="stDialog"] [data-testid="stElementContainer"],
+    [data-testid="stDialog"] [data-testid="stTextInput"],
+    [data-testid="stDialog"] [data-testid="stTextInput"]>div,
+    [data-testid="stDialog"] [data-testid="stTextInput"]>div>div { max-width:100%!important;min-width:0!important;box-sizing:border-box!important; }
+    [data-testid="stDialog"] .welcome-title { color:#2b203b!important; }
+    [data-testid="stDialog"] .welcome-copy { color:#665775!important; }
+    [data-testid="stDialog"] .welcome-eyebrow { color:#8c79a5!important; }
+    [data-testid="stDialog"] .welcome-credit { color:#827391!important; }
+    [data-testid="stDialog"] .welcome-features span { color:#5a4276!important;-webkit-text-fill-color:#5a4276!important;background:#f1e9ff!important;border-color:#e4d8f4!important; }
+    [data-testid="stDialog"] [data-testid="stTextInput"] label { color:#30243f!important; }
+    [data-testid="stDialog"] [data-testid="stTextInput"] input { background:#fff!important;color:#30243f!important;-webkit-text-fill-color:#30243f!important;border:1px solid #d9cbea!important; }
+    [data-testid="stDialog"] .welcome-helper,[data-testid="stDialog"] .welcome-link,
+    [data-testid="stDialog"] [data-testid="stCaptionContainer"],
+    [data-testid="stDialog"] [data-testid="stCaptionContainer"] p { color:#827391!important;-webkit-text-fill-color:#827391!important; }
+    [data-testid="stDialog"] [data-testid="InputInstructions"],
+    [data-testid="stDialog"] div[data-testid="InputInstructions"] { display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important; }
+
+    @media(max-width:640px) {
+      .nx-creator-ribbon { gap:9px;padding:8px 12px 8px 8px;margin-bottom:12px;border-radius:15px; }
+      .nx-creator-mark { width:35px;height:35px;flex-basis:35px;font-size:18px;border-radius:11px; }
+      .nx-creator-kicker { font-size:7px;letter-spacing:1.15px; }
+      .nx-creator-name { font-size:12px; }
+      .nx-creator-caption { font-size:9px; }
+      .hero h1 { font-size:clamp(25px,7.1vw,36px)!important;line-height:1.2!important; }
+      [data-testid="stDialog"] [role="dialog"] { width:calc(100vw - 18px)!important;max-width:calc(100vw - 18px)!important;padding:10px!important; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .nx-creator-ribbon,.nx-creator-mark,.nx-creator-mark:after { animation:none!important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+
 
 
 def get_api_key():
