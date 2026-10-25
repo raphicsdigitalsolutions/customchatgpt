@@ -1746,7 +1746,7 @@ for _token, _value in _dialog_values.items():
 st.markdown(_dialog_css, unsafe_allow_html=True)
 
 st.markdown(
-    "<style>\n/* Final layer for the live header reactor and the two appearance modes. */\n.workspace-topbar-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;min-width:0!important}\n.workspace-status{flex-shrink:0!important}\n.nx-creator-ribbon.nx-theme-light{\n  background:linear-gradient(130deg,rgba(255,255,255,.90),rgba(246,240,255,.88) 56%,rgba(236,249,255,.86))!important;\n  border-color:rgba(159,128,240,.30)!important;\n  box-shadow:0 4px 0 rgba(102,70,150,.025),0 15px 32px rgba(55,35,88,.09),inset 0 1px 0 rgba(255,255,255,.98)!important;\n}\n.nx-creator-ribbon.nx-theme-light .nx-creator-kicker{color:#88779f!important}\n.nx-creator-ribbon.nx-theme-light .nx-creator-name{color:#2b203f!important}\n.nx-creator-ribbon.nx-theme-dark{\n  background:linear-gradient(130deg,rgba(42,31,65,.97),rgba(27,26,52,.95) 56%,rgba(20,34,52,.95))!important;\n  border-color:rgba(169,133,255,.32)!important;\n  box-shadow:0 5px 0 rgba(0,0,0,.05),0 16px 34px rgba(5,3,20,.20),inset 0 1px 0 rgba(255,255,255,.13)!important;\n}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-kicker{color:#c2b4de!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-name{color:#fbf7ff!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-mark{\n  box-shadow:0 7px 0 rgba(0,0,0,.15),0 13px 25px rgba(126,87,245,.32),inset 0 2px 3px rgba(255,255,255,.65),inset 0 -5px 8px rgba(52,24,113,.28)!important;\n}\n/* Give the live 3D core a clear place in the top-right header. */\n.workspace-topbar .nx-header-reactor{margin-left:auto!important;margin-right:0!important;flex:0 0 82px!important}\n.workspace-topbar .workspace-status{align-self:center!important}\n@media(max-width:900px){\n  .workspace-topbar-right{gap:6px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:54px!important;scale:.82!important;margin:0 -4px!important}\n  .workspace-status{font-size:9px!important;padding:6px 8px!important}\n}\n@media(max-width:640px){\n  .workspace-topbar-right{gap:4px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:38px!important;scale:.68!important;margin:0 -7px!important}\n  .workspace-status{font-size:8px!important;padding:5px 6px!important;max-width:108px!important}\n  .nx-creator-ribbon{max-width:calc(100% - 12px)!important;padding:8px 12px 8px 8px!important}\n}\n@media(prefers-reduced-motion:reduce){\n  .workspace-topbar .nx-header-reactor *,.nx-creator-ribbon,.nx-creator-mark,.nx-creator-mark:after{animation:none!important;transition:none!important}\n}\n</style>",
+    "<style>\n/* Final layer for the live header reactor and the two appearance modes. */\n.workspace-topbar-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;min-width:0!important}\n.workspace-status{flex-shrink:0!important}\n.nx-creator-ribbon.nx-theme-light{\n  background:linear-gradient(130deg,rgba(255,255,255,.90),rgba(246,240,255,.88) 56%,rgba(236,249,255,.86))!important;\n  border-color:rgba(159,128,240,.30)!important;\n  box-shadow:0 4px 0 rgba(102,70,150,.025),0 15px 32px rgba(55,35,88,.09),inset 0 1px 0 rgba(255,255,255,.98)!important;\n}\n.nx-creator-ribbon.nx-theme-light .nx-creator-kicker{color:#88779f!important}\n.nx-creator-ribbon.nx-theme-light .nx-creator-name{color:#2b203f!important}\n.nx-creator-ribbon.nx-theme-dark{\n  background:linear-gradient(130deg,rgba(42,31,65,.97),rgba(27,26,52,.95) 56%,rgba(20,34,52,.95))!important;\n  border-color:rgba(169,133,255,.32)!important;\n  box-shadow:0 5px 0 rgba(0,0,0,.05),0 16px 34px rgba(5,3,20,.20),inset 0 1px 0 rgba(255,255,255,.13)!important;\n}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-kicker{color:#c2b4de!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-name{color:#fbf7ff!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-mark{\n  box-shadow:0 7px 0 rgba(0,0,0,.15),0 13px 25px rgba(126,87,245,.32),inset 0 2px 3px rgba(255,255,255,.65),inset 0 -5px 8px rgba(52,24,113,.28)!important;\n}\n/* Give the live 3D core a clear place in the top-right header. */\n.workspace-topbar .nx-header-reactor{margin-left:auto!important;margin-right:0!important;flex:0 0 94px!important}\n.workspace-topbar .workspace-status{align-self:center!important}\n@media(max-width:900px){\n  .workspace-topbar-right{gap:6px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:58px!important;scale:.82!important;margin:0 -4px!important}\n  .workspace-status{font-size:9px!important;padding:6px 8px!important}\n}\n@media(max-width:640px){\n  .workspace-topbar-right{gap:4px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:38px!important;scale:.68!important;margin:0 -7px!important}\n  .workspace-status{font-size:8px!important;padding:5px 6px!important;max-width:108px!important}\n  .nx-creator-ribbon{max-width:calc(100% - 12px)!important;padding:8px 12px 8px 8px!important}\n}\n@media(prefers-reduced-motion:reduce){\n  .workspace-topbar .nx-header-reactor *,.nx-creator-ribbon,.nx-creator-mark,.nx-creator-mark:after{animation:none!important;transition:none!important}\n}\n</style>",
     unsafe_allow_html=True,
 )
 
@@ -1883,6 +1883,236 @@ st.markdown(
 
 
 
+
+
+st.markdown(
+    """
+    <style>
+    /* NEXORA depth pass: a quiet ambient stage behind the live workspace. */
+    @keyframes nx-ambient-drift {
+      from { transform:translate3d(-1.3%,0,0) scale(1); opacity:.72; }
+      to { transform:translate3d(1.3%,-1.2%,0) scale(1.045); opacity:1; }
+    }
+    @keyframes nx-floor-drift {
+      from { transform:perspective(900px) rotateX(68deg) translate3d(0,2%,0); }
+      to { transform:perspective(900px) rotateX(68deg) translate3d(0,-2%,0); }
+    }
+    @keyframes nx-hero-orbit-a {
+      from { transform:rotateX(72deg) rotateZ(0deg); }
+      to { transform:rotateX(72deg) rotateZ(360deg); }
+    }
+    @keyframes nx-hero-orbit-b {
+      from { transform:rotateY(70deg) rotateZ(360deg); }
+      to { transform:rotateY(70deg) rotateZ(0deg); }
+    }
+    @keyframes nx-hero-breathe {
+      0%,100% { transform:translate3d(0,0,0) scale(1); opacity:.62; }
+      50% { transform:translate3d(0,-7px,0) scale(1.04); opacity:1; }
+    }
+    .stApp {
+      position:relative!important;isolation:isolate!important;overflow-x:hidden!important;
+      background:
+        radial-gradient(ellipse 48% 38% at 7% 0%,rgba(91,216,239,.12),transparent 74%),
+        radial-gradient(ellipse 44% 42% at 96% 18%,rgba(150,120,246,.13),transparent 76%),
+        radial-gradient(ellipse 54% 40% at 82% 100%,rgba(231,112,192,.08),transparent 72%),
+        var(--nx-bg)!important;
+      background-attachment:fixed!important;
+    }
+    .stApp:before {
+      content:"";position:fixed;inset:-15%;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(34% 30% at 18% 36%,rgba(100,222,239,.12),transparent 75%),
+        radial-gradient(38% 34% at 76% 28%,rgba(155,125,246,.15),transparent 74%),
+        radial-gradient(32% 35% at 56% 82%,rgba(232,121,194,.075),transparent 78%);
+      animation:nx-ambient-drift 32s cubic-bezier(.32,.72,0,1) infinite alternate;
+      will-change:transform,opacity;
+    }
+    .stApp:after {
+      content:"";position:fixed;left:-18%;right:-18%;bottom:-34%;height:58vh;z-index:0;pointer-events:none;
+      background-image:
+        linear-gradient(rgba(113,213,234,.105) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(113,213,234,.105) 1px,transparent 1px);
+      background-size:72px 72px;opacity:.24;
+      transform:perspective(900px) rotateX(68deg);transform-origin:50% 100%;
+      mask-image:linear-gradient(to top,#000 0%,transparent 88%);
+      animation:nx-floor-drift 28s cubic-bezier(.32,.72,0,1) infinite alternate;
+      will-change:transform;
+    }
+    [data-testid="stAppViewContainer"] { position:relative!important;z-index:1!important; }
+    [data-testid="stHeader"] { background:transparent!important; }
+    [data-testid="stMainBlockContainer"] { max-width:1280px!important; }
+
+    /* Asymmetric hero: readable copy on one side, a dimensional energy core on the other. */
+    .hero {
+      position:relative!important;isolation:isolate!important;overflow:visible!important;
+      display:grid!important;grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr)!important;
+      align-items:center!important;gap:clamp(16px,3vw,42px)!important;
+      width:100%!important;max-width:1160px!important;min-height:372px!important;
+      margin:clamp(22px,4vh,48px) auto 28px!important;
+      padding:clamp(26px,4vw,54px)!important;border-radius:30px!important;
+      text-align:left!important;perspective:1400px;transform-style:preserve-3d;
+      background:
+        radial-gradient(ellipse 52% 82% at 86% 44%,rgba(104,218,238,.14),transparent 74%),
+        linear-gradient(128deg,rgba(31,27,54,.94),rgba(21,34,53,.91) 65%,rgba(25,31,51,.94))!important;
+      border:1px solid rgba(155,165,204,.34)!important;
+      box-shadow:0 2px 0 rgba(255,255,255,.055),0 28px 72px -38px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.12)!important;
+      animation:nx3d-card-in .8s cubic-bezier(.2,.8,.2,1) both!important;
+    }
+    .hero:before {
+      content:"";position:absolute;inset:8px;z-index:0;pointer-events:none;border-radius:23px;
+      border:1px solid rgba(255,255,255,.085);
+      background:linear-gradient(115deg,rgba(255,255,255,.035),transparent 38%,rgba(109,219,238,.035));
+    }
+    .hero-content { grid-column:1;grid-row:1;position:relative;z-index:2;min-width:0; }
+    .hero-kicker {
+      width:max-content;max-width:100%;margin:0 0 19px!important;padding:8px 12px!important;
+      color:#c5c3e3!important;background:rgba(143,132,190,.13)!important;
+      border:1px solid rgba(179,169,224,.23)!important;border-radius:999px!important;
+      font-size:9px!important;letter-spacing:1.4px!important;
+    }
+    .hero h1 {
+      width:100%!important;max-width:100%!important;min-width:0!important;margin:0 0 17px!important;
+      font-size:clamp(36px,4.15vw,60px)!important;line-height:1.06!important;
+      letter-spacing:-.052em!important;text-align:left!important;text-wrap:balance;
+      overflow:visible!important;overflow-wrap:normal!important;word-break:normal!important;
+      color:#f7f5ff!important;text-shadow:0 8px 30px rgba(109,110,209,.18)!important;
+    }
+    .hero .gradient-word {
+      background:linear-gradient(104deg,#7ce8f0 0%,#b6b6ff 48%,#f1a1d7 100%)!important;
+      background-clip:text!important;-webkit-background-clip:text!important;
+      color:transparent!important;-webkit-text-fill-color:transparent!important;
+      font-style:normal!important;
+    }
+    .hero .hero-subtitle {
+      max-width:520px!important;margin:0!important;color:#c4c3d3!important;
+      text-align:left!important;font-size:14px!important;line-height:1.8!important;
+    }
+    .hero-trust-row {
+      justify-content:flex-start!important;gap:7px!important;max-width:540px;margin:22px 0 0!important;
+    }
+    .hero-trust-row span {
+      color:#d9d8e8!important;background:rgba(17,25,42,.46)!important;
+      border-color:rgba(155,169,203,.23)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)!important;
+    }
+    .hero .orb-wrap {
+      grid-column:2;grid-row:1;align-self:stretch;justify-self:stretch;
+      width:100%!important;height:330px!important;min-width:0!important;margin:0!important;
+      border-radius:50%;perspective:1050px!important;transform-style:preserve-3d!important;
+      background:radial-gradient(ellipse at 50% 52%,rgba(102,218,240,.13),rgba(126,96,212,.055) 34%,transparent 70%);
+      animation:nx-hero-breathe 7s cubic-bezier(.32,.72,0,1) infinite;
+    }
+    .hero .orb-wrap:before {
+      width:286px;height:120px;margin:-60px 0 0 -143px;
+      border-color:rgba(132,219,239,.56)!important;border-top-color:#b0f3fa!important;border-bottom-color:transparent!important;
+      animation:nx-hero-orbit-a 13s linear infinite!important;
+    }
+    .hero .orb-wrap:after {
+      width:246px;height:246px;margin:-123px 0 0 -123px;
+      border-color:rgba(177,153,247,.39)!important;border-left-color:#7de1ef!important;
+      animation:nx-hero-orbit-b 18s linear infinite!important;
+    }
+    .hero .nx-cube { scale:1.2!important;filter:drop-shadow(0 34px 40px rgba(34,23,86,.48)) drop-shadow(0 0 32px rgba(91,213,238,.14))!important; }
+    .hero .orb-floor-shadow {
+      position:absolute;left:50%;bottom:31px;width:142px;height:20px;margin-left:-71px;z-index:0;
+      border-radius:50%;background:radial-gradient(ellipse,rgba(117,220,238,.26),rgba(89,65,150,.13) 44%,transparent 74%);
+      filter:blur(5px);transform:rotateX(68deg);animation:nx-hero-breathe 7s cubic-bezier(.32,.72,0,1) infinite reverse;
+    }
+    .hero .orb-spark { position:absolute;z-index:3;color:#b4f4fb;text-shadow:0 0 18px rgba(112,225,243,.8); }
+    .hero .orb-spark-a { top:20%;right:15%;font-size:18px;animation:glowPulse 3.8s ease-in-out infinite; }
+    .hero .orb-spark-b { bottom:23%;left:16%;font-size:14px;color:#efb1e3;animation:glowPulse 4.4s ease-in-out infinite .8s; }
+
+    .hero.nx-theme-light {
+      background:
+        radial-gradient(ellipse 50% 82% at 86% 42%,rgba(80,204,221,.16),transparent 76%),
+        linear-gradient(128deg,rgba(255,255,255,.98),rgba(246,245,255,.97) 58%,rgba(237,249,251,.97))!important;
+      border-color:rgba(116,132,174,.28)!important;
+      box-shadow:0 2px 0 rgba(255,255,255,.96),0 28px 72px -42px rgba(68,78,117,.26),inset 0 1px 0 #fff!important;
+    }
+    .hero.nx-theme-light:before { border-color:rgba(100,117,160,.10);background:linear-gradient(115deg,rgba(255,255,255,.55),transparent 38%,rgba(87,201,219,.045)); }
+    .hero.nx-theme-light .hero-kicker { color:#52637c!important;background:rgba(92,157,178,.08)!important;border-color:rgba(94,145,165,.17)!important; }
+    .hero.nx-theme-light h1 { color:#20293d!important;text-shadow:0 5px 24px rgba(45,79,116,.09)!important; }
+    .hero.nx-theme-light .hero-subtitle { color:#5b687c!important; }
+    .hero.nx-theme-light .hero-trust-row span { color:#40536c!important;background:rgba(255,255,255,.76)!important;border-color:rgba(103,127,164,.18)!important; }
+    .hero.nx-theme-light .orb-wrap { background:radial-gradient(ellipse at 50% 52%,rgba(91,211,230,.18),rgba(147,123,218,.08) 38%,transparent 72%); }
+
+    /* Give the whole workspace a little mass: real perspective on controls, chat and panels. */
+    .workspace-topbar {
+      transform-style:preserve-3d!important;transition:transform .55s cubic-bezier(.32,.72,0,1),box-shadow .55s cubic-bezier(.32,.72,0,1)!important;
+      box-shadow:0 3px 0 rgba(255,255,255,.035),0 20px 48px -28px var(--nx-shadow),inset 0 1px 0 rgba(255,255,255,.12)!important;
+    }
+    .workspace-topbar:hover { transform:perspective(1500px) rotateX(.65deg) translateY(-2px); }
+    .workspace-mark { transform:translateZ(12px);box-shadow:0 10px 20px rgba(66,165,205,.18),inset 0 1px 0 rgba(255,255,255,.72)!important; }
+    .stApp [data-testid="stButton"] button {
+      transform-style:preserve-3d!important;backface-visibility:hidden;
+      transition:transform .48s cubic-bezier(.32,.72,0,1),box-shadow .48s cubic-bezier(.32,.72,0,1),border-color .35s ease!important;
+    }
+    .stApp [data-testid="stButton"] button:hover {
+      transform:perspective(900px) translate3d(0,-3px,7px) rotateX(3deg) rotateY(-.6deg)!important;
+      box-shadow:0 16px 30px -18px rgba(103,89,170,.46),inset 0 1px 0 rgba(255,255,255,.2)!important;
+    }
+    .stApp [data-testid="stButton"] button:active { transform:perspective(900px) translate3d(0,1px,0) rotateX(-1deg) scale(.99)!important; }
+    [data-testid="stChatMessage"] {
+      transform-style:preserve-3d!important;transition:transform .5s cubic-bezier(.32,.72,0,1),box-shadow .5s cubic-bezier(.32,.72,0,1)!important;
+    }
+    [data-testid="stChatMessage"]:hover { transform:perspective(1200px) rotateX(.45deg) translateY(-2px)!important; }
+    [data-testid="stChatInput"] { transform-style:preserve-3d;transition:transform .45s cubic-bezier(.32,.72,0,1),box-shadow .45s cubic-bezier(.32,.72,0,1)!important; }
+    [data-testid="stChatInput"]:focus-within { transform:perspective(1000px) rotateX(.55deg) translateY(-2px); }
+    [data-testid="stExpander"],[data-testid="stForm"],[data-testid="stVerticalBlockBorderWrapper"] {
+      transform-style:preserve-3d;transition:transform .5s cubic-bezier(.32,.72,0,1),box-shadow .5s cubic-bezier(.32,.72,0,1),border-color .35s ease;
+    }
+    [data-testid="stExpander"]:hover { transform:perspective(1200px) rotateX(.35deg) translateY(-1px); }
+    .nx-creator-ribbon { transform-style:preserve-3d; }
+    .nx-creator-caption { font:500 10px/1.4 'DM Sans',sans-serif!important;color:#80728e!important; }
+    .nx-creator-ribbon.nx-theme-light .nx-creator-caption { color:#746584!important; }
+    .nx-creator-ribbon.nx-theme-dark .nx-creator-caption { color:#d4c8e7!important; }
+    .section-heading { color:var(--nx-ink)!important;letter-spacing:-.02em; }
+    .home-footnote { box-shadow:0 8px 24px -18px var(--nx-shadow),inset 0 1px 0 rgba(255,255,255,.08)!important; }
+    .stApp :focus-visible { outline:2px solid rgba(103,210,234,.85)!important;outline-offset:3px!important; }
+    @media(max-width:800px) {
+      div[data-testid="stHorizontalBlock"]:has(> div .workspace-topbar) { gap:10px!important; }
+      div[data-testid="stHorizontalBlock"]:has(> div .workspace-topbar) > div[data-testid="stColumn"]:first-child {
+        flex:1 1 0!important;width:auto!important;min-width:0!important;
+      }
+      div[data-testid="stHorizontalBlock"]:has(> div .workspace-topbar) > div[data-testid="stColumn"]:nth-child(2) {
+        flex:0 0 144px!important;width:144px!important;min-width:144px!important;max-width:144px!important;
+      }
+    }
+    @media(max-width:800px) {
+      .hero { grid-template-columns:minmax(0,1fr)!important;gap:4px!important;min-height:0!important;padding:22px clamp(18px,5vw,36px)!important; }
+      .hero .orb-wrap { grid-column:1;grid-row:1;height:218px!important;min-height:218px!important;margin:0!important; }
+      .hero-content { grid-column:1;grid-row:2; }
+      .hero .orb-wrap:before { width:230px;height:96px;margin:-48px 0 0 -115px; }
+      .hero .orb-wrap:after { width:200px;height:200px;margin:-100px 0 0 -100px; }
+      .hero h1 { font-size:clamp(35px,7.4vw,50px)!important;letter-spacing:-.05em!important;line-height:1.08!important; }
+      .hero-trust-row { margin-top:17px!important; }
+      .workspace-topbar .nx-header-reactor { flex-basis:52px!important;scale:.78!important;margin:0 -5px!important; }
+    }
+    @media(max-width:480px) {
+      div[data-testid="stHorizontalBlock"]:has(> div .workspace-topbar) { flex-wrap:wrap!important; }
+      div[data-testid="stHorizontalBlock"]:has(> div .workspace-topbar) > div[data-testid="stColumn"]:first-child,
+      div[data-testid="stHorizontalBlock"]:has(> div .workspace-topbar) > div[data-testid="stColumn"]:nth-child(2) {
+        flex:1 1 100%!important;width:100%!important;min-width:0!important;max-width:none!important;
+      }
+      .hero { border-radius:24px!important;padding:14px 16px 22px!important; }
+      .hero .orb-wrap { height:176px!important;min-height:176px!important; }
+      .workspace-topbar .nx-header-reactor { flex-basis:38px!important;scale:.68!important;margin:0 -7px!important; }
+      .hero h1 { font-size:clamp(31px,8.7vw,40px)!important;letter-spacing:-.045em!important; }
+      .hero .hero-subtitle { font-size:13px!important; }
+      .hero-trust-row span { font-size:9px!important;padding:6px 8px!important; }
+      .nx-creator-caption { font-size:9px!important; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .stApp:before,.stApp:after,.hero,.hero .orb-wrap,.hero .orb-wrap:before,.hero .orb-wrap:after,
+      .hero .orb-floor-shadow,.hero .orb-spark,.workspace-topbar,.workspace-mark,
+      .stApp [data-testid="stButton"] button,[data-testid="stChatMessage"],
+      [data-testid="stChatInput"],[data-testid="stExpander"] {
+        animation:none!important;transition:none!important;transform:none!important;
+      }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 def get_api_key():
@@ -2192,6 +2422,7 @@ st.markdown(
       <div class="nx-creator-copy">
         <span class="nx-creator-kicker">CREATED BY</span>
         <strong class="nx-creator-name">Atta ur Rehman</strong>
+        <span class="nx-creator-caption">A student of Sir Iqbal</span>
       </div>
     </div>
     """,
@@ -2225,12 +2456,14 @@ history = active_chat["messages"]
 if not history:
     st.markdown(
         f"""
-        <div class="hero">
-          <div class="orb-wrap"><div class="orb-floor-shadow"></div>{hero_cube_html()}<span class="orb-spark orb-spark-a">✦</span><span class="orb-spark orb-spark-b">✧</span></div>
-          <div class="hero-kicker">✦&nbsp; YOUR IDEAS, WITH MORE CLARITY</div>
-          <h1>What are we <span class="gradient-word">working on</span> today?</h1>
-          <p class="hero-subtitle">From quick questions to deep research, coding, writing, and planning — turn your next idea into progress.</p>
-          <div class="hero-trust-row"><span>✦ Thoughtful answers</span><span>⌕ Source-aware research</span><span>⌘ Coding & creativity</span></div>
+        <div class="hero {creator_theme_class}">
+          <div class="hero-content">
+            <div class="hero-kicker">✦&nbsp; YOUR IDEAS, WITH MORE CLARITY</div>
+            <h1>What are we <span class="gradient-word">working on</span> today?</h1>
+            <p class="hero-subtitle">From quick questions to deep research, coding, writing, and planning — turn your next idea into progress.</p>
+            <div class="hero-trust-row"><span>✦ Thoughtful answers</span><span>⌕ Source-aware research</span><span>⌘ Coding &amp; creativity</span></div>
+          </div>
+          <div class="orb-wrap" aria-hidden="true"><div class="orb-floor-shadow"></div>{hero_cube_html()}<span class="orb-spark orb-spark-a">✦</span><span class="orb-spark orb-spark-b">✧</span></div>
         </div>
         """,
         unsafe_allow_html=True,

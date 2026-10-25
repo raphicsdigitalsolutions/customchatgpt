@@ -147,11 +147,11 @@ _BASE_CSS = """
 
 /* Continuously animated glass reactor for the top-right app header. */
 .nx-header-reactor{
-  position:relative;display:grid;place-items:center;flex:0 0 82px;width:82px;height:72px;
+  position:relative;display:grid;place-items:center;flex:0 0 94px;width:94px;height:82px;
   perspective:700px;transform-style:preserve-3d;isolation:isolate;overflow:visible;
 }
 .nx-header-reactor:before{
-  content:"";position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;
+  content:"";position:absolute;left:50%;top:50%;width:78px;height:78px;margin:-39px 0 0 -39px;
   border-radius:50%;background:radial-gradient(circle,__A1__,transparent 68%);filter:blur(4px);
   opacity:.8;pointer-events:none;animation:nx-reactor-aura 5s ease-in-out infinite;
 }
@@ -160,18 +160,18 @@ _BASE_CSS = """
   border:1px solid __RING__;transform-style:preserve-3d;backface-visibility:visible;
 }
 .nx-reactor-ring-a{
-  width:62px;height:28px;margin:-14px 0 0 -31px;border-top-color:#e879d2;border-bottom-color:rgba(112,230,246,.6);
+  width:72px;height:32px;margin:-16px 0 0 -36px;border-top-color:#e879d2;border-bottom-color:rgba(112,230,246,.6);
   animation:nx-reactor-spin-a 7s linear infinite;
 }
 .nx-reactor-ring-b{
-  width:58px;height:58px;margin:-29px 0 0 -29px;border-left-color:#7ce8f1;border-right-color:rgba(182,142,255,.35);
+  width:68px;height:68px;margin:-34px 0 0 -34px;border-left-color:#7ce8f1;border-right-color:rgba(182,142,255,.35);
   animation:nx-reactor-spin-b 9s linear infinite;
 }
 .nx-reactor-ring-c{
-  width:74px;height:34px;margin:-17px 0 0 -37px;border-style:dashed;border-color:rgba(177,145,255,.45);
+  width:86px;height:40px;margin:-20px 0 0 -43px;border-style:dashed;border-color:rgba(177,145,255,.45);
   animation:nx-reactor-spin-c 13s linear infinite;
 }
-.nx-reactor-cube{position:absolute;z-index:2;width:34px;height:34px;transform-style:preserve-3d;animation:nx-reactor-cube-spin 12s linear infinite}
+.nx-reactor-cube{position:absolute;z-index:2;width:38px;height:38px;transform-style:preserve-3d;animation:nx-reactor-cube-spin 12s linear infinite}
 .nx-reactor-cube i{
   position:absolute;inset:0;display:block;border:1px solid rgba(255,255,255,.78);border-radius:7px;
   background:linear-gradient(145deg,__A1__,rgba(30,22,62,.74));
@@ -183,14 +183,14 @@ _BASE_CSS = """
 .nx-reactor-cube i:nth-child(4){background:linear-gradient(145deg,__A4__,rgba(50,23,68,.78))}
 .nx-reactor-cube i:nth-child(5){background:linear-gradient(145deg,rgba(255,255,255,.62),__A1__)}
 .nx-reactor-cube i:nth-child(6){background:linear-gradient(145deg,rgba(20,18,47,.9),__A3__)}
-.nx-reactor-cube i:nth-child(1){transform:translateZ(17px)}
-.nx-reactor-cube i:nth-child(2){transform:rotateY(90deg) translateZ(17px)}
-.nx-reactor-cube i:nth-child(3){transform:rotateY(180deg) translateZ(17px)}
-.nx-reactor-cube i:nth-child(4){transform:rotateY(-90deg) translateZ(17px)}
-.nx-reactor-cube i:nth-child(5){transform:rotateX(90deg) translateZ(17px)}
-.nx-reactor-cube i:nth-child(6){transform:rotateX(-90deg) translateZ(17px)}
+.nx-reactor-cube i:nth-child(1){transform:translateZ(19px)}
+.nx-reactor-cube i:nth-child(2){transform:rotateY(90deg) translateZ(19px)}
+.nx-reactor-cube i:nth-child(3){transform:rotateY(180deg) translateZ(19px)}
+.nx-reactor-cube i:nth-child(4){transform:rotateY(-90deg) translateZ(19px)}
+.nx-reactor-cube i:nth-child(5){transform:rotateX(90deg) translateZ(19px)}
+.nx-reactor-cube i:nth-child(6){transform:rotateX(-90deg) translateZ(19px)}
 .nx-reactor-core{
-  position:relative;z-index:3;display:grid;place-items:center;width:23px;height:23px;border-radius:50%;
+  position:relative;z-index:3;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;
   color:#fff;font-size:13px;line-height:1;transform:translateZ(21px);
   background:radial-gradient(circle at 27% 19%,#fff 0%,#dcd0ff 7%,#9b7cff 25%,#6341cc 54%,#1e1743 78%,#ec7bdb 100%);
   border:1px solid rgba(255,255,255,.74);
@@ -213,7 +213,7 @@ _BASE_CSS = """
 @keyframes nx-reactor-hover{0%,100%{transform:translateZ(21px) translateY(0) rotateX(7deg) rotateY(-9deg)}50%{transform:translateZ(21px) translateY(-4px) rotateX(-4deg) rotateY(10deg)}}
 @keyframes nx-reactor-glow{0%,100%{filter:brightness(1);box-shadow:0 8px 16px rgba(81,51,157,.28),0 0 18px rgba(133,107,255,.23),inset 0 2px 3px rgba(255,255,255,.82),inset 0 -5px 8px rgba(8,7,34,.45)}50%{filter:brightness(1.13);box-shadow:0 9px 18px rgba(81,51,157,.32),0 0 27px rgba(133,107,255,.38),inset 0 2px 3px rgba(255,255,255,.9),inset 0 -5px 8px rgba(8,7,34,.45)}}
 @keyframes nx-reactor-node{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
-@media(max-width:900px){.nx-header-reactor{flex-basis:62px;width:62px;height:58px;scale:.86;margin:0 -3px}}
+@media(max-width:900px){.nx-header-reactor{flex-basis:64px;width:64px;height:58px;scale:.86;margin:0 -3px}}
 @media(max-width:640px){.nx-header-reactor{flex-basis:42px;width:42px;height:46px;scale:.72;margin:0 -6px}.nx-reactor-ring-c{opacity:.6}}
 @media(prefers-reduced-motion:reduce){.nx-header-reactor:before,.nx-reactor-ring,.nx-reactor-cube,.nx-reactor-core,.nx-reactor-node{animation:none!important}}
 
