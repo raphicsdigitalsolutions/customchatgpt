@@ -7,8 +7,8 @@ A polished Streamlit AI workspace with a dimensional animated identity, a reusab
 
 ## Highlights
 
-- Premium violet, cyan and soft-rose visual system with responsive day/night layouts.
-- Continuous CSS 3D depth across the workspace: split hero with a rotating glass cube, top-right reactor, perspective grid, raised controls and dimensional chat messages.
+- Premium ocean-teal, champagne and porcelain visual system with responsive day/night layouts.
+- Continuous CSS 3D depth across the workspace: a prominent animated creator signature, split hero with a rotating glass cube, top-right reactor, perspective grid, raised controls and dimensional chat messages.
 - Day and Night appearance modes with contrast-aware controls.
 - OpenAI API-key welcome dialog; API key is kept in the active Streamlit session when entered in the UI.
 - Optional OpenAI Responses API web search for current information.
