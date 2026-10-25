@@ -797,20 +797,6 @@ _premium_css = """
   content:"";position:absolute;inset:4px 6px auto;height:17px;border-radius:18px 18px 50% 50%;
   background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.04))!important;pointer-events:none;
 }
-.welcome-credit,.creator-credit-sidebar,.creator-credit-main {
-  text-align:center!important;font-size:10px!important;line-height:1.6!important;
-  color:var(--nx-muted)!important;letter-spacing:.1px;
-}
-.welcome-credit { margin:0 auto 10px!important; }
-.welcome-credit strong,.creator-credit-sidebar strong,.creator-credit-main strong { color:var(--nx-link)!important;font-weight:800!important; }
-.welcome-credit span,.creator-credit-main span { display:block!important;opacity:.86; }
-.creator-credit-sidebar { margin:6px auto 12px!important;padding-top:9px!important;border-top:1px solid var(--nx-line)!important;font-size:9px!important; }
-.creator-credit-main { margin:10px auto 20px!important;font-size:10px!important; }
-@media(max-width:520px) {
-  .welcome-credit { font-size:9.5px!important; }
-  .creator-credit-main { margin-bottom:14px!important; }
-}
-
 @media(max-width:900px) {
   [data-testid="stMainBlockContainer"] { padding:1rem 1rem 6rem!important; }
   .hero { margin-top:1.5rem!important; }
@@ -1003,7 +989,6 @@ _premium_css = """
   .welcome-features { gap:5px!important; flex-wrap:wrap!important; }
   .welcome-features span { font-size:9px!important; padding:6px 8px!important; }
   .home-footnote { font-size:10px!important; line-height:1.6!important; padding:10px!important; }
-  .creator-credit-main { font-size:10px!important; margin-bottom:12px!important; }
 }
 @media (max-width: 360px) {
   [data-testid="stMainBlockContainer"] { padding-left:.5rem!important; padding-right:.5rem!important; }
@@ -1339,7 +1324,6 @@ _premium_css = """
   margin-top:12px!important;padding:16px!important;border-radius:19px!important;
   box-shadow:0 10px 26px var(--nx-shadow),inset 0 1px 0 __TOP_HIGHLIGHT__!important;
 }
-.creator-credit-main { padding-top:7px!important;opacity:.88; }
 @media(max-width:640px) {
   .hero { border-radius:25px!important;padding:17px 10px 20px!important;margin-top:1rem!important; }
   .hero:before { inset:6px!important;border-radius:19px!important; }
@@ -1645,11 +1629,6 @@ _dialog_css = """
   color:__DIALOG_BODY__!important; font-size:13px!important; line-height:1.7!important;
   overflow-wrap:break-word!important;
 }
-[data-testid="stDialog"] .welcome-credit {
-  margin:0 auto 13px!important; color:__DIALOG_MUTED__!important;
-  font-size:10px!important; line-height:1.55!important;
-}
-[data-testid="stDialog"] .welcome-credit strong { color:#8b5cf6!important; }
 [data-testid="stDialog"] .welcome-features {
   display:flex!important; justify-content:center!important; align-items:center!important;
   width:100%!important; max-width:100%!important; flex-wrap:wrap!important;
@@ -1767,7 +1746,7 @@ for _token, _value in _dialog_values.items():
 st.markdown(_dialog_css, unsafe_allow_html=True)
 
 st.markdown(
-    "<style>\n/* Final layer for the live header reactor and the two appearance modes. */\n.workspace-topbar-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;min-width:0!important}\n.workspace-status{flex-shrink:0!important}\n.nx-creator-ribbon.nx-theme-light{\n  background:linear-gradient(130deg,rgba(255,255,255,.90),rgba(246,240,255,.88) 56%,rgba(236,249,255,.86))!important;\n  border-color:rgba(159,128,240,.30)!important;\n  box-shadow:0 4px 0 rgba(102,70,150,.025),0 15px 32px rgba(55,35,88,.09),inset 0 1px 0 rgba(255,255,255,.98)!important;\n}\n.nx-creator-ribbon.nx-theme-light .nx-creator-kicker{color:#88779f!important}\n.nx-creator-ribbon.nx-theme-light .nx-creator-name{color:#2b203f!important}\n.nx-creator-ribbon.nx-theme-light .nx-creator-caption{color:#746584!important}\n.nx-creator-ribbon.nx-theme-dark{\n  background:linear-gradient(130deg,rgba(42,31,65,.97),rgba(27,26,52,.95) 56%,rgba(20,34,52,.95))!important;\n  border-color:rgba(169,133,255,.32)!important;\n  box-shadow:0 5px 0 rgba(0,0,0,.05),0 16px 34px rgba(5,3,20,.20),inset 0 1px 0 rgba(255,255,255,.13)!important;\n}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-kicker{color:#c2b4de!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-name{color:#fbf7ff!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-caption{color:#d4c8e7!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-mark{\n  box-shadow:0 7px 0 rgba(0,0,0,.15),0 13px 25px rgba(126,87,245,.32),inset 0 2px 3px rgba(255,255,255,.65),inset 0 -5px 8px rgba(52,24,113,.28)!important;\n}\n/* Keep the small animated core visible without crowding the status pill. */\n.workspace-topbar .nx-header-reactor{margin-left:auto!important;margin-right:0!important;flex:0 0 64px!important}\n.workspace-topbar .workspace-status{align-self:center!important}\n@media(max-width:900px){\n  .workspace-topbar-right{gap:6px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:48px!important;scale:.82!important;margin:0 -4px!important}\n  .workspace-status{font-size:9px!important;padding:6px 8px!important}\n}\n@media(max-width:640px){\n  .workspace-topbar-right{gap:4px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:38px!important;scale:.68!important;margin:0 -7px!important}\n  .workspace-status{font-size:8px!important;padding:5px 6px!important;max-width:108px!important}\n  .nx-creator-ribbon{max-width:calc(100% - 12px)!important;padding:8px 12px 8px 8px!important}\n}\n@media(prefers-reduced-motion:reduce){\n  .workspace-topbar .nx-header-reactor *,.nx-creator-ribbon,.nx-creator-mark,.nx-creator-mark:after{animation:none!important;transition:none!important}\n}\n</style>",
+    "<style>\n/* Final layer for the live header reactor and the two appearance modes. */\n.workspace-topbar-right{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;min-width:0!important}\n.workspace-status{flex-shrink:0!important}\n.nx-creator-ribbon.nx-theme-light{\n  background:linear-gradient(130deg,rgba(255,255,255,.90),rgba(246,240,255,.88) 56%,rgba(236,249,255,.86))!important;\n  border-color:rgba(159,128,240,.30)!important;\n  box-shadow:0 4px 0 rgba(102,70,150,.025),0 15px 32px rgba(55,35,88,.09),inset 0 1px 0 rgba(255,255,255,.98)!important;\n}\n.nx-creator-ribbon.nx-theme-light .nx-creator-kicker{color:#88779f!important}\n.nx-creator-ribbon.nx-theme-light .nx-creator-name{color:#2b203f!important}\n.nx-creator-ribbon.nx-theme-dark{\n  background:linear-gradient(130deg,rgba(42,31,65,.97),rgba(27,26,52,.95) 56%,rgba(20,34,52,.95))!important;\n  border-color:rgba(169,133,255,.32)!important;\n  box-shadow:0 5px 0 rgba(0,0,0,.05),0 16px 34px rgba(5,3,20,.20),inset 0 1px 0 rgba(255,255,255,.13)!important;\n}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-kicker{color:#c2b4de!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-name{color:#fbf7ff!important}\n.nx-creator-ribbon.nx-theme-dark .nx-creator-mark{\n  box-shadow:0 7px 0 rgba(0,0,0,.15),0 13px 25px rgba(126,87,245,.32),inset 0 2px 3px rgba(255,255,255,.65),inset 0 -5px 8px rgba(52,24,113,.28)!important;\n}\n/* Give the live 3D core a clear place in the top-right header. */\n.workspace-topbar .nx-header-reactor{margin-left:auto!important;margin-right:0!important;flex:0 0 82px!important}\n.workspace-topbar .workspace-status{align-self:center!important}\n@media(max-width:900px){\n  .workspace-topbar-right{gap:6px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:54px!important;scale:.82!important;margin:0 -4px!important}\n  .workspace-status{font-size:9px!important;padding:6px 8px!important}\n}\n@media(max-width:640px){\n  .workspace-topbar-right{gap:4px!important}\n  .workspace-topbar .nx-header-reactor{flex-basis:38px!important;scale:.68!important;margin:0 -7px!important}\n  .workspace-status{font-size:8px!important;padding:5px 6px!important;max-width:108px!important}\n  .nx-creator-ribbon{max-width:calc(100% - 12px)!important;padding:8px 12px 8px 8px!important}\n}\n@media(prefers-reduced-motion:reduce){\n  .workspace-topbar .nx-header-reactor *,.nx-creator-ribbon,.nx-creator-mark,.nx-creator-mark:after{animation:none!important;transition:none!important}\n}\n</style>",
     unsafe_allow_html=True,
 )
 
@@ -1824,31 +1803,9 @@ st.markdown(
       content:"";position:absolute;inset:-5px;border-radius:16px;border:1px solid rgba(158,127,246,.30);
       transform:rotateX(62deg);animation:nx-credit-spin 18s linear infinite;pointer-events:none;
     }
-    .nx-login-credit {
-      width:max-content;max-width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
-      margin:0 auto 13px;padding:6px 11px;border:1px solid rgba(159,128,240,.22);border-radius:14px;
-      background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(244,237,255,.73));
-      box-shadow:0 5px 0 rgba(102,70,150,.025),0 10px 22px rgba(55,35,88,.07),inset 0 1px 0 rgba(255,255,255,.96);
-      color:#342547;font:700 10px/1.4 'DM Sans',sans-serif;text-align:left;
-    }
-    .nx-login-credit-mark {
-      flex:0 0 26px;width:26px;height:26px;display:grid;place-items:center;border-radius:9px;color:#fff;
-      background:linear-gradient(145deg,#bda2ff,#7950eb 57%,#d75bb9);
-      box-shadow:0 4px 9px rgba(128,87,245,.2),inset 0 1px 0 rgba(255,255,255,.55);
-    }
-    .nx-login-credit strong { display:block;color:#342547;font-weight:800; }
-    .nx-login-credit small { display:block;color:#857595;font-size:9px;font-weight:500; }
-    [data-testid="stDialog"] .nx-login-credit { color:#342547!important; }
-    [data-testid="stDialog"] .nx-login-credit strong { color:#342547!important; }
-    [data-testid="stDialog"] .nx-login-credit small { color:#857595!important; }
-    @media(max-width:520px) {
-      .nx-login-credit { margin-bottom:10px;padding:5px 9px;gap:7px; }
-      .nx-login-credit-mark { width:24px;height:24px;flex-basis:24px; }
-    }
     .nx-creator-copy { display:flex;flex-direction:column;gap:1px;text-align:left;min-width:0; }
     .nx-creator-kicker { font:800 8px/1.4 'DM Sans',sans-serif;letter-spacing:1.5px;color:#88779f; }
     .nx-creator-name { font:800 13px/1.35 'Manrope',sans-serif;letter-spacing:-.2px;color:#2b203f; }
-    .nx-creator-caption { font:500 10px/1.4 'DM Sans',sans-serif;color:#80728e; }
 
     /* Confident, readable hero title and controlled liquid-core emblem. */
     .hero h1 { color:#fbf8ff!important;opacity:1!important;text-shadow:0 4px 26px rgba(150,103,255,.18)!important; }
@@ -1899,7 +1856,6 @@ st.markdown(
     [data-testid="stDialog"] .welcome-title { color:#2b203b!important; }
     [data-testid="stDialog"] .welcome-copy { color:#665775!important; }
     [data-testid="stDialog"] .welcome-eyebrow { color:#8c79a5!important; }
-    [data-testid="stDialog"] .welcome-credit { color:#827391!important; }
     [data-testid="stDialog"] .welcome-features span { color:#5a4276!important;-webkit-text-fill-color:#5a4276!important;background:#f1e9ff!important;border-color:#e4d8f4!important; }
     [data-testid="stDialog"] [data-testid="stTextInput"] label { color:#30243f!important; }
     [data-testid="stDialog"] [data-testid="stTextInput"] input { background:#fff!important;color:#30243f!important;-webkit-text-fill-color:#30243f!important;border:1px solid #d9cbea!important; }
@@ -1914,7 +1870,6 @@ st.markdown(
       .nx-creator-mark { width:35px;height:35px;flex-basis:35px;font-size:18px;border-radius:11px; }
       .nx-creator-kicker { font-size:7px;letter-spacing:1.15px; }
       .nx-creator-name { font-size:12px; }
-      .nx-creator-caption { font-size:9px; }
       .hero h1 { font-size:clamp(25px,7.1vw,36px)!important;line-height:1.2!important; }
       [data-testid="stDialog"] [role="dialog"] { width:calc(100vw - 18px)!important;max-width:calc(100vw - 18px)!important;padding:10px!important; }
     }
@@ -2088,10 +2043,6 @@ def key_dialog():
     st.markdown(
         """
         <div class="welcome-card">
-          <div class="nx-login-credit">
-            <span class="nx-login-credit-mark">✦</span>
-            <span><strong>Designed &amp; developed by Atta ur Rehman</strong><small>A student of Sir Iqbal</small></span>
-          </div>
           <div class="welcome-robot-wrap">
             <div class="welcome-robot">✦</div>
             <span class="robot-spark spark-one">✦</span>
@@ -2208,7 +2159,7 @@ with st.sidebar:
         st.session_state.active_chat = None
         st.rerun()
 
-    st.markdown('<div class="fine-print">NEXORA AI · Think beyond</div><div class="creator-credit-sidebar">Designed &amp; developed by <strong>Atta ur Rehman</strong><br><span>A student of Sir Iqbal</span></div>', unsafe_allow_html=True)
+    st.markdown('<div class="fine-print">NEXORA AI · Think beyond</div>', unsafe_allow_html=True)
 
 # -------------------- SETTINGS --------------------
 if st.session_state.show_settings:
@@ -2239,9 +2190,8 @@ st.markdown(
     <div class="nx-creator-ribbon {creator_theme_class}" role="note" aria-label="Creator credit">
       <div class="nx-creator-mark">✦</div>
       <div class="nx-creator-copy">
-        <span class="nx-creator-kicker">DESIGNED &amp; DEVELOPED BY</span>
+        <span class="nx-creator-kicker">CREATED BY</span>
         <strong class="nx-creator-name">Atta ur Rehman</strong>
-        <span class="nx-creator-caption">A student of Sir Iqbal</span>
       </div>
     </div>
     """,
@@ -2344,7 +2294,7 @@ if st.session_state.get("edit_message_index") is not None:
     else:
         st.session_state.edit_message_index = None
 
-st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div><div class="creator-credit-main">Designed &amp; developed by <strong>Atta ur Rehman</strong><span>A student of Sir Iqbal</span></div>', unsafe_allow_html=True)
+st.markdown('<div class="home-footnote">✦ NEXORA AI can make mistakes. For important decisions, check cited sources and verify critical details.</div>', unsafe_allow_html=True)
 
 # -------------------- INPUT / RESPONSE --------------------
 pending = st.session_state.pop("pending_prompt", "")

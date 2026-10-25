@@ -2,13 +2,13 @@
 
 A polished Streamlit AI workspace with a dimensional animated identity, a reusable `nexora_3d.py` visual layer, day/night themes, chat history for the active session, model selection, and optional live web search with source links.
 
-**Live app:** https://nexora-ai-pro.streamlit.app/  
+**Live app:** https://attanexora-ai.streamlit.app/
 **Repository:** https://github.com/raphicsdigitalsolutions/customchatgpt
 
 ## Highlights
 
 - Premium violet / rose visual system with responsive layout.
-- Animated 3D glass-cube emblem, gyroscope rings, floating motion, layered button depth and message-card styling from `nexora_3d.py`.
+- Continuously rotating 3D glass reactor in the top-right header, plus a larger glass-cube emblem, gyroscope rings, layered button depth and message-card styling from `nexora_3d.py`.
 - Day and Night appearance modes with contrast-aware controls.
 - OpenAI API-key welcome dialog; API key is kept in the active Streamlit session when entered in the UI.
 - Optional OpenAI Responses API web search for current information.
@@ -83,7 +83,7 @@ API usage and web search may incur OpenAI API charges. A ChatGPT subscription do
 - This project is a Streamlit single-user/session-oriented app, **not a full account login system**. The welcome dialog connects an OpenAI API key; it does not create usernames or passwords.
 - Chat history, theme selection, and UI settings live in Streamlit session state; they are not durable across all browser sessions or server restarts.
 - Do not use this repository as a multi-user production service without adding server-side authentication, per-user data isolation, durable storage, rate limiting, and appropriate privacy controls.
-- The interface is a 3D-inspired CSS treatment rather than a WebGL 3D scene.
+- The animated scene uses lightweight CSS 3D transforms and continuous motion; it does not load a WebGL engine.
 
 ## Deployment
 

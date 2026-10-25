@@ -145,33 +145,56 @@ _BASE_CSS = """
   to{transform:rotate3d(1,1,0,-360deg)}
 }
 
-/* Compact animated 3D reactor for the top-right app header. */
+/* Continuously animated glass reactor for the top-right app header. */
 .nx-header-reactor{
-  position:relative;display:grid;place-items:center;flex:0 0 64px;width:64px;height:58px;
+  position:relative;display:grid;place-items:center;flex:0 0 82px;width:82px;height:72px;
   perspective:700px;transform-style:preserve-3d;isolation:isolate;overflow:visible;
+}
+.nx-header-reactor:before{
+  content:"";position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;
+  border-radius:50%;background:radial-gradient(circle,__A1__,transparent 68%);filter:blur(4px);
+  opacity:.8;pointer-events:none;animation:nx-reactor-aura 5s ease-in-out infinite;
 }
 .nx-reactor-ring{
   position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;
   border:1px solid __RING__;transform-style:preserve-3d;backface-visibility:visible;
 }
 .nx-reactor-ring-a{
-  width:52px;height:24px;margin:-12px 0 0 -26px;border-top-color:#e879d2;border-bottom-color:rgba(112,230,246,.6);
+  width:62px;height:28px;margin:-14px 0 0 -31px;border-top-color:#e879d2;border-bottom-color:rgba(112,230,246,.6);
   animation:nx-reactor-spin-a 7s linear infinite;
 }
 .nx-reactor-ring-b{
-  width:49px;height:49px;margin:-24.5px 0 0 -24.5px;border-left-color:#7ce8f1;border-right-color:rgba(182,142,255,.35);
+  width:58px;height:58px;margin:-29px 0 0 -29px;border-left-color:#7ce8f1;border-right-color:rgba(182,142,255,.35);
   animation:nx-reactor-spin-b 9s linear infinite;
 }
 .nx-reactor-ring-c{
-  width:61px;height:28px;margin:-14px 0 0 -30.5px;border-style:dashed;border-color:rgba(177,145,255,.37);
+  width:74px;height:34px;margin:-17px 0 0 -37px;border-style:dashed;border-color:rgba(177,145,255,.45);
   animation:nx-reactor-spin-c 13s linear infinite;
 }
+.nx-reactor-cube{position:absolute;z-index:2;width:34px;height:34px;transform-style:preserve-3d;animation:nx-reactor-cube-spin 12s linear infinite}
+.nx-reactor-cube i{
+  position:absolute;inset:0;display:block;border:1px solid rgba(255,255,255,.78);border-radius:7px;
+  background:linear-gradient(145deg,__A1__,rgba(30,22,62,.74));
+  box-shadow:inset 0 0 12px rgba(255,255,255,.22),inset 0 -8px 11px rgba(0,0,0,.23);
+  backface-visibility:visible;-webkit-backface-visibility:visible;
+}
+.nx-reactor-cube i:nth-child(2){background:linear-gradient(145deg,__A2__,rgba(31,31,78,.78))}
+.nx-reactor-cube i:nth-child(3){background:linear-gradient(145deg,__A3__,rgba(27,20,58,.82))}
+.nx-reactor-cube i:nth-child(4){background:linear-gradient(145deg,__A4__,rgba(50,23,68,.78))}
+.nx-reactor-cube i:nth-child(5){background:linear-gradient(145deg,rgba(255,255,255,.62),__A1__)}
+.nx-reactor-cube i:nth-child(6){background:linear-gradient(145deg,rgba(20,18,47,.9),__A3__)}
+.nx-reactor-cube i:nth-child(1){transform:translateZ(17px)}
+.nx-reactor-cube i:nth-child(2){transform:rotateY(90deg) translateZ(17px)}
+.nx-reactor-cube i:nth-child(3){transform:rotateY(180deg) translateZ(17px)}
+.nx-reactor-cube i:nth-child(4){transform:rotateY(-90deg) translateZ(17px)}
+.nx-reactor-cube i:nth-child(5){transform:rotateX(90deg) translateZ(17px)}
+.nx-reactor-cube i:nth-child(6){transform:rotateX(-90deg) translateZ(17px)}
 .nx-reactor-core{
-  position:relative;z-index:2;display:grid;place-items:center;width:31px;height:31px;border-radius:50%;
-  color:#fff;font-size:17px;line-height:1;
+  position:relative;z-index:3;display:grid;place-items:center;width:23px;height:23px;border-radius:50%;
+  color:#fff;font-size:13px;line-height:1;transform:translateZ(21px);
   background:radial-gradient(circle at 27% 19%,#fff 0%,#dcd0ff 7%,#9b7cff 25%,#6341cc 54%,#1e1743 78%,#ec7bdb 100%);
   border:1px solid rgba(255,255,255,.74);
-  box-shadow:0 8px 16px rgba(81,51,157,.28),0 0 20px rgba(133,107,255,.28),
+  box-shadow:0 8px 16px rgba(81,51,157,.32),0 0 25px rgba(133,107,255,.48),
     inset 0 2px 3px rgba(255,255,255,.82),inset 0 -5px 8px rgba(8,7,34,.45);
   transform-style:preserve-3d;animation:nx-reactor-hover 4.5s ease-in-out infinite,nx-reactor-glow 4s ease-in-out infinite;
 }
@@ -179,16 +202,20 @@ _BASE_CSS = """
   content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(255,255,255,.3);
   box-shadow:inset 0 0 8px rgba(255,255,255,.15);pointer-events:none;
 }
-.nx-reactor-node{position:absolute;z-index:3;width:5px;height:5px;border-radius:50%;background:#91f5fa;box-shadow:0 0 10px rgba(105,233,246,.95);top:4px;right:7px;animation:nx-reactor-node 3s ease-in-out infinite;}
-.nx-header-reactor:after{content:"";position:absolute;bottom:3px;left:50%;width:26px;height:5px;margin-left:-13px;border-radius:50%;background:rgba(103,80,180,.24);filter:blur(4px);}
+.nx-reactor-node{position:absolute;z-index:4;width:6px;height:6px;border-radius:50%;background:#91f5fa;box-shadow:0 0 10px rgba(105,233,246,.95);top:9px;right:11px;animation:nx-reactor-node 3s ease-in-out infinite;}
+.nx-reactor-node-b{top:auto;right:auto;left:11px;bottom:9px;width:4px;height:4px;background:#f3a6ec;box-shadow:0 0 9px rgba(243,166,236,.95);animation-delay:-1.4s}
+.nx-header-reactor:after{content:"";position:absolute;bottom:2px;left:50%;width:36px;height:7px;margin-left:-18px;border-radius:50%;background:rgba(103,80,180,.30);filter:blur(5px);}
+@keyframes nx-reactor-aura{0%,100%{opacity:.48;transform:scale(.86)}50%{opacity:.95;transform:scale(1.12)}}
+@keyframes nx-reactor-cube-spin{from{transform:rotateX(-18deg) rotateY(0deg) rotateZ(0deg)}to{transform:rotateX(342deg) rotateY(360deg) rotateZ(180deg)}}
 @keyframes nx-reactor-spin-a{from{transform:rotateX(68deg) rotateZ(0deg)}to{transform:rotateX(68deg) rotateZ(360deg)}}
 @keyframes nx-reactor-spin-b{from{transform:rotateY(68deg) rotateZ(360deg)}to{transform:rotateY(68deg) rotateZ(0deg)}}
 @keyframes nx-reactor-spin-c{from{transform:rotateX(72deg) rotateZ(0deg)}to{transform:rotateX(72deg) rotateZ(-360deg)}}
-@keyframes nx-reactor-hover{0%,100%{transform:translateY(0) rotateX(7deg) rotateY(-9deg)}50%{transform:translateY(-4px) rotateX(-4deg) rotateY(10deg)}}
+@keyframes nx-reactor-hover{0%,100%{transform:translateZ(21px) translateY(0) rotateX(7deg) rotateY(-9deg)}50%{transform:translateZ(21px) translateY(-4px) rotateX(-4deg) rotateY(10deg)}}
 @keyframes nx-reactor-glow{0%,100%{filter:brightness(1);box-shadow:0 8px 16px rgba(81,51,157,.28),0 0 18px rgba(133,107,255,.23),inset 0 2px 3px rgba(255,255,255,.82),inset 0 -5px 8px rgba(8,7,34,.45)}50%{filter:brightness(1.13);box-shadow:0 9px 18px rgba(81,51,157,.32),0 0 27px rgba(133,107,255,.38),inset 0 2px 3px rgba(255,255,255,.9),inset 0 -5px 8px rgba(8,7,34,.45)}}
 @keyframes nx-reactor-node{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
-@media(max-width:640px){.nx-header-reactor{flex-basis:48px;width:48px;height:48px;scale:.87;margin:0 -3px}.nx-reactor-ring-c{opacity:.6}}
-@media(prefers-reduced-motion:reduce){.nx-reactor-ring,.nx-reactor-core,.nx-reactor-node{animation:none!important}}
+@media(max-width:900px){.nx-header-reactor{flex-basis:62px;width:62px;height:58px;scale:.86;margin:0 -3px}}
+@media(max-width:640px){.nx-header-reactor{flex-basis:42px;width:42px;height:46px;scale:.72;margin:0 -6px}.nx-reactor-ring-c{opacity:.6}}
+@media(prefers-reduced-motion:reduce){.nx-header-reactor:before,.nx-reactor-ring,.nx-reactor-cube,.nx-reactor-core,.nx-reactor-node{animation:none!important}}
 
 /* Glass chat messages with real depth */
 [data-testid="stChatMessage"]{position:relative;background:linear-gradient(150deg,__MSG1__,__MSG2__)!important;border:1px solid var(--nx-line)!important;box-shadow:inset 0 1px 0 __HL__,0 22px 44px -22px __SH1__,0 8px 18px -10px __SH2__!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:translate .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,border-color .3s ease;animation:nx3d-msg-in .55s cubic-bezier(.2,.8,.2,1) backwards!important}
@@ -229,14 +256,17 @@ def hero_cube_html() -> str:
     return '<div class="nx-cube" aria-hidden="true"><div class="nx-out">' + faces + '</div><div class="nx-in">' + faces + '</div></div>'
 
 def header_reactor_html() -> str:
-    """Return an accessible, lightweight animated 3D reactor for the app header."""
+    """Return an accessible, lightweight, continuously animated 3D reactor for the app header."""
+    faces = "<i></i>" * 6
     return (
-        '<div class="nx-header-reactor" role="img" aria-label="Animated NEXORA energy core">'
+        '<div class="nx-header-reactor" role="img" aria-label="Continuously rotating 3D NEXORA energy core">'
         '<div class="nx-reactor-ring nx-reactor-ring-a"></div>'
         '<div class="nx-reactor-ring nx-reactor-ring-b"></div>'
         '<div class="nx-reactor-ring nx-reactor-ring-c"></div>'
+        '<div class="nx-reactor-cube" aria-hidden="true">' + faces + '</div>'
         '<div class="nx-reactor-core">✦</div>'
         '<span class="nx-reactor-node"></span>'
+        '<span class="nx-reactor-node nx-reactor-node-b"></span>'
         '</div>'
     )
 
