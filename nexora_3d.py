@@ -56,24 +56,24 @@ _BASE_CSS = """
 .hero-trust-row span:hover{translate:0 -3px;box-shadow:0 12px 24px -10px __SH1__!important}
 
 /* Optional rotating glass cube for use with hero_cube_html(). */
-.nx-cube{position:relative;width:64px;height:64px;transform-style:preserve-3d;animation:nx3d-cube 16s linear infinite;z-index:2}
+.nx-cube{position:relative;width:92px;height:92px;transform-style:preserve-3d;animation:nx3d-cube 16s linear infinite;z-index:2;filter:drop-shadow(0 20px 24px rgba(73,46,144,.30))}
 .nx-out,.nx-in{position:absolute;inset:0;transform-style:preserve-3d}
-.nx-in{inset:19px;animation:nx3d-cube-rev 10s linear infinite}
+.nx-in{inset:27px;animation:nx3d-cube-rev 10s linear infinite}
 .nx-out i,.nx-in i{position:absolute;inset:0;display:block}
-.nx-out i{border-radius:10px;border:1px solid rgba(255,255,255,.6);background:linear-gradient(145deg,rgba(196,170,255,.50),rgba(128,87,245,.28) 55%,rgba(237,99,187,.38));box-shadow:inset 0 0 20px rgba(255,255,255,.35)}
-.nx-in i{border-radius:5px;background:linear-gradient(145deg,#e9dcff,#9a6bff 55%,#ed63bb);opacity:.95}
-.nx-out i:nth-child(1){transform:translateZ(32px)}
-.nx-out i:nth-child(2){transform:rotateY(90deg) translateZ(32px)}
-.nx-out i:nth-child(3){transform:rotateY(180deg) translateZ(32px)}
-.nx-out i:nth-child(4){transform:rotateY(-90deg) translateZ(32px)}
-.nx-out i:nth-child(5){transform:rotateX(90deg) translateZ(32px)}
-.nx-out i:nth-child(6){transform:rotateX(-90deg) translateZ(32px)}
-.nx-in i:nth-child(1){transform:translateZ(13px)}
-.nx-in i:nth-child(2){transform:rotateY(90deg) translateZ(13px)}
-.nx-in i:nth-child(3){transform:rotateY(180deg) translateZ(13px)}
-.nx-in i:nth-child(4){transform:rotateY(-90deg) translateZ(13px)}
-.nx-in i:nth-child(5){transform:rotateX(90deg) translateZ(13px)}
-.nx-in i:nth-child(6){transform:rotateX(-90deg) translateZ(13px)}
+.nx-out i{border-radius:15px;border:1px solid rgba(255,255,255,.68);background:linear-gradient(145deg,rgba(210,196,255,.42),rgba(128,87,245,.22) 48%,rgba(237,99,187,.30));box-shadow:inset 0 0 24px rgba(255,255,255,.27),inset 0 -10px 18px rgba(28,10,70,.12);backdrop-filter:blur(3px)}
+.nx-in i{border-radius:7px;background:linear-gradient(145deg,#e9dcff,#9a6bff 55%,#ed63bb);opacity:.95;box-shadow:inset 0 1px 4px rgba(255,255,255,.55)}
+.nx-out i:nth-child(1){transform:translateZ(46px)}
+.nx-out i:nth-child(2){transform:rotateY(90deg) translateZ(46px)}
+.nx-out i:nth-child(3){transform:rotateY(180deg) translateZ(46px)}
+.nx-out i:nth-child(4){transform:rotateY(-90deg) translateZ(46px)}
+.nx-out i:nth-child(5){transform:rotateX(90deg) translateZ(46px)}
+.nx-out i:nth-child(6){transform:rotateX(-90deg) translateZ(46px)}
+.nx-in i:nth-child(1){transform:translateZ(19px)}
+.nx-in i:nth-child(2){transform:rotateY(90deg) translateZ(19px)}
+.nx-in i:nth-child(3){transform:rotateY(180deg) translateZ(19px)}
+.nx-in i:nth-child(4){transform:rotateY(-90deg) translateZ(19px)}
+.nx-in i:nth-child(5){transform:rotateX(90deg) translateZ(19px)}
+.nx-in i:nth-child(6){transform:rotateX(-90deg) translateZ(19px)}
 @keyframes nx3d-cube{from{transform:rotateX(-22deg) rotateY(0deg)}to{transform:rotateX(-22deg) rotateY(360deg)}}
 @keyframes nx3d-cube-rev{from{transform:rotate3d(1,1,0,0deg)}to{transform:rotate3d(1,1,0,-360deg)}}
 
