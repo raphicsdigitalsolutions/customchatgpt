@@ -1458,6 +1458,73 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
   .orb { width:100px!important;height:100px!important;min-width:100px!important; }
 }
 
+
+/* Palette consistency pass: light controls stay light, dark controls stay dark.
+   Keep the fixed Streamlit composer rail matched to the page canvas, not a white slab. */
+html,body,.stApp,[data-testid="stAppViewContainer"] { background:__BG__!important; }
+[data-testid="stBottom"],[data-testid="stBottomBlockContainer"],
+[data-testid="stChatInputContainer"],[data-testid="stBottom"]>div,
+[data-testid="stBottomBlockContainer"]>div {
+  background:__BG__!important;background-color:__BG__!important;
+  box-shadow:none!important;
+}
+[data-testid="stBottom"] [data-testid="stChatInput"],
+[data-testid="stBottomBlockContainer"] [data-testid="stChatInput"] {
+  background:var(--nx-control)!important;background-color:var(--nx-control)!important;
+}
+.stApp [data-testid="stButton"] button:not([data-testid="stBaseButton-primary"]):not([kind="primary"]),
+.stApp button[data-testid="stBaseButton-secondary"],
+.stApp [data-testid="stFormSubmitButton"] button:not([data-testid="stBaseButton-primary"]) {
+  background:var(--nx-surface-solid)!important;
+  background-color:var(--nx-surface-solid)!important;
+  color:var(--nx-control-text)!important;
+  -webkit-text-fill-color:var(--nx-control-text)!important;
+  border:1px solid var(--nx-line)!important;
+  box-shadow:0 6px 16px var(--nx-shadow),inset 0 1px 0 __TOP_HIGHLIGHT__!important;
+}
+.stApp [data-testid="stButton"] button:not([data-testid="stBaseButton-primary"]):not([kind="primary"]):hover,
+.stApp button[data-testid="stBaseButton-secondary"]:hover {
+  background:var(--nx-surface)!important;
+  background-color:var(--nx-surface)!important;
+  border-color:#a98aff!important;
+}
+.stApp button[data-testid="stBaseButton-primary"],
+.stApp [data-testid="stButton"] button[kind="primary"],
+.stApp [data-testid="stFormSubmitButton"] button,
+.stApp [data-testid="stFormSubmitButton"] button[data-testid="stBaseButton-primary"] {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:linear-gradient(115deg,#6842ed 0%,#9f4dde 55%,#d957ba 100%)!important;
+  background-color:#8a51e5!important;border:1px solid rgba(255,255,255,.3)!important;
+  box-shadow:0 5px 0 rgba(60,30,120,.16),0 14px 26px rgba(112,68,210,.2),inset 0 1px 0 rgba(255,255,255,.4)!important;
+}
+.stApp [data-testid="stButton"] button[data-testid="stBaseButton-primary"]:hover {
+  filter:brightness(1.05) saturate(1.05)!important;
+}
+.stApp .connection-pill {
+  background:var(--nx-surface)!important;
+  color:var(--nx-ink)!important;
+  border-color:var(--nx-line)!important;
+}
+.stApp .connection-pill * { color:var(--nx-ink)!important; }
+.stApp .connection-pill .status-dot { background:#35c98a!important; }
+.stApp [data-testid="stSelectbox"] [data-baseweb="select"]>div {
+  background:var(--nx-control)!important;color:var(--nx-control-text)!important;
+}
+.stApp [data-testid="stSelectbox"] [data-baseweb="select"] * {
+  color:var(--nx-control-text)!important;fill:var(--nx-muted)!important;
+}
+.stApp [data-baseweb="popover"],.stApp [data-baseweb="menu"],.stApp [role="listbox"] {
+  background:var(--nx-control)!important;color:var(--nx-control-text)!important;
+}
+.stApp [role="option"] { color:var(--nx-control-text)!important; }
+.stApp [role="option"]:hover,.stApp [role="option"][aria-selected="true"] {
+  background:var(--nx-surface)!important;
+}
+.stApp [data-testid="stTextInput"] input,.stApp [data-testid="stTextArea"] textarea,
+.stApp [data-testid="stChatInput"] textarea {
+  caret-color:var(--nx-link)!important;
+}
+
 </style>
 """
 _premium_values = {
