@@ -839,6 +839,52 @@ _premium_css = """
 
 
 
+
+/* NEXORA signature: a layered, glassy 3D emblem with restrained cinematic motion. */
+@keyframes nx-emblem-drift {
+  0%,100% { transform:translateY(0) rotateX(8deg) rotateY(-8deg) rotateZ(-2deg); }
+  50% { transform:translateY(-8px) rotateX(13deg) rotateY(7deg) rotateZ(2deg); }
+}
+@keyframes nx-emblem-glow {
+  0%,100% { opacity:.52; filter:blur(13px); }
+  50% { opacity:.9; filter:blur(19px); }
+}
+@keyframes nx-ring-turn { from { transform:rotate(0deg) rotateX(64deg); } to { transform:rotate(360deg) rotateX(64deg); } }
+.orb-wrap { perspective:1000px!important; transform-style:preserve-3d!important; }
+.orb {
+  border-radius:25px!important;
+  background:
+    radial-gradient(ellipse at 23% 13%,rgba(255,255,255,.95),transparent 19%),
+    radial-gradient(ellipse at 76% 85%,rgba(236,103,197,.7),transparent 32%),
+    linear-gradient(140deg,#e7d9ff 0%,#b9a0ff 17%,#8a61f7 42%,#693fd0 66%,#db63bc 100%)!important;
+  animation:nx-emblem-drift 6.2s cubic-bezier(.42,0,.58,1) infinite!important;
+  box-shadow:
+    0 24px 35px rgba(83,54,146,.26),
+    0 7px 12px rgba(54,30,97,.16),
+    inset 0 3px 4px rgba(255,255,255,.88),
+    inset -5px -10px 18px rgba(45,20,100,.22),
+    inset 4px 0 10px rgba(255,255,255,.18)!important;
+}
+.orb:before { height:32px!important; filter:blur(1.8px)!important; }
+.orb:after { box-shadow:inset 0 0 0 1px rgba(255,255,255,.23),inset 0 -3px 5px rgba(38,18,84,.25)!important; }
+.orbit {
+  border:1px solid rgba(173,143,255,.48)!important;
+  box-shadow:0 0 0 6px rgba(153,119,241,.035),inset 0 0 18px rgba(153,119,241,.035)!important;
+  animation:nx-ring-turn 28s linear infinite!important;
+}
+.orb-floor-shadow { width:65px!important;height:11px!important;filter:blur(7px)!important; }
+.welcome-robot-wrap {
+  perspective:800px!important;transform-style:preserve-3d!important;
+  animation:nx-emblem-drift 7s ease-in-out infinite!important;
+  box-shadow:0 21px 38px rgba(103,66,183,.22),inset 0 2px 3px rgba(255,255,255,.85),inset 0 -8px 13px rgba(100,53,150,.12)!important;
+}
+.welcome-robot { animation:nx-emblem-glow 4s ease-in-out infinite,nx-orb-float 5s ease-in-out infinite!important; }
+.stButton>button { transform-style:preserve-3d!important; }
+.stButton>button[kind="primary"] { background-image:linear-gradient(115deg,#7650ed 0%,#9b51e0 55%,#e45eb6 100%)!important; }
+@media(prefers-reduced-motion:reduce) {
+  .orb,.orbit,.welcome-robot-wrap,.welcome-robot { animation:none!important; }
+}
+
 /* Tactile controls and subtle cinematic motion for the welcome screen. */
 @keyframes nx-login-arrive { from { opacity:0; transform:translateY(16px) scale(.975); } to { opacity:1; transform:translateY(0) scale(1); } }
 @keyframes nx-login-orbit { from { transform:rotate(18deg) rotateX(12deg) rotateY(0deg); } to { transform:rotate(378deg) rotateX(12deg) rotateY(0deg); } }
@@ -1081,25 +1127,25 @@ def get_citations(response):
 
 
 def ask_openai(history, latest_question, use_web):
+    """Generate an answer, with live web research and source metadata when enabled."""
     key = get_api_key()
     if not key:
         raise ValueError("API key missing")
 
     client = OpenAI(api_key=key, timeout=90, max_retries=2)
     styles = {
-        "Concise": "Prefer concise, direct answers.",
-        "Balanced": "Give clear answers with useful explanations.",
-        "Detailed": "Provide detailed explanations and examples when useful.",
+        "Concise": "Be direct and concise, but do not omit key evidence or necessary caveats.",
+        "Balanced": "Give a clear, useful answer with enough detail to support the conclusion.",
+        "Detailed": "Give a thorough, well-structured answer with examples and evidence where useful.",
     }
     system_text = (
         st.session_state.system_prompt.strip()
         + "\n\nResponse style: " + styles[st.session_state.response_style]
     )
 
-    # Responses API accepts role/content messages. Keep only the current chat's history.
     input_messages = [{"role": "system", "content": system_text}]
     for message in history:
-        if message["role"] in ("user", "assistant"):
+        if message.get("role") in ("user", "assistant"):
             input_messages.append({"role": message["role"], "content": message["content"]})
     input_messages.append({"role": "user", "content": latest_question})
 
@@ -1109,20 +1155,48 @@ def ask_openai(history, latest_question, use_web):
     }
 
     if use_web:
-        # OpenAI-hosted web search can retrieve current public-web information.
-        request["tools"] = [{"type": "web_search", "search_context_size": "medium"}]
-        request["tool_choice"] = "auto"
-        request["include"] = ["web_search_call.action.sources"]
         input_messages[0]["content"] += (
-            "\n\nWEB RESEARCH RULES: For current/recent information, recent events, software/API troubleshooting, "
-            "prices, comparisons, or facts likely to have changed, use web search before answering. Prefer "
-            "official documentation, primary sources, and recent reputable reporting. Cross-check important "
-            "claims when possible. Cite sources next to the claims they support; never invent a source. "
-            "If search is inconclusive, say what could not be verified. Do not search unnecessarily for stable facts."
+            "\n\nNEXORA LIVE RESEARCH STANDARD:"
+            "\n- For current, recent, disputed, technical, financial, legal, health, product, or otherwise changeable facts, actually use live web search before answering."
+            "\n- Treat a claim as verified only to the extent supported by the sources actually retrieved. Never claim you searched if no search call occurred."
+            "\n- Prefer primary and authoritative sources: official documentation, government or regulator pages, original research, official company statements, and direct data providers."
+            "\n- For important claims, seek corroboration from a second independent, credible source when practical. If sources disagree, explain the disagreement and dates instead of hiding it."
+            "\n- Check publication/update dates and distinguish the event date from the article date. Do not present stale material as current."
+            "\n- Make specific claims traceable with inline source citations. Use the supplied citations and never invent titles, URLs, quotations, statistics, or references."
+            "\n- Separate sourced facts from interpretation, estimates, and uncertainty. State when the evidence is limited or a claim could not be verified."
+            "\n- Answer the user's actual question directly. Avoid generic filler, generic disclaimers, and unsupported confident wording."
+            "\n- For stable, timeless questions, answer from knowledge without forcing an unnecessary search."
         )
+        request["tools"] = [{
+            "type": "web_search",
+            "search_context_size": "high",
+        }]
+        # Required for time-sensitive research questions, so the model cannot quietly skip searching.
+        research_trigger = any(term in latest_question.lower() for term in (
+            "search", "latest", "today", "current", "recent", "this week", "2026",
+            "price", "pricing", "compare", "review", "source", "citation", "news",
+            "official", "verify", "fact check", "research", "internet", "web",
+            "update", "release", "version", "status", "available", "market",
+        ))
+        request["tool_choice"] = "required" if research_trigger else "auto"
+        request["include"] = ["web_search_call.action.sources"]
 
     response = client.responses.create(**request)
-    return get_response_text(response), get_citations(response)
+    answer = get_response_text(response)
+    citations = get_citations(response)
+
+    # Fail transparently rather than presenting a web-research answer without source evidence.
+    if use_web and not answer:
+        raise RuntimeError("The model returned an empty response.")
+    if use_web and citations:
+        source_list = "\n".join(
+            f"- {item['title']}: {item['url']}" for item in citations[:12]
+        )
+        answer += (
+            "\n\n---\n**Sources consulted**\n"
+            + source_list
+        )
+    return answer, citations
 
 
 # -------------------- API KEY POPUP --------------------
