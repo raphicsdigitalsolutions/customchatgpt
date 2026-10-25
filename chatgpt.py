@@ -1819,6 +1819,27 @@ st.markdown(
       content:"";position:absolute;inset:-5px;border-radius:16px;border:1px solid rgba(158,127,246,.30);
       transform:rotateX(62deg);animation:nx-credit-spin 18s linear infinite;pointer-events:none;
     }
+    .nx-login-credit {
+      width:max-content;max-width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+      margin:0 auto 13px;padding:6px 11px;border:1px solid rgba(159,128,240,.22);border-radius:14px;
+      background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(244,237,255,.73));
+      box-shadow:0 5px 0 rgba(102,70,150,.025),0 10px 22px rgba(55,35,88,.07),inset 0 1px 0 rgba(255,255,255,.96);
+      color:#342547;font:700 10px/1.4 'DM Sans',sans-serif;text-align:left;
+    }
+    .nx-login-credit-mark {
+      flex:0 0 26px;width:26px;height:26px;display:grid;place-items:center;border-radius:9px;color:#fff;
+      background:linear-gradient(145deg,#bda2ff,#7950eb 57%,#d75bb9);
+      box-shadow:0 4px 9px rgba(128,87,245,.2),inset 0 1px 0 rgba(255,255,255,.55);
+    }
+    .nx-login-credit strong { display:block;color:#342547;font-weight:800; }
+    .nx-login-credit small { display:block;color:#857595;font-size:9px;font-weight:500; }
+    [data-testid="stDialog"] .nx-login-credit { color:#342547!important; }
+    [data-testid="stDialog"] .nx-login-credit strong { color:#342547!important; }
+    [data-testid="stDialog"] .nx-login-credit small { color:#857595!important; }
+    @media(max-width:520px) {
+      .nx-login-credit { margin-bottom:10px;padding:5px 9px;gap:7px; }
+      .nx-login-credit-mark { width:24px;height:24px;flex-basis:24px; }
+    }
     .nx-creator-copy { display:flex;flex-direction:column;gap:1px;text-align:left;min-width:0; }
     .nx-creator-kicker { font:800 8px/1.4 'DM Sans',sans-serif;letter-spacing:1.5px;color:#88779f; }
     .nx-creator-name { font:800 13px/1.35 'Manrope',sans-serif;letter-spacing:-.2px;color:#2b203f; }
@@ -2062,6 +2083,10 @@ def key_dialog():
     st.markdown(
         """
         <div class="welcome-card">
+          <div class="nx-login-credit">
+            <span class="nx-login-credit-mark">✦</span>
+            <span><strong>Designed &amp; built by Atta ur Rehman</strong><small>Student of Sir Iqbal</small></span>
+          </div>
           <div class="welcome-robot-wrap">
             <div class="welcome-robot">✦</div>
             <span class="robot-spark spark-one">✦</span>
@@ -2201,6 +2226,21 @@ if st.session_state.show_settings:
                 st.success("Settings saved.")
                 st.rerun()
     st.stop()
+
+# Centered creator signature — shown immediately at the top of the workspace.
+st.markdown(
+    """
+    <div class="nx-creator-ribbon" role="note" aria-label="Creator credit">
+      <div class="nx-creator-mark">✦</div>
+      <div class="nx-creator-copy">
+        <span class="nx-creator-kicker">DESIGNED &amp; BUILT BY</span>
+        <strong class="nx-creator-name">Atta ur Rehman</strong>
+        <span class="nx-creator-caption">Student of Sir Iqbal</span>
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # -------------------- MAIN CHAT --------------------
 header_col, theme_col = st.columns([7, 1.7], vertical_alignment="center")
