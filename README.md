@@ -1,14 +1,14 @@
 # NEXORA AI — Think Beyond ✦
 
-A polished, single-file Streamlit AI workspace with a dimensional animated identity, day/night themes, chat history for the active session, model selection, and optional live web search with source links.
+A polished Streamlit AI workspace with a dimensional animated identity, a reusable `nexora_3d.py` visual layer, day/night themes, chat history for the active session, model selection, and optional live web search with source links.
 
 **Live app:** https://nexora-ai-pro.streamlit.app/  
 **Repository:** https://github.com/raphicsdigitalsolutions/customchatgpt
 
 ## Highlights
 
-- Premium purple / violet / rose visual system with responsive layout.
-- Animated 3D-inspired NEXORA orb, glow and floating motion.
+- Premium violet / rose visual system with responsive layout.
+- Animated 3D glass-cube emblem, gyroscope rings, floating motion, layered button depth and message-card styling from `nexora_3d.py`.
 - Day and Night appearance modes with contrast-aware controls.
 - OpenAI API-key welcome dialog; API key is kept in the active Streamlit session when entered in the UI.
 - Optional OpenAI Responses API web search for current information.
@@ -37,7 +37,7 @@ Activate the virtual environment:
 source .venv/bin/activate
 ```
 
-Install dependencies and run:
+Install dependencies and run from the repository root. Keep both `chatgpt.py` and `nexora_3d.py` in the same folder:
 
 ```bash
 pip install -r requirements.txt
