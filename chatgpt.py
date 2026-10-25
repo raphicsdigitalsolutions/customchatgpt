@@ -5,7 +5,7 @@ from datetime import datetime
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
-from nexora_3d import apply_3d_premium_theme, hero_cube_html
+from nexora_3d import apply_3d_premium_theme, hero_cube_html, header_reactor_html
 
 # =========================================================
 # NEXORA AI — Motion + Live Web Search
@@ -2085,7 +2085,7 @@ def key_dialog():
         <div class="welcome-card">
           <div class="nx-login-credit">
             <span class="nx-login-credit-mark">✦</span>
-            <span><strong>Designed &amp; built by Atta ur Rehman</strong><small>Student of Sir Iqbal</small></span>
+            <span><strong>Designed &amp; developed by Atta ur Rehman</strong><small>A student of Sir Iqbal</small></span>
           </div>
           <div class="welcome-robot-wrap">
             <div class="welcome-robot">✦</div>
@@ -2227,15 +2227,16 @@ if st.session_state.show_settings:
                 st.rerun()
     st.stop()
 
-# Centered creator signature — shown immediately at the top of the workspace.
+# Centered creator signature — displayed above the app header.
+creator_theme_class = "nx-theme-dark" if st.session_state.get("dark_mode", False) else "nx-theme-light"
 st.markdown(
-    """
-    <div class="nx-creator-ribbon" role="note" aria-label="Creator credit">
+    f"""
+    <div class="nx-creator-ribbon {creator_theme_class}" role="note" aria-label="Creator credit">
       <div class="nx-creator-mark">✦</div>
       <div class="nx-creator-copy">
-        <span class="nx-creator-kicker">DESIGNED &amp; BUILT BY</span>
+        <span class="nx-creator-kicker">DESIGNED &amp; DEVELOPED BY</span>
         <strong class="nx-creator-name">Atta ur Rehman</strong>
-        <span class="nx-creator-caption">Student of Sir Iqbal</span>
+        <span class="nx-creator-caption">A student of Sir Iqbal</span>
       </div>
     </div>
     """,
@@ -2246,10 +2247,13 @@ st.markdown(
 header_col, theme_col = st.columns([7, 1.7], vertical_alignment="center")
 with header_col:
     st.markdown(
-        """
+        f"""
         <div class="workspace-topbar">
           <div class="workspace-brand"><span class="workspace-mark">✦</span><span>NEXORA <span style="color:#8057f5">AI</span><br><span style="font:500 10px 'DM Sans',sans-serif;color:#958aa4;letter-spacing:.35px">YOUR PERSONAL AI WORKSPACE</span></span></div>
-          <div class="workspace-status"><span class="workspace-status-dot"></span> AI workspace ready</div>
+          <div class="workspace-topbar-right">
+            {header_reactor_html()}
+            <div class="workspace-status"><span class="workspace-status-dot"></span> AI workspace ready</div>
+          </div>
         </div>
         """,
         unsafe_allow_html=True,
