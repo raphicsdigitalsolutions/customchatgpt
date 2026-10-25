@@ -56,24 +56,90 @@ _BASE_CSS = """
 .hero-trust-row span:hover{translate:0 -3px;box-shadow:0 12px 24px -10px __SH1__!important}
 
 /* Optional rotating glass cube for use with hero_cube_html(). */
-.nx-cube{position:relative;width:92px;height:92px;transform-style:preserve-3d;animation:nx3d-cube 16s linear infinite;z-index:2;filter:drop-shadow(0 20px 24px rgba(73,46,144,.30))}
+.nx-cube{
+  position:relative;width:112px;height:112px;flex:0 0 112px;
+  transform-style:preserve-3d;transform-origin:50% 50%;
+  animation:nx3d-cube 18s cubic-bezier(.45,0,.55,1) infinite;
+  z-index:2;filter:drop-shadow(0 27px 26px rgba(22,10,55,.38));
+  isolation:isolate;
+}
 .nx-out,.nx-in{position:absolute;inset:0;transform-style:preserve-3d}
-.nx-in{inset:27px;animation:nx3d-cube-rev 10s linear infinite}
-.nx-out i,.nx-in i{position:absolute;inset:0;display:block}
-.nx-out i{border-radius:15px;border:1px solid rgba(255,255,255,.68);background:linear-gradient(145deg,rgba(210,196,255,.42),rgba(128,87,245,.22) 48%,rgba(237,99,187,.30));box-shadow:inset 0 0 24px rgba(255,255,255,.27),inset 0 -10px 18px rgba(28,10,70,.12);backdrop-filter:blur(3px)}
-.nx-in i{border-radius:7px;background:linear-gradient(145deg,#e9dcff,#9a6bff 55%,#ed63bb);opacity:.95;box-shadow:inset 0 1px 4px rgba(255,255,255,.55)}
-.nx-out i:nth-child(1){transform:translateZ(46px)}
-.nx-out i:nth-child(2){transform:rotateY(90deg) translateZ(46px)}
-.nx-out i:nth-child(3){transform:rotateY(180deg) translateZ(46px)}
-.nx-out i:nth-child(4){transform:rotateY(-90deg) translateZ(46px)}
-.nx-out i:nth-child(5){transform:rotateX(90deg) translateZ(46px)}
-.nx-out i:nth-child(6){transform:rotateX(-90deg) translateZ(46px)}
-.nx-in i:nth-child(1){transform:translateZ(19px)}
-.nx-in i:nth-child(2){transform:rotateY(90deg) translateZ(19px)}
-.nx-in i:nth-child(3){transform:rotateY(180deg) translateZ(19px)}
-.nx-in i:nth-child(4){transform:rotateY(-90deg) translateZ(19px)}
-.nx-in i:nth-child(5){transform:rotateX(90deg) translateZ(19px)}
-.nx-in i:nth-child(6){transform:rotateX(-90deg) translateZ(19px)}
+.nx-in{inset:31px;animation:nx3d-cube-rev 11s linear infinite}
+.nx-out i,.nx-in i{
+  position:absolute;inset:0;display:block;box-sizing:border-box;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  transform-style:preserve-3d;overflow:hidden;
+}
+.nx-out i{
+  border:1px solid rgba(248,245,255,.72);
+  background:linear-gradient(145deg,rgba(176,146,255,.55),rgba(64,38,130,.72));
+  box-shadow:inset 0 0 20px rgba(255,255,255,.15),inset 0 -12px 22px rgba(4,3,21,.26);
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+}
+/* Each plane has its own material and luminance so the object reads as a cube, not a flat glyph. */
+.nx-out i:nth-child(1){
+  border-radius:16px;
+  background:radial-gradient(ellipse at 28% 18%,rgba(255,255,255,.58),transparent 26%),
+    linear-gradient(145deg,rgba(153,119,255,.60),rgba(39,25,79,.92) 72%);
+  box-shadow:inset 0 0 26px rgba(200,177,255,.28),inset 0 -14px 22px rgba(0,0,0,.32),inset 1px 1px 0 rgba(255,255,255,.6);
+}
+.nx-out i:nth-child(2){
+  border-radius:13px;
+  background:linear-gradient(135deg,rgba(99,226,244,.40),rgba(24,58,93,.96) 48%,rgba(43,22,81,.97));
+  box-shadow:inset 0 0 24px rgba(84,232,255,.20),inset -12px 0 18px rgba(0,0,0,.35);
+}
+.nx-out i:nth-child(3){
+  border-radius:13px;
+  background:linear-gradient(145deg,rgba(69,49,118,.94),rgba(15,13,35,.98));
+  box-shadow:inset 0 0 22px rgba(126,97,255,.15),inset 0 -16px 20px rgba(0,0,0,.42);
+}
+.nx-out i:nth-child(4){
+  border-radius:13px;
+  background:linear-gradient(135deg,rgba(236,104,213,.45),rgba(84,34,107,.92) 48%,rgba(30,18,64,.98));
+  box-shadow:inset 0 0 24px rgba(246,108,220,.18),inset 12px 0 18px rgba(0,0,0,.25);
+}
+.nx-out i:nth-child(5){
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(154,135,218,.74) 35%,rgba(69,66,129,.88));
+  box-shadow:inset 0 0 24px rgba(255,255,255,.38),inset 0 -12px 15px rgba(35,22,85,.24);
+}
+.nx-out i:nth-child(6){
+  border-radius:13px;
+  background:linear-gradient(145deg,rgba(22,21,52,.98),rgba(8,10,28,.99));
+  box-shadow:inset 0 0 24px rgba(92,88,180,.12),inset 0 14px 19px rgba(0,0,0,.4);
+}
+.nx-in i{
+  border:1px solid rgba(255,255,255,.8);border-radius:7px;
+  background:radial-gradient(circle at 28% 18%,#fff,transparent 23%),
+    linear-gradient(145deg,#9df5ff 0%,#8a6aff 48%,#f16dd1 100%);
+  opacity:.98;
+  box-shadow:0 0 18px rgba(135,105,255,.42),inset 0 1px 5px rgba(255,255,255,.85),inset 0 -6px 10px rgba(47,21,96,.24);
+}
+.nx-out i:nth-child(1){transform:translateZ(56px)}
+.nx-out i:nth-child(2){transform:rotateY(90deg) translateZ(56px)}
+.nx-out i:nth-child(3){transform:rotateY(180deg) translateZ(56px)}
+.nx-out i:nth-child(4){transform:rotateY(-90deg) translateZ(56px)}
+.nx-out i:nth-child(5){transform:rotateX(90deg) translateZ(56px)}
+.nx-out i:nth-child(6){transform:rotateX(-90deg) translateZ(56px)}
+.nx-in i:nth-child(1){transform:translateZ(25px)}
+.nx-in i:nth-child(2){transform:rotateY(90deg) translateZ(25px)}
+.nx-in i:nth-child(3){transform:rotateY(180deg) translateZ(25px)}
+.nx-in i:nth-child(4){transform:rotateY(-90deg) translateZ(25px)}
+.nx-in i:nth-child(5){transform:rotateX(90deg) translateZ(25px)}
+.nx-in i:nth-child(6){transform:rotateX(-90deg) translateZ(25px)}
+.nx-cube:before{
+  content:"";position:absolute;left:50%;top:50%;width:82px;height:82px;
+  transform:translate(-50%,-50%) translateZ(58px);border-radius:19px;
+  background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(143,106,255,.08));
+  border:1px solid rgba(255,255,255,.28);pointer-events:none;
+  box-shadow:inset 0 0 24px rgba(146,120,255,.13);backface-visibility:hidden;
+}
+.nx-cube:after{
+  content:"✦";position:absolute;left:50%;top:50%;width:40px;height:40px;
+  display:grid;place-items:center;transform:translate(-50%,-50%) translateZ(59px);
+  color:#fff;font-size:30px;line-height:1;text-shadow:0 0 9px rgba(255,255,255,.9),0 0 24px rgba(138,108,255,.95);
+  pointer-events:none;backface-visibility:hidden;
+}
 @keyframes nx3d-cube{from{transform:rotateX(-22deg) rotateY(0deg)}to{transform:rotateX(-22deg) rotateY(360deg)}}
 @keyframes nx3d-cube-rev{from{transform:rotate3d(1,1,0,0deg)}to{transform:rotate3d(1,1,0,-360deg)}}
 
@@ -105,7 +171,7 @@ _BASE_CSS = """
 *{scrollbar-width:thin;scrollbar-color:rgba(140,100,230,.45) transparent}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#a98bff,#e66cbc);border-radius:99px}
-@media(max-width:640px){.orb-wrap::before{width:104px;height:104px;margin:-52px 0 0 -52px}.orb-wrap::after{width:126px;height:126px;margin:-63px 0 0 -63px}.nx-cube{scale:.85}}
+@media(max-width:640px){.orb-wrap::before{width:104px;height:104px;margin:-52px 0 0 -52px}.orb-wrap::after{width:126px;height:126px;margin:-63px 0 0 -63px}.nx-cube{scale:.76;width:112px;height:112px}}
 @media(prefers-reduced-motion:reduce){.orb-wrap::before,.orb-wrap::after,.welcome-robot-wrap::before,.nx-cube,.nx-in,.brand-icon,[data-testid="stMain"] [data-testid="stColumn"],[data-testid="stChatMessage"],[data-testid="stDialog"] [role="dialog"]{animation:none!important;transition:none!important}.orb-wrap,[data-testid="stDialog"] [role="dialog"]{transform:none!important}}
 </style>
 """
