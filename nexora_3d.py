@@ -145,6 +145,51 @@ _BASE_CSS = """
   to{transform:rotate3d(1,1,0,-360deg)}
 }
 
+/* Compact animated 3D reactor for the top-right app header. */
+.nx-header-reactor{
+  position:relative;display:grid;place-items:center;flex:0 0 64px;width:64px;height:58px;
+  perspective:700px;transform-style:preserve-3d;isolation:isolate;overflow:visible;
+}
+.nx-reactor-ring{
+  position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;
+  border:1px solid __RING__;transform-style:preserve-3d;backface-visibility:visible;
+}
+.nx-reactor-ring-a{
+  width:52px;height:24px;margin:-12px 0 0 -26px;border-top-color:#e879d2;border-bottom-color:rgba(112,230,246,.6);
+  animation:nx-reactor-spin-a 7s linear infinite;
+}
+.nx-reactor-ring-b{
+  width:49px;height:49px;margin:-24.5px 0 0 -24.5px;border-left-color:#7ce8f1;border-right-color:rgba(182,142,255,.35);
+  animation:nx-reactor-spin-b 9s linear infinite;
+}
+.nx-reactor-ring-c{
+  width:61px;height:28px;margin:-14px 0 0 -30.5px;border-style:dashed;border-color:rgba(177,145,255,.37);
+  animation:nx-reactor-spin-c 13s linear infinite;
+}
+.nx-reactor-core{
+  position:relative;z-index:2;display:grid;place-items:center;width:31px;height:31px;border-radius:50%;
+  color:#fff;font-size:17px;line-height:1;
+  background:radial-gradient(circle at 27% 19%,#fff 0%,#dcd0ff 7%,#9b7cff 25%,#6341cc 54%,#1e1743 78%,#ec7bdb 100%);
+  border:1px solid rgba(255,255,255,.74);
+  box-shadow:0 8px 16px rgba(81,51,157,.28),0 0 20px rgba(133,107,255,.28),
+    inset 0 2px 3px rgba(255,255,255,.82),inset 0 -5px 8px rgba(8,7,34,.45);
+  transform-style:preserve-3d;animation:nx-reactor-hover 4.5s ease-in-out infinite,nx-reactor-glow 4s ease-in-out infinite;
+}
+.nx-reactor-core:after{
+  content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(255,255,255,.3);
+  box-shadow:inset 0 0 8px rgba(255,255,255,.15);pointer-events:none;
+}
+.nx-reactor-node{position:absolute;z-index:3;width:5px;height:5px;border-radius:50%;background:#91f5fa;box-shadow:0 0 10px rgba(105,233,246,.95);top:4px;right:7px;animation:nx-reactor-node 3s ease-in-out infinite;}
+.nx-header-reactor:after{content:"";position:absolute;bottom:3px;left:50%;width:26px;height:5px;margin-left:-13px;border-radius:50%;background:rgba(103,80,180,.24);filter:blur(4px);}
+@keyframes nx-reactor-spin-a{from{transform:rotateX(68deg) rotateZ(0deg)}to{transform:rotateX(68deg) rotateZ(360deg)}}
+@keyframes nx-reactor-spin-b{from{transform:rotateY(68deg) rotateZ(360deg)}to{transform:rotateY(68deg) rotateZ(0deg)}}
+@keyframes nx-reactor-spin-c{from{transform:rotateX(72deg) rotateZ(0deg)}to{transform:rotateX(72deg) rotateZ(-360deg)}}
+@keyframes nx-reactor-hover{0%,100%{transform:translateY(0) rotateX(7deg) rotateY(-9deg)}50%{transform:translateY(-4px) rotateX(-4deg) rotateY(10deg)}}
+@keyframes nx-reactor-glow{0%,100%{filter:brightness(1);box-shadow:0 8px 16px rgba(81,51,157,.28),0 0 18px rgba(133,107,255,.23),inset 0 2px 3px rgba(255,255,255,.82),inset 0 -5px 8px rgba(8,7,34,.45)}50%{filter:brightness(1.13);box-shadow:0 9px 18px rgba(81,51,157,.32),0 0 27px rgba(133,107,255,.38),inset 0 2px 3px rgba(255,255,255,.9),inset 0 -5px 8px rgba(8,7,34,.45)}}
+@keyframes nx-reactor-node{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
+@media(max-width:640px){.nx-header-reactor{flex-basis:48px;width:48px;height:48px;scale:.87;margin:0 -3px}.nx-reactor-ring-c{opacity:.6}}
+@media(prefers-reduced-motion:reduce){.nx-reactor-ring,.nx-reactor-core,.nx-reactor-node{animation:none!important}}
+
 /* Glass chat messages with real depth */
 [data-testid="stChatMessage"]{position:relative;background:linear-gradient(150deg,__MSG1__,__MSG2__)!important;border:1px solid var(--nx-line)!important;box-shadow:inset 0 1px 0 __HL__,0 22px 44px -22px __SH1__,0 8px 18px -10px __SH2__!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:translate .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,border-color .3s ease;animation:nx3d-msg-in .55s cubic-bezier(.2,.8,.2,1) backwards!important}
 [data-testid="stChatMessage"]:hover{translate:0 -2px;border-color:rgba(160,120,255,.55)!important;box-shadow:inset 0 1px 0 __HL__,0 30px 56px -22px __SH1__,0 10px 22px -10px __SH2__!important}
@@ -182,6 +227,19 @@ def hero_cube_html() -> str:
     """Return markup for a lightweight CSS 3D glass cube."""
     faces = "<i></i>" * 6
     return '<div class="nx-cube" aria-hidden="true"><div class="nx-out">' + faces + '</div><div class="nx-in">' + faces + '</div></div>'
+
+def header_reactor_html() -> str:
+    """Return an accessible, lightweight animated 3D reactor for the app header."""
+    return (
+        '<div class="nx-header-reactor" role="img" aria-label="Animated NEXORA energy core">'
+        '<div class="nx-reactor-ring nx-reactor-ring-a"></div>'
+        '<div class="nx-reactor-ring nx-reactor-ring-b"></div>'
+        '<div class="nx-reactor-ring nx-reactor-ring-c"></div>'
+        '<div class="nx-reactor-core">✦</div>'
+        '<span class="nx-reactor-node"></span>'
+        '</div>'
+    )
+
 
 def apply_3d_premium_theme(dark: bool = False, aurora: bool = False, grid_floor: bool = False, tilt: bool = False) -> None:
     """Apply the optional premium 3D layer with no extra JS or moving background by default."""
