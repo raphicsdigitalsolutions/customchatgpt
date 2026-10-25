@@ -5,6 +5,7 @@ from datetime import datetime
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
+from nexora_3d import apply_3d_premium_theme, hero_cube_html
 
 # =========================================================
 # NEXORA AI — Motion + Live Web Search
@@ -1560,6 +1561,14 @@ for _token, _value in _premium_values.items():
     _premium_css = _premium_css.replace(_token, _value)
 st.markdown(_premium_css, unsafe_allow_html=True)
 
+# Apply the dedicated 3D layer after the existing theme CSS. Keep the background static.
+apply_3d_premium_theme(
+    dark=st.session_state.get("dark_mode", False),
+    aurora=False,
+    grid_floor=False,
+    tilt=False,
+)
+
 
 
 def get_api_key():
@@ -1883,9 +1892,9 @@ history = active_chat["messages"]
 
 if not history:
     st.markdown(
-        """
+        f"""
         <div class="hero">
-          <div class="orb-wrap"><div class="orbit"></div><div class="orb-floor-shadow"></div><div class="orb">✦</div><span class="orb-spark orb-spark-a">✦</span><span class="orb-spark orb-spark-b">✧</span></div>
+          <div class="orb-wrap"><div class="orb-floor-shadow"></div>{hero_cube_html()}<span class="orb-spark orb-spark-a">✦</span><span class="orb-spark orb-spark-b">✧</span></div>
           <div class="hero-kicker">✦&nbsp; YOUR IDEAS, WITH MORE CLARITY</div>
           <h1>What are we <span class="gradient-word">working on</span> today?</h1>
           <p class="hero-subtitle">From quick questions to deep research, coding, writing, and planning — turn your next idea into progress.</p>
