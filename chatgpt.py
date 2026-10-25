@@ -1714,6 +1714,23 @@ _dialog_css = """
 [data-testid="stDialog"] [data-testid="stAlert"] {
   width:100%!important; max-width:100%!important; color:__DIALOG_INK__!important;
 }
+
+/* Hide Streamlit's floating "Press Enter to submit form" instruction in the
+   API-key field. Submission by Enter and the password visibility toggle still work. */
+[data-testid="stDialog"] [data-testid="InputInstructions"],
+[data-testid="stDialog"] div[data-testid="InputInstructions"],
+[data-testid="stDialog"] [data-testid="InputInstructions"] * {
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  width:0!important;
+  height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
 @media(max-width:520px) {
   [data-testid="stDialog"] [role="dialog"] {
     width:calc(100vw - 18px)!important; max-width:calc(100vw - 18px)!important;
