@@ -2388,6 +2388,8 @@ st.markdown(
       [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:clip!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.12rem .82rem .2rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.36rem!important; }
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"]:has(.brand-caption) { margin-bottom:2px!important; }
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"]:has(.eyebrow) { margin-bottom:-4px!important; }
       [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
       [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:12px!important; }
       [data-testid="stSidebar"] .brand-caption {
@@ -2464,6 +2466,8 @@ st.markdown(
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.04rem .62rem .12rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.24rem!important; }
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"]:has(.brand-caption) { margin-bottom:0!important; }
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"]:has(.eyebrow) { margin-bottom:-10px!important; }
       [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
       [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:6px!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
