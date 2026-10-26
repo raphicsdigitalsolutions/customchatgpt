@@ -2421,6 +2421,29 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Keep the fixed composer aligned with the visible workspace when the sidebar is open.
+st.markdown(
+    """
+    <style>
+    @media (min-width:761px) {
+      [data-testid="stBottom"] {
+        left:300px!important;right:auto!important;width:calc(100vw - 300px)!important;
+      }
+      body:has([data-testid="stSidebar"][aria-expanded="false"]) [data-testid="stBottom"] {
+        left:0!important;width:100vw!important;
+      }
+      [data-testid="stBottomBlockContainer"] {
+        width:100%!important;max-width:100%!important;margin:0!important;
+        padding-left:12px!important;padding-right:12px!important;
+      }
+      [data-testid="stSidebar"]>div:first-child,
+      [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:hidden!important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
     session_key = st.session_state.get("api_key_session", "").strip()
