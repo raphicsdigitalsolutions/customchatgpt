@@ -2388,14 +2388,13 @@ st.markdown(
       [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:clip!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.12rem .62rem .68rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
-      [data-testid="stSidebar"] .nx-sidebar-gap { display:block!important;height:6px!important;min-height:6px!important;line-height:0!important;pointer-events:none!important; }
       [data-testid="stSidebar"] .brand-caption {
-        display:block!important;margin:0 0 0 47px!important;padding:0!important;
+        display:block!important;margin:0 0 8px 47px!important;padding:0!important;
         font-size:8px!important;line-height:1.3!important;
       }
       [data-testid="stSidebar"] .eyebrow {
         display:block!important;min-height:1em!important;line-height:1.25!important;
-        margin:0!important;padding:0!important;position:relative!important;z-index:2!important;
+        margin:5px 0 5px!important;padding:0!important;position:relative!important;z-index:2!important;
       }
       [data-testid="stSidebar"] [data-testid="stButton"] button {
         min-height:34px!important;padding:4px 9px!important;border-radius:11px!important;font-size:10px!important;
@@ -2462,8 +2461,7 @@ st.markdown(
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.04rem .54rem .45rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.22rem!important; }
-      [data-testid="stSidebar"] .nx-sidebar-gap { display:block!important;height:2px!important;min-height:2px!important;line-height:0!important;pointer-events:none!important; }
-      [data-testid="stSidebar"] .eyebrow { margin:0!important;padding:0!important; }
+      [data-testid="stSidebar"] .eyebrow { margin:3px 0!important;padding:0!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
       [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:30px!important; }
@@ -2731,7 +2729,7 @@ with st.sidebar:
     st.markdown(
         """
         <div class="brand-row"><div class="brand-icon">✦</div><div class="brand-name">NEXORA <span style="color:#8057f5">AI</span></div></div>
-        <div class="brand-caption">YOUR PERSONAL AI WORKSPACE</div><div class="nx-sidebar-gap" aria-hidden="true"></div>
+        <div class="brand-caption">YOUR PERSONAL AI WORKSPACE</div>
         """,
         unsafe_allow_html=True,
     )
@@ -2740,7 +2738,7 @@ with st.sidebar:
         st.session_state.show_settings = False
         st.rerun()
 
-    st.markdown('<div class="eyebrow">Workspace</div><div class="nx-sidebar-gap" aria-hidden="true"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="eyebrow">Workspace</div>', unsafe_allow_html=True)
     theme_label_side = "☀️  Switch to Day Mode" if st.session_state.dark_mode else "🌙  Switch to Night Mode"
     if st.button(theme_label_side, key="sidebar_theme_toggle", use_container_width=True):
         st.session_state.dark_mode = not st.session_state.dark_mode
@@ -2749,7 +2747,7 @@ with st.sidebar:
         st.session_state.show_settings = not st.session_state.show_settings
         st.rerun()
 
-    st.markdown('<div class="eyebrow">Recent conversations</div><div class="nx-sidebar-gap" aria-hidden="true"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="eyebrow">Recent conversations</div>', unsafe_allow_html=True)
     search = st.text_input("Search conversations", placeholder="⌕  Search chats...", label_visibility="collapsed")
     count = 0
     for chat_id in list(st.session_state.chats.keys())[::-1]:
@@ -2768,7 +2766,7 @@ with st.sidebar:
     if count == 0:
         st.caption("No chats yet — say hi!")
 
-    st.markdown('<div class="eyebrow">Live internet search</div><div class="nx-sidebar-gap" aria-hidden="true"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="eyebrow">Live internet search</div>', unsafe_allow_html=True)
     st.session_state.web_search_enabled = st.toggle(
         "Search the web for current answers",
         value=st.session_state.web_search_enabled,
@@ -2776,7 +2774,7 @@ with st.sidebar:
     )
     st.caption("Search can add API usage/cost. The model decides when a search is useful.")
 
-    st.markdown('<div class="eyebrow">Connection</div><div class="nx-sidebar-gap" aria-hidden="true"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="eyebrow">Connection</div>', unsafe_allow_html=True)
     if get_api_key():
         st.markdown('<div class="connection-pill"><span class="status-dot"></span><div><b>API key configured</b><br><span style="color:#92899e">Ready to send requests</span></div></div>', unsafe_allow_html=True)
     else:
@@ -2792,7 +2790,7 @@ with st.sidebar:
             st.session_state.key_prompt_seen = False
             st.rerun()
 
-    st.markdown('<div class="eyebrow">Model</div><div class="nx-sidebar-gap" aria-hidden="true"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="eyebrow">Model</div>', unsafe_allow_html=True)
     models = list(dict.fromkeys([DEFAULT_MODEL, "gpt-5.4", "gpt-5.2", "gpt-4.1-mini", "gpt-4.1"]))
     idx = models.index(st.session_state.selected_model) if st.session_state.selected_model in models else 0
     st.session_state.selected_model = st.selectbox("Choose model", models, index=idx, label_visibility="collapsed")
