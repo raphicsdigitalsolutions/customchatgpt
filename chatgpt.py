@@ -2387,6 +2387,40 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Fit the compact sidebar and bottom composer into short desktop viewports without page-level overflow.
+st.markdown(
+    """
+    <style>
+    @media (min-width:761px) {
+      html,body,[data-testid="stAppViewContainer"] { overflow-x:hidden!important; }
+      [data-testid="stSidebar"] { overflow-x:hidden!important; }
+      [data-testid="stAppViewContainer"]:has([data-testid="stSidebar"][aria-expanded="true"]) [data-testid="stBottom"] {
+        left:300px!important;width:calc(100vw - 300px)!important;
+      }
+      .section-heading { margin-bottom:14px!important;min-height:1em!important; }
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]) {
+        margin-top:5px!important;
+      }
+    }
+    @media (min-width:761px) and (max-height:760px) {
+      [data-testid="stSidebar"]>div:first-child { padding:.42rem .56rem .48rem!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
+      [data-testid="stSidebar"] .eyebrow { margin:8px 0 4px!important; }
+      [data-testid="stSidebar"] [data-testid="stButton"] button {
+        min-height:30px!important;padding:3px 7px!important;font-size:9px!important;
+      }
+      [data-testid="stSidebar"] [data-testid="stTextInput"] input,
+      [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:30px!important; }
+      [data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+      [data-testid="stSidebar"] .fine-print { display:none!important; }
+      .section-heading { margin-bottom:14px!important; }
+      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:4px!important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
     session_key = st.session_state.get("api_key_session", "").strip()
