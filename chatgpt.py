@@ -1,11 +1,21 @@
 import os
 import uuid
+import importlib.util
 from datetime import datetime
+from pathlib import Path
 
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
-from nexora_3d import apply_3d_premium_theme, hero_robot_html, header_reactor_html
+_visuals_path = Path(__file__).resolve().with_name("nexora_visuals.py")
+_visuals_spec = importlib.util.spec_from_file_location("_nexora_visuals_local", _visuals_path)
+if _visuals_spec is None or _visuals_spec.loader is None:
+    raise ImportError(f"Could not load NEXORA visual layer from {_visuals_path}")
+_visuals_module = importlib.util.module_from_spec(_visuals_spec)
+_visuals_spec.loader.exec_module(_visuals_module)
+apply_3d_premium_theme = _visuals_module.apply_3d_premium_theme
+hero_robot_html = _visuals_module.hero_robot_html
+header_reactor_html = _visuals_module.header_reactor_html
 
 # =========================================================
 # NEXORA AI — Motion + Live Web Search

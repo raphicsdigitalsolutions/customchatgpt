@@ -50,7 +50,7 @@ components:
 
 NEXORA is a personal AI workspace. Its visual signature is a small, expressive glass-shell robot beside the welcome message. The screen should read as a focused workbench: creator credit, workspace identity, one clear prompt, useful starter actions, then the composer.
 
-The existing ocean teal and champagne palette is the product identity. Day and night modes keep the same hierarchy and materials while changing contrast. Runtime theme values are owned by `chatgpt.py` (`_palette`) and `nexora_3d.py` (`_TOKENS`); CSS consumes the matching `--nx-*` variables.
+The existing ocean teal and champagne palette is the product identity. Day and night modes keep the same hierarchy and materials while changing contrast. Runtime theme values are owned by `chatgpt.py` (`_palette`) and `nexora_visuals.py` (`_TOKENS`); CSS consumes the matching `--nx-*` variables.
 
 ## Colors
 
