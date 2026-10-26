@@ -2337,133 +2337,175 @@ st.markdown(
 
 
 
-# Desktop layout repair: keep Streamlit's pinned toolbar above the creator card and give the hero room to breathe.
+# Consolidated layout corrections for the fixed-height NEXORA workbench.
 st.markdown(
     """
     <style>
-    @media (min-width:761px) and (min-height:700px) {
-      [data-testid="stMainBlockContainer"] {
-        padding:3.55rem clamp(20px,3.4vw,54px) 5rem!important;
-      }
-      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:5px!important; }
-      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.48rem!important; }
-      [data-testid="stSidebar"] .eyebrow {
-        display:block!important;min-height:1em!important;line-height:1.25!important;
-        margin:12px 0 8px!important;position:relative!important;z-index:2!important;
-      }
-      [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:36px!important; }
-      [data-testid="stSidebar"] [data-testid="stTextInput"] [data-baseweb="input"]>div {
-        background:var(--nx-control)!important;border:1px solid var(--nx-line)!important;
-        border-radius:12px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)!important;
-      }
-      [data-testid="stSidebar"] [data-testid="stTextInput"] input {
-        min-height:34px!important;background:transparent!important;
-        color:var(--nx-control-text)!important;-webkit-text-fill-color:var(--nx-control-text)!important;
-        border:0!important;box-shadow:none!important;
-      }
-      [data-testid="stSidebar"] [data-testid="stTextInput"] input::placeholder {
-        color:var(--nx-muted)!important;-webkit-text-fill-color:var(--nx-muted)!important;opacity:1!important;
-      }
-      .nx-creator-ribbon { margin:0 auto 5px!important; }
-      .workspace-topbar { margin:0 auto 4px!important; }
-      .hero {
-        height:auto!important;min-height:clamp(276px,34vh,316px)!important;
-        box-sizing:border-box!important;margin:5px auto 0!important;overflow:visible!important;
-      }
-      .hero-trust-row { flex-wrap:wrap!important;row-gap:7px!important; }
-      .section-heading { margin:5px auto 5px!important;line-height:1.25!important; }
+    /* Keep the search control legible in both theme modes, including BaseWeb wrappers. */
+    [data-testid="stSidebar"] [data-testid="stTextInput"] [data-baseweb="input"],
+    [data-testid="stSidebar"] [data-testid="stTextInput"] [data-baseweb="input"] > div {
+      background:var(--nx-control)!important;background-color:var(--nx-control)!important;
+      border-color:var(--nx-line)!important;border-radius:12px!important;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.055)!important;
     }
-    @media (min-width:761px) and (max-height:760px) {
-      [data-testid="stMainBlockContainer"] { padding-top:3.35rem!important;padding-bottom:4.45rem!important; }
-      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.42rem!important; }
-      [data-testid="stSidebar"] .eyebrow { margin:10px 0 7px!important; }
-      .nx-creator-ribbon { min-height:70px!important; }
-      .workspace-topbar { min-height:50px!important; }
-      .hero { min-height:268px!important;padding:15px 21px!important; }
-      .hero-trust-row { margin-top:8px!important; }
+    [data-testid="stSidebar"] [data-testid="stTextInput"] input {
+      min-height:34px!important;background:var(--nx-control)!important;background-color:var(--nx-control)!important;
+      color:var(--nx-control-text)!important;-webkit-text-fill-color:var(--nx-control-text)!important;
+      border:0!important;box-shadow:none!important;border-radius:11px!important;
     }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+    [data-testid="stSidebar"] [data-testid="stTextInput"] input::placeholder {
+      color:var(--nx-muted)!important;-webkit-text-fill-color:var(--nx-muted)!important;opacity:1!important;
+    }
+    [data-testid="stSidebar"] [data-testid="stTextInput"]:focus-within [data-baseweb="input"] {
+      border-color:var(--nx-accent-bright)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--nx-accent-bright) 20%,transparent)!important;
+    }
 
-# Fit the compact sidebar and bottom composer into short desktop viewports without page-level overflow.
-st.markdown(
-    """
-    <style>
     @media (min-width:761px) {
       html,body,[data-testid="stAppViewContainer"] { overflow-x:hidden!important; }
-      [data-testid="stSidebar"] { overflow-x:hidden!important; }
-      [data-testid="stAppViewContainer"]:has([data-testid="stSidebar"][aria-expanded="true"]) [data-testid="stBottom"] {
-        left:300px!important;width:calc(100vw - 300px)!important;
+      [data-testid="stAppViewContainer"] { height:100dvh!important;max-height:100dvh!important;overflow:hidden!important; }
+      [data-testid="stMain"] { height:calc(100dvh - 3.1rem)!important;max-height:calc(100dvh - 3.1rem)!important;overflow:hidden!important; }
+      [data-testid="stMainBlockContainer"] {
+        width:100%!important;max-width:1480px!important;height:calc(100dvh - 3.1rem)!important;
+        max-height:calc(100dvh - 3.1rem)!important;box-sizing:border-box!important;
+        padding:3.35rem clamp(20px,3.4vw,54px) 5rem!important;overflow:hidden!important;
       }
-      .section-heading { margin-bottom:14px!important;min-height:1em!important; }
+      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:12px!important;min-height:0!important; }
+
+      /* Pull the sidebar contents up while keeping each label clearly separated. */
+      [data-testid="stSidebar"] { height:100dvh!important;overflow-y:auto!important;overflow-x:clip!important;overscroll-behavior:contain; }
+      [data-testid="stSidebar"]>div:first-child,
+      [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:clip!important; }
+      [data-testid="stSidebar"]>div:first-child { padding:.38rem .62rem .68rem!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
+      [data-testid="stSidebar"] .brand-caption {
+        display:block!important;margin:0 0 8px 47px!important;padding-bottom:2px!important;
+        font-size:8px!important;line-height:1.3!important;
+      }
+      [data-testid="stSidebar"] .eyebrow {
+        display:block!important;min-height:1em!important;line-height:1.25!important;
+        margin:8px 0 8px!important;position:relative!important;z-index:2!important;
+      }
+      [data-testid="stSidebar"] [data-testid="stButton"] button {
+        min-height:34px!important;padding:4px 9px!important;border-radius:11px!important;font-size:10px!important;
+      }
+      [data-testid="stSidebar"] [data-testid="stTextInput"] input,
+      [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:34px!important;font-size:10px!important; }
+      [data-testid="stSidebar"] [data-testid="stCaptionContainer"] { line-height:1.35!important;font-size:9px!important; }
+
+      /* Compact signature card with readable creator credit. */
+      .nx-creator-ribbon {
+        width:min(100%,392px)!important;max-width:calc(100% - 20px)!important;min-height:76px!important;
+        margin:0 auto!important;padding:9px 20px 9px 14px!important;gap:15px!important;border-radius:22px!important;
+      }
+      .nx-creator-ribbon:after { content:none!important;display:none!important; }
+      .nx-creator-mark { width:54px!important;height:54px!important;flex:0 0 54px!important;border-radius:17px!important;font-size:25px!important; }
+      .nx-creator-copy { gap:1px!important; }
+      .nx-creator-kicker { font-size:9px!important;letter-spacing:1.7px!important; }
+      .nx-creator-name { font-size:18px!important;line-height:1.2!important; }
+      .nx-creator-caption { font-size:11px!important;line-height:1.3!important; }
+
+      /* Separate the header, hero, and starter actions instead of letting their edges touch. */
+      .workspace-topbar { max-width:1260px!important;min-height:56px!important;margin:0 auto!important;padding:7px 12px!important;border-radius:17px!important; }
+      .workspace-mark { width:38px!important;height:38px!important;min-width:38px!important; }
+      .hero {
+        width:100%!important;max-width:1240px!important;height:clamp(250px,32vh,292px)!important;min-height:0!important;
+        box-sizing:border-box!important;margin:0 auto!important;padding:clamp(16px,2.2vw,28px)!important;
+        overflow:hidden!important;grid-template-columns:minmax(0,1.12fr) minmax(220px,.78fr)!important;
+        gap:clamp(8px,2.4vw,30px)!important;align-items:center!important;
+      }
+      .hero-content { grid-column:1!important;grid-row:1!important;align-self:center!important; }
+      .hero .orb-wrap,.hero .nx-robot-stage { grid-column:2!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important; }
+      .hero .nx-robot-stage:before,.hero .nx-robot-stage:after { content:none!important;display:none!important; }
+      .hero .nx-hero-robot { min-height:0!important;height:100%!important; }
+      .hero .nx-robot-figure { width:clamp(170px,19vw,238px)!important; }
+      .hero h1 { max-width:720px!important;font-size:clamp(29px,3.8vw,49px)!important;line-height:1.05!important;letter-spacing:-.052em!important;margin:0 0 9px!important;text-wrap:balance; }
+      .hero-kicker { margin-bottom:8px!important;font-size:9px!important;padding:6px 9px!important; }
+      .hero-subtitle { max-width:580px!important;font-size:clamp(11px,1vw,13px)!important;line-height:1.55!important; }
+      .hero-trust-row { justify-content:flex-start!important;flex-wrap:wrap!important;gap:5px!important;margin:11px 0 0!important;row-gap:6px!important; }
+      .hero-trust-row span { padding:6px 8px!important;font-size:9px!important; }
+      .section-heading {
+        display:block!important;width:100%!important;max-width:1240px!important;min-height:1em!important;
+        margin:0 auto!important;padding:0 0 0 2px!important;line-height:1.3!important;
+        font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important;
+      }
       [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]) {
-        margin-top:5px!important;
+        max-width:1240px!important;width:100%!important;margin:0 auto!important;gap:8px!important;
       }
+      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button {
+        min-height:42px!important;height:42px!important;text-align:center!important;padding:0 8px!important;border-radius:13px!important;font-size:10px!important;
+      }
+      .home-footnote { max-width:920px!important;margin:0 auto!important;padding:5px 10px!important;font-size:9px!important;line-height:1.3!important; }
+      [class*="st-key-nexora_chat_history"] {
+        height:calc(100dvh - 19rem)!important;max-height:calc(100dvh - 19rem)!important;
+        overflow-y:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable;
+      }
+      [data-testid="stChatInput"] { max-width:960px!important;margin-left:auto!important;margin-right:auto!important; }
+      [data-testid="stBottom"] { position:fixed!important;z-index:1001!important;left:300px!important;right:auto!important;width:calc(100vw - 300px)!important; }
+      body:has([data-testid="stSidebar"][aria-expanded="false"]) [data-testid="stBottom"] { left:0!important;width:100vw!important; }
+      [data-testid="stBottomBlockContainer"] { width:100%!important;max-width:100%!important;margin:0!important;padding-left:12px!important;padding-right:12px!important; }
     }
     @media (min-width:761px) and (max-height:760px) {
-      [data-testid="stSidebar"]>div:first-child { padding:.42rem .56rem .48rem!important; }
-      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
-      [data-testid="stSidebar"] .eyebrow { margin:8px 0 4px!important; }
-      [data-testid="stSidebar"] [data-testid="stButton"] button {
-        min-height:30px!important;padding:3px 7px!important;font-size:9px!important;
-      }
+      [data-testid="stMainBlockContainer"] { padding-top:3.15rem!important;padding-bottom:4.25rem!important; }
+      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
+      [data-testid="stSidebar"]>div:first-child { padding:.28rem .54rem .45rem!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.22rem!important; }
+      [data-testid="stSidebar"] .brand-caption { margin-bottom:5px!important; }
+      [data-testid="stSidebar"] .eyebrow { margin:6px 0 6px!important; }
+      [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
       [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:30px!important; }
       [data-testid="stSidebar"] [data-testid="stCaptionContainer"],
       [data-testid="stSidebar"] .fine-print { display:none!important; }
-      .section-heading { margin-bottom:14px!important; }
-      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:4px!important; }
+      .nx-creator-ribbon { min-height:66px!important;padding-top:6px!important;padding-bottom:6px!important; }
+      .nx-creator-mark { width:48px!important;height:48px!important;flex-basis:48px!important; }
+      .workspace-topbar { min-height:49px!important; }
+      .hero { height:clamp(218px,32vh,244px)!important;padding:13px 20px!important; }
+      .hero .nx-robot-figure { width:clamp(150px,17vw,196px)!important; }
+      .hero h1 { font-size:clamp(27px,3.4vw,42px)!important; }
+      .hero-trust-row { margin-top:8px!important; }
+      .home-footnote { display:none!important; }
+    }
+    @media (min-width:641px) and (max-width:900px) {
+      .workspace-topbar-right { gap:6px!important; }
+      .workspace-topbar .nx-header-reactor { flex-basis:58px!important;scale:.82!important;margin:0 -4px!important; }
+      .workspace-status { font-size:9px!important;padding:6px 8px!important; }
+      .hero { grid-template-columns:minmax(0,1fr) minmax(185px,.68fr)!important;gap:7px!important; }
+      .hero h1 { font-size:clamp(27px,3.4vw,36px)!important; }
+      .hero .nx-robot-figure { width:clamp(150px,19vw,190px)!important; }
+    }
+    @media (max-width:640px) {
+      .nx-creator-ribbon { width:min(100%,390px)!important;min-height:72px!important;max-width:calc(100% - 12px)!important;margin:0 auto 5px!important;padding:8px 14px 8px 9px!important;gap:13px!important;border-radius:20px!important; }
+      .nx-creator-ribbon:after { content:none!important;display:none!important; }
+      .nx-creator-mark { width:54px!important;height:54px!important;flex-basis:54px!important;border-radius:17px!important;font-size:24px!important; }
+      .nx-creator-name { font-size:17px!important; }.nx-creator-caption { font-size:11px!important; }.nx-creator-kicker { font-size:8px!important; }
+      .workspace-topbar { min-height:52px!important;margin:0 0 5px!important;padding:7px 9px!important; }
+      .hero { height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;padding:13px 15px 9px!important;margin:4px auto 5px!important;overflow:visible!important; }
+      .hero-content { grid-column:1!important;grid-row:2!important;text-align:center!important; }
+      .hero .orb-wrap,.hero .nx-robot-stage { grid-column:1!important;grid-row:1!important;height:152px!important;min-height:152px!important; }
+      .hero .nx-hero-robot { min-height:0!important; }.hero .nx-robot-figure { width:145px!important; }
+      .hero h1 { font-size:clamp(27px,7.4vw,38px)!important;line-height:1.04!important;margin-bottom:7px!important; }
+      .hero-subtitle { font-size:12px!important;line-height:1.45!important; }
+      .hero-trust-row { justify-content:center!important;gap:5px!important;margin-top:8px!important; }
+      .hero-trust-row span { font-size:8px!important;padding:5px 7px!important; }
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]) { flex-wrap:wrap!important;gap:6px!important; }
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"])>[data-testid="stColumn"] { flex:1 1 calc(50% - 8px)!important;width:calc(50% - 8px)!important;min-width:calc(50% - 8px)!important; }
+      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button { min-height:40px!important;height:auto!important;padding:7px 5px!important;font-size:10px!important;text-align:center!important; }
+      [class*="st-key-nexora_chat_history"] { height:calc(100dvh - 260px)!important;max-height:calc(100dvh - 260px)!important;overflow-y:auto!important; }
+    }
+    @media (max-width:380px) {
+      .nx-creator-ribbon { min-height:68px!important;padding:7px 11px 7px 8px!important;gap:10px!important; }
+      .nx-creator-mark { width:48px!important;height:48px!important;flex-basis:48px!important; }
+      .hero .nx-robot-stage { height:132px!important;min-height:132px!important; }
+      .hero .nx-robot-figure { width:128px!important; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .nx-creator-ribbon,.nx-creator-mark,.nx-robot-stage *,.workspace-topbar,.hero,.hero-trust-row span { animation:none!important;transition:none!important; }
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# Keep the fixed composer aligned with the visible workspace when the sidebar is open.
-st.markdown(
-    """
-    <style>
-    @media (min-width:761px) {
-      [data-testid="stBottom"] {
-        left:300px!important;right:auto!important;width:calc(100vw - 300px)!important;
-      }
-      body:has([data-testid="stSidebar"][aria-expanded="false"]) [data-testid="stBottom"] {
-        left:0!important;width:100vw!important;
-      }
-      [data-testid="stBottomBlockContainer"] {
-        width:100%!important;max-width:100%!important;margin:0!important;
-        padding-left:12px!important;padding-right:12px!important;
-      }
-      [data-testid="stSidebar"]>div:first-child,
-      [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:hidden!important; }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-# Final compact-sidebar polish: separate section labels from controls and prevent sideways scrolling.
-st.markdown(
-    """
-    <style>
-    @media (min-width:761px) {
-      [data-testid="stSidebar"],
-      [data-testid="stSidebar"]>div:first-child,
-      [data-testid="stSidebar"] [data-testid="stSidebarContent"] {
-        overflow-x:clip!important;
-      }
-    }
-    @media (min-width:761px) and (max-height:760px) {
-      [data-testid="stSidebar"] .eyebrow {
-        margin:10px 0 10px!important;line-height:1.25!important;
-      }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
