@@ -2550,15 +2550,21 @@ st.markdown(
     """
     <style>
     [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch {
-      width:max-content!important;max-width:100%!important;margin-left:auto!important;
+      width:100%!important;max-width:100%!important;margin-left:auto!important;
     }
     [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] {
-      width:max-content!important;max-width:100%!important;
+      width:100%!important;max-width:100%!important;
     }
     [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] label {
       display:flex!important;flex-direction:row!important;align-items:center!important;
-      justify-content:flex-end!important;gap:8px!important;width:max-content!important;
+      justify-content:flex-end!important;gap:8px!important;width:100%!important;
       margin:0!important;cursor:pointer!important;
+    }
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] [data-testid="stWidgetLabel"],
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] [data-testid="stMarkdownContainer"],
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] p {
+      width:max-content!important;max-width:none!important;min-width:max-content!important;
+      flex:0 0 auto!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;
     }
     [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] label,
     [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] label * {
@@ -2887,7 +2893,7 @@ st.markdown(
 )
 
 # -------------------- MAIN CHAT --------------------
-header_col, theme_col = st.columns([7, 1.05], vertical_alignment="center")
+header_col, theme_col = st.columns([7, 1.6], vertical_alignment="center")
 with header_col:
     st.markdown(
         f"""
