@@ -2419,7 +2419,7 @@ st.markdown(
       .workspace-topbar { max-width:1260px!important;min-height:56px!important;margin:0 auto!important;padding:7px 12px!important;border-radius:17px!important; }
       .workspace-mark { width:38px!important;height:38px!important;min-width:38px!important; }
       .hero {
-        width:100%!important;max-width:1240px!important;height:clamp(250px,32vh,292px)!important;min-height:0!important;
+        width:100%!important;max-width:1240px!important;height:auto!important;min-height:clamp(250px,32vh,292px)!important;
         box-sizing:border-box!important;margin:0 auto 8px!important;padding:clamp(16px,2.2vw,28px)!important;
         overflow:visible!important;grid-template-columns:minmax(0,1.12fr) minmax(220px,.78fr)!important;
         gap:clamp(8px,2.4vw,30px)!important;align-items:center!important;
@@ -2461,7 +2461,7 @@ st.markdown(
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.28rem .54rem .45rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.22rem!important; }
-      [data-testid="stSidebar"] .nx-sidebar-gap { height:2px!important;min-height:2px!important; }
+      [data-testid="stSidebar"] .nx-sidebar-gap { display:none!important; }
       [data-testid="stSidebar"] .eyebrow { margin:0!important;padding:0!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
@@ -2476,6 +2476,16 @@ st.markdown(
       .hero h1 { font-size:clamp(27px,3.4vw,42px)!important; }
       .hero-trust-row { margin-top:8px!important; }
       .home-footnote { display:none!important; }
+    }
+
+    @media (min-width:761px) and (max-width:1150px) {
+      .hero { height:auto!important;min-height:clamp(270px,35vh,300px)!important;grid-template-columns:minmax(0,1.14fr) minmax(160px,.66fr)!important;gap:8px!important;padding:16px!important; }
+      .hero h1 { font-size:clamp(26px,3.05vw,34px)!important;line-height:1.06!important; }
+      .hero-subtitle { font-size:11px!important; }
+      .hero-kicker { font-size:8px!important;padding:5px 7px!important; }
+      .hero-trust-row { margin-top:7px!important;gap:4px!important; }
+      .hero-trust-row span { font-size:8px!important;padding:5px 6px!important; }
+      .hero .nx-robot-figure { width:clamp(140px,16vw,178px)!important; }
     }
     @media (min-width:641px) and (max-width:900px) {
       .workspace-topbar-right { gap:6px!important; }
