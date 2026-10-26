@@ -2527,6 +2527,16 @@ st.markdown(
       .hero .nx-robot-stage { height:132px!important;min-height:132px!important; }
       .hero .nx-robot-figure { width:128px!important; }
     }
+    /* Keep the full sidebar usable on short desktop screens without a second scroll area. */
+    @media (min-width:761px) and (max-height:800px) {
+      [data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+      [data-testid="stSidebar"] .fine-print { display:none!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.43rem!important; }
+      [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:32px!important;padding:3px 8px!important; }
+      [data-testid="stSidebar"] [data-testid="stTextInput"] input,
+      [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:32px!important; }
+      [data-testid="stSidebar"] .connection-pill { min-height:48px!important;padding:8px 10px!important; }
+    }
     @media(prefers-reduced-motion:reduce) {
       .nx-creator-ribbon,.nx-creator-mark,.nx-robot-stage *,.workspace-topbar,.hero,.hero-trust-row span { animation:none!important;transition:none!important; }
     }
