@@ -2337,6 +2337,56 @@ st.markdown(
 
 
 
+# Desktop layout repair: keep Streamlit's pinned toolbar above the creator card and give the hero room to breathe.
+st.markdown(
+    """
+    <style>
+    @media (min-width:761px) and (min-height:700px) {
+      [data-testid="stMainBlockContainer"] {
+        padding:3.55rem clamp(20px,3.4vw,54px) 5rem!important;
+      }
+      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:5px!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.48rem!important; }
+      [data-testid="stSidebar"] .eyebrow {
+        display:block!important;min-height:1em!important;line-height:1.25!important;
+        margin:12px 0 8px!important;position:relative!important;z-index:2!important;
+      }
+      [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:36px!important; }
+      [data-testid="stSidebar"] [data-testid="stTextInput"] [data-baseweb="input"]>div {
+        background:var(--nx-control)!important;border:1px solid var(--nx-line)!important;
+        border-radius:12px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)!important;
+      }
+      [data-testid="stSidebar"] [data-testid="stTextInput"] input {
+        min-height:34px!important;background:transparent!important;
+        color:var(--nx-control-text)!important;-webkit-text-fill-color:var(--nx-control-text)!important;
+        border:0!important;box-shadow:none!important;
+      }
+      [data-testid="stSidebar"] [data-testid="stTextInput"] input::placeholder {
+        color:var(--nx-muted)!important;-webkit-text-fill-color:var(--nx-muted)!important;opacity:1!important;
+      }
+      .nx-creator-ribbon { margin:0 auto 5px!important; }
+      .workspace-topbar { margin:0 auto 4px!important; }
+      .hero {
+        height:auto!important;min-height:clamp(276px,34vh,316px)!important;
+        box-sizing:border-box!important;margin:5px auto 0!important;overflow:visible!important;
+      }
+      .hero-trust-row { flex-wrap:wrap!important;row-gap:7px!important; }
+      .section-heading { margin:5px auto 5px!important;line-height:1.25!important; }
+    }
+    @media (min-width:761px) and (max-height:760px) {
+      [data-testid="stMainBlockContainer"] { padding-top:3.35rem!important;padding-bottom:4.45rem!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.42rem!important; }
+      [data-testid="stSidebar"] .eyebrow { margin:10px 0 7px!important; }
+      .nx-creator-ribbon { min-height:70px!important; }
+      .workspace-topbar { min-height:50px!important; }
+      .hero { min-height:268px!important;padding:15px 21px!important; }
+      .hero-trust-row { margin-top:8px!important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
     session_key = st.session_state.get("api_key_session", "").strip()
