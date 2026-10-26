@@ -2386,8 +2386,9 @@ st.markdown(
       [data-testid="stSidebar"] { height:100dvh!important;overflow-y:auto!important;overflow-x:clip!important;overscroll-behavior:contain; }
       [data-testid="stSidebar"]>div:first-child,
       [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:clip!important; }
-      [data-testid="stSidebar"]>div:first-child { padding:.38rem .62rem .68rem!important; }
+      [data-testid="stSidebar"]>div:first-child { padding:.12rem .62rem .68rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
+      [data-testid="stSidebar"] .nx-sidebar-gap { display:block!important;height:6px!important;min-height:6px!important;line-height:0!important;pointer-events:none!important; }
       [data-testid="stSidebar"] .brand-caption {
         display:block!important;margin:0 0 0 47px!important;padding:0!important;
         font-size:8px!important;line-height:1.3!important;
@@ -2406,7 +2407,7 @@ st.markdown(
       /* Compact signature card with readable creator credit. */
       .nx-creator-ribbon {
         width:min(100%,392px)!important;max-width:calc(100% - 20px)!important;min-height:76px!important;
-        margin:0 auto 10px!important;padding:9px 20px 9px 14px!important;gap:15px!important;border-radius:22px!important;
+        margin:0 auto 14px!important;padding:9px 20px 9px 14px!important;gap:15px!important;border-radius:22px!important;
       }
       .nx-creator-ribbon:after { content:none!important;display:none!important; }
       .nx-creator-mark { width:54px!important;height:54px!important;flex:0 0 54px!important;border-radius:17px!important;font-size:25px!important; }
@@ -2416,11 +2417,11 @@ st.markdown(
       .nx-creator-caption { font-size:11px!important;line-height:1.3!important; }
 
       /* Separate the header, hero, and starter actions instead of letting their edges touch. */
-      .workspace-topbar { max-width:1260px!important;min-height:56px!important;margin:0 auto!important;padding:7px 12px!important;border-radius:17px!important; }
+      .workspace-topbar { max-width:1260px!important;min-height:56px!important;margin:0 auto 10px!important;padding:7px 12px!important;border-radius:17px!important; }
       .workspace-mark { width:38px!important;height:38px!important;min-width:38px!important; }
       .hero {
         width:100%!important;max-width:1240px!important;height:auto!important;min-height:clamp(250px,32vh,292px)!important;
-        box-sizing:border-box!important;margin:0 auto 8px!important;padding:clamp(16px,2.2vw,28px)!important;
+        box-sizing:border-box!important;margin:0 auto 14px!important;padding:clamp(16px,2.2vw,28px)!important;
         overflow:visible!important;grid-template-columns:minmax(0,1.12fr) minmax(220px,.78fr)!important;
         gap:clamp(8px,2.4vw,30px)!important;align-items:center!important;
       }
@@ -2459,9 +2460,9 @@ st.markdown(
     @media (min-width:761px) and (max-height:760px) {
       [data-testid="stMainBlockContainer"] { padding-top:3.15rem!important;padding-bottom:4.25rem!important; }
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
-      [data-testid="stSidebar"]>div:first-child { padding:.28rem .54rem .45rem!important; }
+      [data-testid="stSidebar"]>div:first-child { padding:.04rem .54rem .45rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.22rem!important; }
-      [data-testid="stSidebar"] .nx-sidebar-gap { display:none!important; }
+      [data-testid="stSidebar"] .nx-sidebar-gap { display:block!important;height:2px!important;min-height:2px!important;line-height:0!important;pointer-events:none!important; }
       [data-testid="stSidebar"] .eyebrow { margin:0!important;padding:0!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
@@ -2527,7 +2528,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
 
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
