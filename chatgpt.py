@@ -2531,7 +2531,11 @@ st.markdown(
     @media (min-width:761px) and (max-height:800px) {
       [data-testid="stSidebar"] [data-testid="stCaptionContainer"],
       [data-testid="stSidebar"] .fine-print { display:none!important; }
-      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.43rem!important; }
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.38rem!important; }
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:6px!important; }
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"]:has(.brand-caption) { margin-bottom:0!important; }
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"]:has(.eyebrow) { margin-bottom:-4px!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:32px!important;padding:3px 8px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
       [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:32px!important; }
