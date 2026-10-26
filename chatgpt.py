@@ -2444,6 +2444,27 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Final compact-sidebar polish: separate section labels from controls and prevent sideways scrolling.
+st.markdown(
+    """
+    <style>
+    @media (min-width:761px) {
+      [data-testid="stSidebar"],
+      [data-testid="stSidebar"]>div:first-child,
+      [data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+        overflow-x:clip!important;
+      }
+    }
+    @media (min-width:761px) and (max-height:760px) {
+      [data-testid="stSidebar"] .eyebrow {
+        margin:10px 0 10px!important;line-height:1.25!important;
+      }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
     session_key = st.session_state.get("api_key_session", "").strip()
