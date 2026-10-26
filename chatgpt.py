@@ -2545,6 +2545,32 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# The switch follows the compact inline pattern from the reference control.
+st.markdown(
+    """
+    <style>
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch {
+      width:max-content!important;max-width:100%!important;margin-left:auto!important;
+    }
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] {
+      width:max-content!important;max-width:100%!important;
+    }
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] label {
+      display:flex!important;flex-direction:row!important;align-items:center!important;
+      justify-content:flex-end!important;gap:8px!important;width:max-content!important;
+      margin:0!important;cursor:pointer!important;
+    }
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] label,
+    [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch [data-testid="stToggle"] label * {
+      color:var(--nx-control-text)!important;-webkit-text-fill-color:var(--nx-control-text)!important;
+    }
+    @media(max-width:640px) {
+      [data-testid="stMainBlockContainer"] .st-key-theme_mode_switch { margin:0 0 0 auto!important; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
     session_key = st.session_state.get("api_key_session", "").strip()
@@ -2742,6 +2768,11 @@ def key_dialog():
 if not st.session_state.key_prompt_seen and not st.session_state.api_key_session:
     key_dialog()
 
+# Keep the appearance switch as the single source of truth for both themes.
+def _sync_theme_mode():
+    st.session_state.dark_mode = bool(st.session_state.theme_mode_switch)
+
+
 # -------------------- SIDEBAR --------------------
 with st.sidebar:
     st.markdown(
@@ -2757,10 +2788,6 @@ with st.sidebar:
         st.rerun()
 
     st.markdown('<div class="eyebrow">Workspace</div>', unsafe_allow_html=True)
-    theme_label_side = "☀️  Switch to Day Mode" if st.session_state.dark_mode else "🌙  Switch to Night Mode"
-    if st.button(theme_label_side, key="sidebar_theme_toggle", use_container_width=True):
-        st.session_state.dark_mode = not st.session_state.dark_mode
-        st.rerun()
     if st.button("⚙  Assistant settings", use_container_width=True):
         st.session_state.show_settings = not st.session_state.show_settings
         st.rerun()
@@ -2860,7 +2887,7 @@ st.markdown(
 )
 
 # -------------------- MAIN CHAT --------------------
-header_col, theme_col = st.columns([7, 1.7], vertical_alignment="center")
+header_col, theme_col = st.columns([7, 1.05], vertical_alignment="center")
 with header_col:
     st.markdown(
         f"""
@@ -2875,10 +2902,13 @@ with header_col:
         unsafe_allow_html=True,
     )
 with theme_col:
-    theme_label = "☀️  Day mode" if st.session_state.dark_mode else "🌙  Night mode"
-    if st.button(theme_label, key="theme_toggle_button", type="primary" if not st.session_state.dark_mode else "secondary", use_container_width=True, help="Switch between light/day and dark/night appearance"):
-        st.session_state.dark_mode = not st.session_state.dark_mode
-        st.rerun()
+    st.toggle(
+        "Night mode" if st.session_state.dark_mode else "Day mode",
+        value=st.session_state.dark_mode,
+        key="theme_mode_switch",
+        on_change=_sync_theme_mode,
+        help="Switch between light/day and dark/night appearance",
+    )
 
 active_chat = get_active_chat()
 history = active_chat["messages"]
