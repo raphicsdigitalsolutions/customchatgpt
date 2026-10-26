@@ -2389,7 +2389,7 @@ st.markdown(
       [data-testid="stSidebar"]>div:first-child { padding:.12rem .62rem .68rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
       [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
-      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:8px!important; }
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:12px!important; }
       [data-testid="stSidebar"] .brand-caption {
         display:block!important;margin:0 0 0 47px!important;padding:0!important;
         font-size:8px!important;line-height:1.3!important;
@@ -2464,7 +2464,7 @@ st.markdown(
       [data-testid="stSidebar"]>div:first-child { padding:.04rem .54rem .45rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.22rem!important; }
       [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
-      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:4px!important; }
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:6px!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
       [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:30px!important; }
