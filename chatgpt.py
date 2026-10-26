@@ -2388,13 +2388,15 @@ st.markdown(
       [data-testid="stSidebar"] [data-testid="stSidebarContent"] { overflow-x:clip!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.12rem .62rem .68rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.28rem!important; }
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:8px!important; }
       [data-testid="stSidebar"] .brand-caption {
-        display:block!important;margin:0 0 0 47px!important;padding:0 0 8px!important;
+        display:block!important;margin:0 0 0 47px!important;padding:0!important;
         font-size:8px!important;line-height:1.3!important;
       }
       [data-testid="stSidebar"] .eyebrow {
         display:block!important;min-height:1em!important;line-height:1.25!important;
-        margin:4px 0 0!important;padding:0 0 8px!important;position:relative!important;z-index:2!important;
+        margin:0!important;padding:0!important;position:relative!important;z-index:2!important;
       }
       [data-testid="stSidebar"] [data-testid="stButton"] button {
         min-height:34px!important;padding:4px 9px!important;border-radius:11px!important;font-size:10px!important;
@@ -2461,8 +2463,8 @@ st.markdown(
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
       [data-testid="stSidebar"]>div:first-child { padding:.04rem .54rem .45rem!important; }
       [data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.22rem!important; }
-      [data-testid="stSidebar"] .brand-caption { padding-bottom:4px!important; }
-      [data-testid="stSidebar"] .eyebrow { margin:2px 0 0!important;padding:0 0 4px!important; }
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-caption),
+      [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.eyebrow) { margin-bottom:4px!important; }
       [data-testid="stSidebar"] [data-testid="stButton"] button { min-height:30px!important;padding:3px 7px!important;font-size:9px!important; }
       [data-testid="stSidebar"] [data-testid="stTextInput"] input,
       [data-testid="stSidebar"] [data-baseweb="select"]>div { min-height:30px!important; }
