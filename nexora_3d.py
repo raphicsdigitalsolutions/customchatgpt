@@ -55,6 +55,39 @@ _BASE_CSS = """
 .hero-trust-row span{transition:translate .25s ease,box-shadow .25s ease}
 .hero-trust-row span:hover{translate:0 -3px;box-shadow:0 12px 24px -10px __SH1__!important}
 
+/* NEXORA's own glass-shell assistant with low-amplitude 3D idle motion. */
+.nx-robot-stage{position:relative!important;display:grid!important;place-items:center!important;min-width:0;overflow:visible!important;perspective:1000px!important;isolation:isolate}
+.nx-hero-robot{--bot-a:#fbfff8;--bot-b:#7ab8b0;--bot-c:#d7b56c;--bot-eye:#a5fff0;position:relative;width:min(100%,360px);height:100%;min-height:220px;display:grid;place-items:center;perspective:1000px;transform-style:preserve-3d;isolation:isolate}
+.nx-theme-dark .nx-hero-robot{--bot-a:#e6fff7;--bot-b:#378e91;--bot-c:#d6b76f;--bot-eye:#b6fff4}
+.nx-robot-aura{position:absolute;width:74%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(69,195,186,.25),rgba(219,183,107,.12) 43%,transparent 72%);filter:blur(12px);animation:nx-robot-aura 5s ease-in-out infinite}
+.nx-robot-orbit{position:absolute;z-index:1;left:50%;top:48%;border:1px solid rgba(50,161,162,.48);border-radius:50%;pointer-events:none;transform-style:preserve-3d}
+.nx-robot-orbit-a{width:80%;height:28%;margin:-14% 0 0 -40%;transform:rotateX(68deg) rotateZ(-18deg);border-top-color:rgba(220,186,109,.94);border-bottom-color:transparent;animation:nx-robot-orbit-a 14s linear infinite}
+.nx-robot-orbit-b{width:66%;height:66%;margin:-33% 0 0 -33%;transform:rotateY(68deg) rotateZ(24deg);border-style:dashed;border-left-color:rgba(211,175,101,.72);animation:nx-robot-orbit-b 19s linear infinite reverse}
+.nx-robot-orbit-c{width:94%;height:38%;margin:-19% 0 0 -47%;transform:rotateX(72deg) rotateZ(38deg);border-color:rgba(111,216,207,.30);animation:nx-robot-orbit-c 23s linear infinite}
+.nx-robot-node{position:absolute;z-index:4;width:8px;height:8px;border-radius:50%;background:#e2c373;box-shadow:0 0 15px rgba(221,190,119,.95);top:24%;right:17%;animation:nx-robot-node 3.2s ease-in-out infinite}
+.nx-robot-node-b{width:5px;height:5px;top:auto;right:auto;left:17%;bottom:27%;background:#81e8dd;box-shadow:0 0 14px rgba(93,222,208,.95);animation-delay:-1.5s}
+.nx-robot-figure{position:relative;z-index:3;width:clamp(190px,22vw,270px);max-width:88%;aspect-ratio:260/300;display:grid;place-items:center;transform-style:preserve-3d;filter:drop-shadow(0 25px 24px rgba(8,42,50,.30));animation:nx-robot-float 6.2s ease-in-out infinite}
+.nx-robot-figure svg{display:block;width:100%;height:100%;overflow:visible;transform:rotateY(-8deg) rotateX(3deg);transform-style:preserve-3d}
+.nx-bot-head{transform-box:fill-box;transform-origin:50% 82%;animation:nx-robot-look 8s ease-in-out infinite}
+.nx-bot-arm-left{transform-box:fill-box;transform-origin:86% 23%;animation:nx-robot-wave 7s ease-in-out infinite}
+.nx-bot-arm-right{transform-box:fill-box;transform-origin:14% 23%;animation:nx-robot-arm 6.2s ease-in-out infinite}
+.nx-bot-eye{transform-box:fill-box;transform-origin:center;animation:nx-robot-blink 5.8s ease-in-out infinite}
+.nx-robot-status{position:absolute;z-index:5;left:50%;bottom:5px;display:flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid rgba(92,174,171,.25);border-radius:999px;background:rgba(251,255,248,.72);color:#42666a;font:700 9px/1 'DM Sans',sans-serif;letter-spacing:1.1px;white-space:nowrap;box-shadow:0 9px 24px rgba(18,67,73,.12),inset 0 1px 0 rgba(255,255,255,.8);backdrop-filter:blur(9px);transform:translateX(-50%) translateZ(24px)}
+.nx-robot-status:before{content:"";width:6px;height:6px;border-radius:50%;background:#37bd91;box-shadow:0 0 10px rgba(55,189,145,.9)}
+.nx-theme-dark .nx-robot-status{background:rgba(9,29,39,.76);color:#d8eee8;border-color:rgba(108,207,199,.28)}
+@keyframes nx-robot-float{0%,100%{transform:translate3d(0,2px,18px) rotateX(2deg) rotateY(-4deg)}50%{transform:translate3d(0,-8px,22px) rotateX(-1deg) rotateY(5deg)}}
+@keyframes nx-robot-look{0%,100%{transform:rotateZ(0) translateY(0)}28%{transform:rotateZ(-2deg) translateY(-1px)}55%{transform:rotateZ(1.5deg) translateY(1px)}78%{transform:rotateZ(0)}}
+@keyframes nx-robot-wave{0%,72%,100%{transform:rotate(0)}80%{transform:rotate(-7deg)}86%{transform:rotate(4deg)}92%{transform:rotate(-3deg)}}
+@keyframes nx-robot-arm{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+@keyframes nx-robot-blink{0%,44%,47%,92%,95%,100%{transform:scaleY(1)}45%,46%,93%,94%{transform:scaleY(.12)}}
+@keyframes nx-robot-aura{0%,100%{opacity:.56;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes nx-robot-orbit-a{from{transform:rotateX(68deg) rotateZ(-18deg)}to{transform:rotateX(68deg) rotateZ(342deg)}}
+@keyframes nx-robot-orbit-b{from{transform:rotateY(68deg) rotateZ(24deg)}to{transform:rotateY(68deg) rotateZ(384deg)}}
+@keyframes nx-robot-orbit-c{from{transform:rotateX(72deg) rotateZ(38deg)}to{transform:rotateX(72deg) rotateZ(-322deg)}}
+@keyframes nx-robot-node{0%,100%{opacity:.55;transform:scale(.8)}50%{opacity:1;transform:scale(1.3)}}
+@media(prefers-reduced-motion:reduce){.nx-robot-aura,.nx-robot-orbit,.nx-robot-node,.nx-robot-figure,.nx-bot-head,.nx-bot-arm-left,.nx-bot-arm-right,.nx-bot-eye{animation:none!important;transition:none!important}.nx-robot-figure,.nx-robot-figure svg{transform:none!important}}
+
+
 /* Optional rotating glass cube for use with hero_cube_html(). */
 .nx-cube{
   position:relative;width:112px;height:112px;flex:0 0 112px;
@@ -270,6 +303,46 @@ def header_reactor_html() -> str:
         '</div>'
     )
 
+
+
+
+
+def hero_robot_html() -> str:
+    """Return accessible markup for the theme-aware animated assistant robot."""
+    return """
+    <div class="nx-hero-robot" role="img" aria-label="NEXORA AI assistant robot">
+      <span class="nx-robot-aura"></span><span class="nx-robot-orbit nx-robot-orbit-a"></span>
+      <span class="nx-robot-orbit nx-robot-orbit-b"></span><span class="nx-robot-orbit nx-robot-orbit-c"></span>
+      <span class="nx-robot-node"></span><span class="nx-robot-node nx-robot-node-b"></span>
+      <div class="nx-robot-figure" aria-hidden="true">
+        <svg viewBox="0 0 260 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="nx-robot-shell" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--bot-a)"/><stop offset=".48" style="stop-color:var(--bot-b)"/><stop offset="1" style="stop-color:var(--bot-c)"/></linearGradient>
+            <linearGradient id="nx-robot-side" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--bot-b)"/><stop offset="1" style="stop-color:var(--bot-a)"/></linearGradient>
+            <linearGradient id="nx-robot-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#193b46"/><stop offset="1" stop-color="#081c29"/></linearGradient>
+            <radialGradient id="nx-robot-glass" cx=".25" cy=".12" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".82"/><stop offset=".4" stop-color="#d8fff2" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          </defs>
+          <ellipse cx="130" cy="274" rx="68" ry="12" fill="#0b3039" opacity=".16"/><ellipse cx="130" cy="271" rx="48" ry="7" fill="#66cfc4" opacity=".35"/>
+          <g class="nx-bot-arm-left"><rect x="43" y="157" width="42" height="91" rx="20" fill="url(#nx-robot-side)" stroke="#f4fff7" stroke-opacity=".74" stroke-width="2"/><rect x="52" y="170" width="24" height="56" rx="12" fill="url(#nx-robot-glass)"/><circle cx="64" cy="238" r="10" fill="url(#nx-robot-shell)" stroke="#e5fff6" stroke-opacity=".65" stroke-width="2"/></g>
+          <g class="nx-bot-arm-right"><rect x="175" y="157" width="42" height="91" rx="20" fill="url(#nx-robot-side)" stroke="#f4fff7" stroke-opacity=".74" stroke-width="2"/><rect x="184" y="170" width="24" height="56" rx="12" fill="url(#nx-robot-glass)"/><circle cx="196" cy="238" r="10" fill="url(#nx-robot-shell)" stroke="#e5fff6" stroke-opacity=".65" stroke-width="2"/></g>
+          <rect x="112" y="129" width="36" height="35" rx="14" fill="url(#nx-robot-side)" stroke="#f4fff7" stroke-opacity=".75" stroke-width="2"/>
+          <rect x="78" y="149" width="104" height="111" rx="34" fill="url(#nx-robot-shell)" stroke="#f5fff8" stroke-opacity=".9" stroke-width="2.5"/>
+          <path d="M91 170Q130 145 169 170v24q-39-20-78 0Z" fill="url(#nx-robot-glass)"/>
+          <rect x="91" y="181" width="78" height="58" rx="20" fill="#092633" fill-opacity=".82" stroke="#e3fff4" stroke-opacity=".42" stroke-width="1.5"/>
+          <circle cx="130" cy="210" r="12" fill="url(#nx-robot-shell)"/><path d="M130 201l3 7 7 2-7 3-3 7-3-7-7-3 7-2Z" fill="#f2d990"/>
+          <g class="nx-bot-head"><path d="M130 45V31" stroke="#91e9db" stroke-width="5" stroke-linecap="round"/><circle cx="130" cy="26" r="8" fill="#d7b66e" stroke="#fff6d8" stroke-width="2"/>
+            <rect x="53" y="47" width="154" height="105" rx="37" fill="url(#nx-robot-shell)" stroke="#f9fff8" stroke-opacity=".96" stroke-width="3"/>
+            <path d="M68 65q62-29 124 0v27Q130 66 68 92Z" fill="url(#nx-robot-glass)"/>
+            <rect x="70" y="66" width="120" height="66" rx="25" fill="url(#nx-robot-face)" stroke="#e7fff5" stroke-opacity=".48" stroke-width="1.5"/>
+            <rect class="nx-bot-eye" x="94" y="87" width="13" height="22" rx="7" fill="var(--bot-eye)" style="filter:drop-shadow(0 0 7px var(--bot-eye))"/>
+            <rect class="nx-bot-eye" x="153" y="87" width="13" height="22" rx="7" fill="var(--bot-eye)" style="filter:drop-shadow(0 0 7px var(--bot-eye))"/>
+            <path d="M112 116q18 12 36 0" fill="none" stroke="#d1fff3" stroke-width="2.5" stroke-linecap="round"/>
+          </g>
+          <path d="M93 260l-5 13q-2 6 5 8h23q6-1 5-7l-2-14Zm48 0-2 14q-1 6 5 7h23q7-2 4-8l-4-13Z" fill="url(#nx-robot-side)" stroke="#f6fff8" stroke-opacity=".8" stroke-width="2"/>
+        </svg>
+      </div><span class="nx-robot-status">NEXORA · READY</span>
+    </div>
+    """.strip()
 
 def apply_3d_premium_theme(dark: bool = False, aurora: bool = False, grid_floor: bool = False, tilt: bool = False) -> None:
     """Apply the optional premium 3D layer with no extra JS or moving background by default."""

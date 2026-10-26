@@ -5,7 +5,7 @@ from datetime import datetime
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
-from nexora_3d import apply_3d_premium_theme, hero_cube_html, header_reactor_html
+from nexora_3d import apply_3d_premium_theme, hero_robot_html, header_reactor_html
 
 # =========================================================
 # NEXORA AI — Motion + Live Web Search
@@ -2258,6 +2258,74 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <style>
+    /* One-screen workbench. Long transcripts scroll inside their own panel. */
+    @media (min-width:761px) and (min-height:700px) {
+      [data-testid="stAppViewContainer"]{height:100dvh!important;max-height:100dvh!important;overflow:hidden!important}
+      [data-testid="stMain"]{height:calc(100dvh - 3.1rem)!important;max-height:calc(100dvh - 3.1rem)!important;overflow:hidden!important}
+      [data-testid="stMainBlockContainer"]{width:100%!important;max-width:1480px!important;height:calc(100dvh - 3.1rem)!important;max-height:calc(100dvh - 3.1rem)!important;box-sizing:border-box!important;padding:2px clamp(20px,3.4vw,54px) 94px!important;overflow:hidden!important}
+      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]{gap:4px!important;min-height:0!important}
+      [data-testid="stBottom"]{position:fixed!important;z-index:1001!important}
+      [data-testid="stSidebar"]{height:100dvh!important;overflow-y:auto!important}
+      [data-testid="stSidebar"]>div:first-child{padding:.6rem .72rem .85rem!important}
+      [data-testid="stSidebar"] [data-testid="stVerticalBlock"]{gap:.36rem!important}
+      [data-testid="stSidebar"] .brand-caption{margin:0 0 7px 47px!important;font-size:8px!important}
+      [data-testid="stSidebar"] .eyebrow{margin:8px 0 4px!important;font-size:8px!important;letter-spacing:1.1px!important}
+      [data-testid="stSidebar"] [data-testid="stButton"] button{min-height:34px!important;padding:4px 9px!important;border-radius:11px!important;font-size:10px!important}
+      [data-testid="stSidebar"] [data-testid="stTextInput"] input,[data-testid="stSidebar"] [data-baseweb="select"]>div{min-height:34px!important;font-size:10px!important}
+      [data-testid="stSidebar"] [data-testid="stCaptionContainer"]{line-height:1.35!important;font-size:9px!important}
+      .nx-creator-ribbon{width:min(100%,560px)!important;max-width:calc(100% - 20px)!important;min-height:82px!important;margin:1px auto 3px!important;padding:10px 24px 10px 17px!important;gap:19px!important;border-radius:25px!important}
+      .nx-creator-mark{width:60px!important;height:60px!important;flex:0 0 60px!important;border-radius:20px!important;font-size:28px!important}
+      .nx-creator-copy{gap:1px!important}.nx-creator-kicker{font-size:9px!important;letter-spacing:1.8px!important}
+      .nx-creator-name{font-size:19px!important;line-height:1.17!important}.nx-creator-caption{font-size:12px!important;line-height:1.25!important}
+      .nx-creator-ribbon:after{left:94px!important;right:24px!important;bottom:9px!important}
+      .workspace-topbar{max-width:1260px!important;min-height:57px!important;margin:0 auto!important;padding:7px 12px!important;border-radius:17px!important}
+      .workspace-mark{width:38px!important;height:38px!important;min-width:38px!important}
+      .hero{width:100%!important;max-width:1240px!important;height:clamp(250px,34vh,326px)!important;min-height:0!important;margin:3px auto 0!important;padding:clamp(16px,2.2vw,28px)!important;grid-template-columns:minmax(0,1.12fr) minmax(220px,.78fr)!important;gap:clamp(8px,2.4vw,30px)!important;align-items:center!important}
+      .hero-content{grid-column:1!important;grid-row:1!important;align-self:center!important}
+      .hero .orb-wrap,.hero .nx-robot-stage{grid-column:2!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important}
+      .hero .nx-robot-stage:before,.hero .nx-robot-stage:after{content:none!important;display:none!important}
+      .hero .nx-hero-robot{min-height:0!important;height:100%!important}.hero .nx-robot-figure{width:clamp(170px,19vw,238px)!important}
+      .hero h1{max-width:720px!important;font-size:clamp(29px,3.8vw,49px)!important;line-height:1.05!important;letter-spacing:-.052em!important;margin:0 0 9px!important;text-wrap:balance}
+      .hero-kicker{margin-bottom:8px!important;font-size:9px!important;padding:6px 9px!important}
+      .hero-subtitle{max-width:580px!important;font-size:clamp(11px,1vw,13px)!important;line-height:1.55!important}
+      .hero-trust-row{justify-content:flex-start!important;gap:5px!important;margin:11px 0 0!important}.hero-trust-row span{padding:6px 8px!important;font-size:9px!important}
+      .section-heading{max-width:1240px!important;width:100%!important;margin:2px auto 0!important;font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]){max-width:1240px!important;width:100%!important;margin:0 auto!important;gap:8px!important}
+      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button{min-height:42px!important;height:42px!important;text-align:center!important;padding:0 8px!important;border-radius:13px!important;font-size:10px!important}
+      .home-footnote{max-width:920px!important;margin:3px auto 0!important;padding:5px 10px!important;font-size:9px!important;line-height:1.3!important}
+      [class*="st-key-nexora_chat_history"]{height:calc(100dvh - 19rem)!important;max-height:calc(100dvh - 19rem)!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable}
+      [data-testid="stChatInput"]{max-width:960px!important;margin-left:auto!important;margin-right:auto!important}
+    }
+    @media (min-width:761px) and (max-height:760px){
+      .nx-creator-ribbon{min-height:72px!important;padding-top:7px!important;padding-bottom:7px!important}.nx-creator-mark{width:52px!important;height:52px!important;flex-basis:52px!important}
+      .workspace-topbar{min-height:52px!important}.hero{height:clamp(224px,33vh,252px)!important;padding:14px 22px!important}
+      .hero .nx-robot-figure{width:clamp(150px,17vw,196px)!important}.hero h1{font-size:clamp(27px,3.4vw,42px)!important}.home-footnote{display:none!important}
+    }
+    @media (min-width:641px) and (max-width:900px){.hero{grid-template-columns:minmax(0,1fr) minmax(185px,.68fr)!important;gap:7px!important}.hero h1{font-size:clamp(27px,3.4vw,36px)!important}.hero .nx-robot-figure{width:clamp(150px,19vw,190px)!important}.hero-trust-row{flex-wrap:wrap!important}}
+    @media (max-width:640px){
+      .nx-creator-ribbon{width:min(100%,490px)!important;min-height:76px!important;max-width:calc(100% - 12px)!important;margin:0 auto 5px!important;padding:8px 14px 8px 9px!important;gap:13px!important;border-radius:20px!important}
+      .nx-creator-mark{width:54px!important;height:54px!important;flex-basis:54px!important;border-radius:17px!important;font-size:24px!important}.nx-creator-name{font-size:17px!important}.nx-creator-caption{font-size:11px!important}.nx-creator-kicker{font-size:8px!important}
+      .workspace-topbar{min-height:52px!important;margin:0 0 5px!important;padding:7px 9px!important}
+      .hero{height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;padding:13px 15px 9px!important;margin:4px auto 5px!important}
+      .hero-content{grid-column:1!important;grid-row:2!important;text-align:center!important}.hero .orb-wrap,.hero .nx-robot-stage{grid-column:1!important;grid-row:1!important;height:152px!important;min-height:152px!important}
+      .hero .nx-hero-robot{min-height:0!important}.hero .nx-robot-figure{width:145px!important}.hero h1{font-size:clamp(27px,7.4vw,38px)!important;line-height:1.04!important;margin-bottom:7px!important}
+      .hero-subtitle{font-size:12px!important;line-height:1.45!important}.hero-trust-row{justify-content:center!important;gap:5px!important;margin-top:8px!important}.hero-trust-row span{font-size:8px!important;padding:5px 7px!important}
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]){flex-wrap:wrap!important;gap:6px!important}
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"])>[data-testid="stColumn"]{flex:1 1 calc(50% - 8px)!important;width:calc(50% - 8px)!important;min-width:calc(50% - 8px)!important}
+      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button{min-height:40px!important;height:auto!important;padding:7px 5px!important;font-size:10px!important;text-align:center!important}
+      [class*="st-key-nexora_chat_history"]{height:calc(100dvh - 260px)!important;max-height:calc(100dvh - 260px)!important;overflow-y:auto!important}
+    }
+    @media (max-width:380px){.nx-creator-ribbon{min-height:68px!important;padding:7px 11px 7px 8px!important;gap:10px!important}.nx-creator-mark{width:48px!important;height:48px!important;flex-basis:48px!important}.hero .nx-robot-stage{height:132px!important;min-height:132px!important}.hero .nx-robot-figure{width:128px!important}}
+    @media(prefers-reduced-motion:reduce){.nx-creator-ribbon,.nx-creator-mark,.nx-robot-stage *,.workspace-topbar,.hero,.hero-trust-row span{animation:none!important;transition:none!important}}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
 
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
@@ -2607,41 +2675,41 @@ if not history:
             <p class="hero-subtitle">From quick questions to deep research, coding, writing, and planning — turn your next idea into progress.</p>
             <div class="hero-trust-row"><span>✦ Thoughtful answers</span><span>⌕ Source-aware research</span><span>⌘ Coding &amp; creativity</span></div>
           </div>
-          <div class="orb-wrap" aria-hidden="true"><div class="orb-floor-shadow"></div>{hero_cube_html()}<span class="orb-spark orb-spark-a">✦</span><span class="orb-spark orb-spark-b">✧</span></div>
+          <div class="orb-wrap nx-robot-stage">{hero_robot_html()}</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
-    st.markdown('<div class="section-heading">A good place to start</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">Start with a spark</div>', unsafe_allow_html=True)
     prompts = [
         ("✧", "Learn something new", "Explain a complex topic in simple language, with a useful example and a short summary."),
         ("✎", "Write & create", "Help me create polished, original content. Ask a brief question if key details are missing."),
         ("⌕", "Research a topic", "Research this topic using reliable, current web sources. Compare evidence and cite the sources for key claims."),
         ("⌘", "Build with code", "Help me solve a coding problem. Explain the root cause and provide a practical approach."),
     ]
-    col_a, col_b = st.columns(2)
+    prompt_columns = st.columns(4)
     for i, (icon, title, prompt) in enumerate(prompts):
-        with (col_a if i % 2 == 0 else col_b):
+        with prompt_columns[i]:
             if st.button(f"{icon}   {title}", key=f"prompt_{i}", use_container_width=True):
                 st.session_state.pending_prompt = prompt
                 st.rerun()
 else:
     title_color = "#f3effb" if st.session_state.dark_mode else "#292238"
     st.markdown(f"<h3 style='font-family:Manrope,sans-serif;color:{title_color}'>{active_chat['title']}</h3>", unsafe_allow_html=True)
-    for message_index, message in enumerate(history):
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-            if message["role"] == "user":
-                edit_col, spacer_col = st.columns([1, 5])
-                with edit_col:
-                    if st.button("✎ Edit", key=f"edit_message_{st.session_state.active_chat}_{message_index}", help="Edit this message and regenerate the conversation from this point"):
-                        st.session_state.edit_message_index = message_index
-                        st.rerun()
-            if message["role"] == "assistant" and message.get("citations"):
-                with st.expander("Sources from the web"):
-                    for source in message["citations"]:
-                        st.markdown(f"- [{source['title']}]({source['url']})")
-
+    with st.container(height=640, border=False, key="nexora_chat_history"):
+        for message_index, message in enumerate(history):
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+                if message["role"] == "user":
+                    edit_col, spacer_col = st.columns([1, 5])
+                    with edit_col:
+                        if st.button("✎ Edit", key=f"edit_message_{st.session_state.active_chat}_{message_index}", help="Edit this message and regenerate the conversation from this point"):
+                            st.session_state.edit_message_index = message_index
+                            st.rerun()
+                if message["role"] == "assistant" and message.get("citations"):
+                    with st.expander("Sources from the web"):
+                        for source in message["citations"]:
+                            st.markdown(f"- [{source['title']}]({source['url']})")
 # Edit a prior user message; regenerate the thread from the edited point onward.
 if st.session_state.get("edit_message_index") is not None:
     edit_index = st.session_state.edit_message_index
