@@ -2463,6 +2463,34 @@ st.markdown(
       body:has([data-testid="stSidebar"][aria-expanded="false"]) [data-testid="stBottom"] { left:0!important;width:100vw!important; }
       [data-testid="stBottomBlockContainer"] { width:100%!important;max-width:100%!important;margin:0!important;padding-left:12px!important;padding-right:12px!important; }
     }
+    /* Keep the welcome actions fully visible above the fixed chat composer on short desktop windows. */
+    @media (min-width:761px) and (min-height:700px) and (max-height:800px) {
+      [data-testid="stMainBlockContainer"] {
+        padding-top:1.15rem!important;
+        padding-bottom:5rem!important;
+      }
+      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] {
+        gap:7px!important;
+      }
+      .hero {
+        height:clamp(210px,30vh,250px)!important;
+        min-height:210px!important;
+        margin-top:2px!important;
+        margin-bottom:0!important;
+      }
+      .section-heading {
+        margin-top:5px!important;
+        margin-bottom:7px!important;
+      }
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]) {
+        margin-bottom:10px!important;
+      }
+      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button {
+        min-height:44px!important;
+        height:44px!important;
+      }
+    }
+
     @media (min-width:761px) and (max-height:760px) {
       [data-testid="stMainBlockContainer"] { padding-top:3.15rem!important;padding-bottom:4.25rem!important; }
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
