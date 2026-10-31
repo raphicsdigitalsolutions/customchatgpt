@@ -16,6 +16,7 @@ _visuals_spec.loader.exec_module(_visuals_module)
 apply_3d_premium_theme = _visuals_module.apply_3d_premium_theme
 hero_robot_html = _visuals_module.hero_robot_html
 header_reactor_html = _visuals_module.header_reactor_html
+from nexora_3d import inject_3d
 
 # =========================================================
 # NEXORA AI — Motion + Live Web Search
@@ -1572,6 +1573,7 @@ apply_3d_premium_theme(
     grid_floor=False,
     tilt=False,
 )
+inject_3d(st.session_state.get("dark_mode", False))
 
 # Targeted API-key dialog repair. This stylesheet is deliberately injected after
 # the legacy CSS and the 3D module, so contrast and modal sizing cannot be undone.
