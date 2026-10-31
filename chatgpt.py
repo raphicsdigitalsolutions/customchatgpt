@@ -2591,7 +2591,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-/* Short desktop: preserve the full hero content and keep starter actions below it. */
+# Short desktop: preserve the full hero content and keep starter actions below it.
 st.markdown(
     """
     <style>
