@@ -2463,34 +2463,6 @@ st.markdown(
       body:has([data-testid="stSidebar"][aria-expanded="false"]) [data-testid="stBottom"] { left:0!important;width:100vw!important; }
       [data-testid="stBottomBlockContainer"] { width:100%!important;max-width:100%!important;margin:0!important;padding-left:12px!important;padding-right:12px!important; }
     }
-    /* Keep the welcome actions fully visible above the fixed chat composer on short desktop windows. */
-    @media (min-width:761px) and (min-height:700px) and (max-height:800px) {
-      [data-testid="stMainBlockContainer"] {
-        padding-top:1.15rem!important;
-        padding-bottom:5rem!important;
-      }
-      [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] {
-        gap:7px!important;
-      }
-      .hero {
-        height:clamp(210px,30vh,250px)!important;
-        min-height:210px!important;
-        margin-top:2px!important;
-        margin-bottom:0!important;
-      }
-      .section-heading {
-        margin-top:5px!important;
-        margin-bottom:7px!important;
-      }
-      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]) {
-        margin-bottom:10px!important;
-      }
-      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button {
-        min-height:44px!important;
-        height:44px!important;
-      }
-    }
-
     @media (min-width:761px) and (max-height:760px) {
       [data-testid="stMainBlockContainer"] { padding-top:3.15rem!important;padding-bottom:4.25rem!important; }
       [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"] { gap:8px!important; }
@@ -2619,6 +2591,32 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+/* Short desktop: preserve the full hero content and keep starter actions below it. */
+st.markdown(
+    """
+    <style>
+    @media (min-width:761px) and (min-height:700px) and (max-height:800px) {
+      .hero {
+        height:auto!important;
+        min-height:270px!important;
+        margin-top:3px!important;
+        margin-bottom:10px!important;
+        overflow:visible!important;
+      }
+      .hero-content { align-self:center!important; }
+      .section-heading { margin-top:8px!important;margin-bottom:7px!important; }
+      [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has([class*="st-key-prompt_"]) {
+        margin-bottom:8px!important;
+      }
+      [data-testid="stMainBlockContainer"] [class*="st-key-prompt_"] [data-testid="stButton"] button {
+        min-height:42px!important;height:42px!important;
+      }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 def get_api_key():
     """Resolve the key in safe precedence order: session entry, Streamlit Secrets, then environment."""
     session_key = st.session_state.get("api_key_session", "").strip()
